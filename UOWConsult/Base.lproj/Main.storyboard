@@ -9,7 +9,7 @@
         <!--Login-->
         <scene sceneID="txl-8H-eej">
             <objects>
-                <viewController title="Login" id="6hl-fq-c4v" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginController" title="Login" id="6hl-fq-c4v" customClass="LoginViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vfS-I7-xnk"/>
                         <viewControllerLayoutGuide type="bottom" id="SWD-vQ-iBH"/>
@@ -52,6 +52,9 @@
                                 <rect key="frame" x="269" y="280" width="61" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="loginPressed:" destination="6hl-fq-c4v" eventType="touchUpInside" id="JSd-KJ-mzg"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJC-YE-8tN">
                                 <rect key="frame" x="225.5" y="28" width="150" height="38.5"/>
@@ -76,6 +79,10 @@
                             <constraint firstItem="Hcx-PX-WLk" firstAttribute="centerX" secondItem="cSb-Rw-ely" secondAttribute="centerX" id="vXE-1l-IbY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginTF" destination="lnt-2H-K3b" id="gjb-PY-xqY"/>
+                        <outlet property="passwordTF" destination="Hcx-PX-WLk" id="I2X-vi-nZN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aK1-EE-eSe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,7 +91,7 @@
         <!--SignUp-->
         <scene sceneID="aFp-yg-Yeq">
             <objects>
-                <viewController title="SignUp" id="87g-4M-vGe" sceneMemberID="viewController">
+                <viewController title="SignUp" id="87g-4M-vGe" customClass="SignUpViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PLh-W1-LUt"/>
                         <viewControllerLayoutGuide type="bottom" id="2zE-WG-YPr"/>
@@ -139,6 +146,9 @@
                                 <rect key="frame" x="259.5" y="373" width="81" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerPressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="iGv-7N-dKs"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiI-pz-TqT">
                                 <rect key="frame" x="225" y="28" width="150" height="38.5"/>
@@ -157,6 +167,7 @@
                             <constraint firstItem="2zE-WG-YPr" firstAttribute="top" secondItem="OWY-8X-URG" secondAttribute="bottom" constant="20" id="7nx-LM-acV"/>
                             <constraint firstItem="92T-LV-zrj" firstAttribute="top" secondItem="z0w-2S-WEA" secondAttribute="bottom" constant="8" id="ByC-2a-oD3"/>
                             <constraint firstItem="iiI-pz-TqT" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="BzM-B8-RVe"/>
+                            <constraint firstItem="z0w-2S-WEA" firstAttribute="leading" secondItem="HX4-6o-kqS" secondAttribute="leadingMargin" constant="160" id="EPz-vO-YKK"/>
                             <constraint firstItem="RCL-Q8-JQ2" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="EVU-p1-nJJ"/>
                             <constraint firstItem="CHN-yd-sj4" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="LrG-at-yLY"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="XWh-1x-Keu"/>
@@ -168,7 +179,18 @@
                             <constraint firstItem="iiI-pz-TqT" firstAttribute="top" secondItem="PLh-W1-LUt" secondAttribute="bottom" constant="8" id="qbY-Pc-QtY"/>
                             <constraint firstItem="2au-4B-aPh" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="rV0-9H-F5q"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EPz-vO-YKK"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="confirmTF" destination="2au-4B-aPh" id="7L2-BC-1lc"/>
+                        <outlet property="emailTF" destination="z0w-2S-WEA" id="iuR-Ej-hcp"/>
+                        <outlet property="passwordTF" destination="92T-LV-zrj" id="6Hg-hl-b3Z"/>
+                        <outlet property="userTF" destination="RCL-Q8-JQ2" id="hix-yW-rM4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bC6-g0-Lu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,7 +220,7 @@
         <!--Settings-->
         <scene sceneID="Li6-RI-EVu">
             <objects>
-                <tableViewController title="Settings" id="Kx5-U0-LEm" sceneMemberID="viewController">
+                <tableViewController title="Settings" id="Kx5-U0-LEm" customClass="SettingViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="2z8-M1-G32">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,11 +267,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="her-ko-7F0">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="her-ko-7F0">
                                                     <rect key="frame" x="228" y="7" width="145" height="30"/>
                                                     <state key="normal" title="Enroll/Create Subject"/>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="her-ko-7F0" firstAttribute="centerX" secondItem="Mu8-o7-fTe" secondAttribute="centerX" id="BTU-8a-92C"/>
+                                                <constraint firstItem="her-ko-7F0" firstAttribute="top" secondItem="Mu8-o7-fTe" secondAttribute="topMargin" constant="-1" id="Edk-fx-dzX"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -263,11 +289,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyN-kX-ibN">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyN-kX-ibN">
                                                     <rect key="frame" x="273" y="7" width="55" height="30"/>
                                                     <state key="normal" title="Log Out"/>
+                                                    <connections>
+                                                        <action selector="logOutPressed:" destination="Kx5-U0-LEm" eventType="touchUpInside" id="FKX-f9-voH"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WyN-kX-ibN" firstAttribute="centerX" secondItem="Tde-pG-FmS" secondAttribute="centerX" id="U4g-BR-xvP"/>
+                                                <constraint firstItem="WyN-kX-ibN" firstAttribute="top" secondItem="Tde-pG-FmS" secondAttribute="topMargin" constant="-1" id="xTX-83-Rnd"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -283,15 +316,19 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="fox-tR-1FZ"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="HrK-UC-04O" id="7ph-eT-v57"/>
+                        <outlet property="usernameLabel" destination="FJG-zm-S3x" id="tXR-gD-X24"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGi-mY-4gY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1678" y="1261"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tmp View Controller-->
         <scene sceneID="cf0-0s-z7h">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainController" automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" customClass="TmpViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JYx-9T-f5G">
                         <autoresizingMask key="autoresizingMask"/>
