@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		39D4A5FA1CDF371F00A5853F /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A5F91CDF371F00A5853F /* user.swift */; };
 		39D4A6041CDF39C800A5853F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6031CDF39C800A5853F /* SignUpViewController.swift */; };
-		39D4A60B1CDF4D7A00A5853F /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D4A60A1CDF4D7A00A5853F /* Firebase.framework */; };
-		39D4A60D1CDF4E5C00A5853F /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D4A60C1CDF4E5C00A5853F /* libicucore.tbd */; };
-		39D4A60F1CDF4E6B00A5853F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D4A60E1CDF4E6B00A5853F /* libc++.tbd */; };
-		39D4A6111CDF4E7400A5853F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D4A6101CDF4E7400A5853F /* CFNetwork.framework */; };
-		39D4A6131CDF4E8000A5853F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D4A6121CDF4E8000A5853F /* Security.framework */; };
-		39D4A6151CDF4E9700A5853F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D4A6141CDF4E9700A5853F /* SystemConfiguration.framework */; };
 		39D4A6171CDF593500A5853F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6161CDF593500A5853F /* LoginViewController.swift */; };
 		39D4A6191CDF7CAD00A5853F /* TmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6181CDF7CAD00A5853F /* TmpViewController.swift */; };
 		39D4A61B1CDF7F1E00A5853F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A61A1CDF7F1E00A5853F /* SettingViewController.swift */; };
@@ -30,7 +24,6 @@
 /* Begin PBXFileReference section */
 		39D4A5F91CDF371F00A5853F /* user.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		39D4A6031CDF39C800A5853F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		39D4A60A1CDF4D7A00A5853F /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = UOWConsult/Firebase.framework; sourceTree = "<group>"; };
 		39D4A60C1CDF4E5C00A5853F /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		39D4A60E1CDF4E6B00A5853F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		39D4A6101CDF4E7400A5853F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -57,13 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39D4A6151CDF4E9700A5853F /* SystemConfiguration.framework in Frameworks */,
-				39D4A6131CDF4E8000A5853F /* Security.framework in Frameworks */,
-				39D4A6111CDF4E7400A5853F /* CFNetwork.framework in Frameworks */,
-				39D4A60F1CDF4E6B00A5853F /* libc++.tbd in Frameworks */,
-				39D4A60D1CDF4E5C00A5853F /* libicucore.tbd in Frameworks */,
 				778F02047A75BADE168945B3 /* Pods_UOWConsult.framework in Frameworks */,
-				39D4A60B1CDF4D7A00A5853F /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +127,6 @@
 				39D4A6101CDF4E7400A5853F /* CFNetwork.framework */,
 				39D4A60E1CDF4E6B00A5853F /* libc++.tbd */,
 				39D4A60C1CDF4E5C00A5853F /* libicucore.tbd */,
-				39D4A60A1CDF4D7A00A5853F /* Firebase.framework */,
 				CA64DFB256F227C7A2182B35 /* Pods_UOWConsult.framework */,
 			);
 			name = Frameworks;
