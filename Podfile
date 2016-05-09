@@ -18,8 +18,9 @@ target 'UOWConsult' do
 
 	# https://github.com/MPGNotification/MPGNotification
 	pod 'MPGNotification', '~> 1.2'
-
-
+	
+	# https://www.firebase.com/docs/ios/quickstart.html
+	pod 'Firebase', '>= 2.5.1'
 
 end
 

@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-UOWConsult/ActionSheetPicker_3_0.framework"
+  install_framework "Pods-UOWConsult/Firebase.framework"
   install_framework "Pods-UOWConsult/GCCalendar.framework"
   install_framework "Pods-UOWConsult/MPGNotification.framework"
   install_framework "Pods-UOWConsult/MSCollectionViewCalendarLayout.framework"
@@ -92,6 +93,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-UOWConsult/ActionSheetPicker_3_0.framework"
+  install_framework "Pods-UOWConsult/Firebase.framework"
   install_framework "Pods-UOWConsult/GCCalendar.framework"
   install_framework "Pods-UOWConsult/MPGNotification.framework"
   install_framework "Pods-UOWConsult/MSCollectionViewCalendarLayout.framework"
