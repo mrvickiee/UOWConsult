@@ -32,7 +32,8 @@ class LoginViewController: UIViewController {
                             print("Incorrect password or id")
                         } else {
                             print(authData.auth["uid"])
-                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
+                            let vc =
+                                self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
                             self.presentViewController(vc, animated: true, completion:nil)
                         }
         })

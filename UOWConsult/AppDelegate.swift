@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if ref.authData != nil {
             // user authenticated
-            //print(ref.authData)
+            print(ref.authData)
+           // ref.authData()
             loggedIn = true
         } else {
             // No user is signed in
