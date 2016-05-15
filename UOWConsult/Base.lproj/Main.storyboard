@@ -155,20 +155,12 @@
                                     <action selector="backPressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="9Zu-nT-Kyz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-yd-sj4">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-yd-sj4">
                                 <rect key="frame" x="260" y="445" width="81" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerPressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="iGv-7N-dKs"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N25-Q7-4WI">
-                                <rect key="frame" x="259" y="361" width="82" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Select role"/>
-                                <connections>
-                                    <action selector="rolePressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="JNS-QM-cTC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -180,19 +172,16 @@
                             <constraint firstItem="iiI-pz-TqT" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="BzM-B8-RVe"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="leading" secondItem="HX4-6o-kqS" secondAttribute="leadingMargin" constant="160" id="EPz-vO-YKK"/>
                             <constraint firstItem="RCL-Q8-JQ2" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="EVU-p1-nJJ"/>
-                            <constraint firstItem="N25-Q7-4WI" firstAttribute="top" secondItem="2au-4B-aPh" secondAttribute="bottom" constant="8" id="J7i-CV-Cgg"/>
                             <constraint firstItem="CHN-yd-sj4" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="Jd8-Nt-iLC"/>
                             <constraint firstItem="CHN-yd-sj4" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="LrG-at-yLY"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="XWh-1x-Keu"/>
                             <constraint firstItem="92T-LV-zrj" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="bt6-wo-v4G"/>
-                            <constraint firstItem="CHN-yd-sj4" firstAttribute="top" secondItem="N25-Q7-4WI" secondAttribute="bottom" constant="51" id="heo-2b-uZx"/>
                             <constraint firstItem="OWY-8X-URG" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="mI5-Ce-fNZ"/>
                             <constraint firstItem="2au-4B-aPh" firstAttribute="top" secondItem="92T-LV-zrj" secondAttribute="bottom" constant="8" id="npA-yd-3q7"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="top" secondItem="RCL-Q8-JQ2" secondAttribute="bottom" constant="8" id="pWW-LL-hdw"/>
                             <constraint firstItem="92T-LV-zrj" firstAttribute="centerY" secondItem="HX4-6o-kqS" secondAttribute="centerY" id="pwX-4S-cpA"/>
                             <constraint firstItem="iiI-pz-TqT" firstAttribute="top" secondItem="PLh-W1-LUt" secondAttribute="bottom" constant="8" id="qbY-Pc-QtY"/>
                             <constraint firstItem="2au-4B-aPh" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="rV0-9H-F5q"/>
-                            <constraint firstItem="N25-Q7-4WI" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="z0Q-wu-LuZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -206,7 +195,6 @@
                         <outlet property="confirmTF" destination="2au-4B-aPh" id="7L2-BC-1lc"/>
                         <outlet property="emailTF" destination="z0w-2S-WEA" id="iuR-Ej-hcp"/>
                         <outlet property="passwordTF" destination="92T-LV-zrj" id="6Hg-hl-b3Z"/>
-                        <outlet property="roleBtn" destination="N25-Q7-4WI" id="xA0-32-5OF"/>
                         <outlet property="userTF" destination="RCL-Q8-JQ2" id="hix-yW-rM4"/>
                     </connections>
                 </viewController>
