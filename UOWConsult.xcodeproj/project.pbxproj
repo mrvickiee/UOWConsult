@@ -12,6 +12,7 @@
 		39D4A6171CDF593500A5853F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6161CDF593500A5853F /* LoginViewController.swift */; };
 		39D4A6191CDF7CAD00A5853F /* TmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6181CDF7CAD00A5853F /* TmpViewController.swift */; };
 		39D4A61B1CDF7F1E00A5853F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A61A1CDF7F1E00A5853F /* SettingViewController.swift */; };
+		5DC832E11CE832F900AEAEF3 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC832E01CE832F900AEAEF3 /* EditViewController.swift */; };
 		778F02047A75BADE168945B3 /* Pods_UOWConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA64DFB256F227C7A2182B35 /* Pods_UOWConsult.framework */; };
 		E93B9D591CCE5B7F00EC5DA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B9D581CCE5B7F00EC5DA9 /* AppDelegate.swift */; };
 		E93B9D5B1CCE5B7F00EC5DA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B9D5A1CCE5B7F00EC5DA9 /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 		39D4A6161CDF593500A5853F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		39D4A6181CDF7CAD00A5853F /* TmpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TmpViewController.swift; sourceTree = "<group>"; };
 		39D4A61A1CDF7F1E00A5853F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5DC832E01CE832F900AEAEF3 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		B9670419072CA22B6AFB0A65 /* Pods-UOWConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.release.xcconfig"; sourceTree = "<group>"; };
 		CA64DFB256F227C7A2182B35 /* Pods_UOWConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UOWConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B9D551CCE5B7F00EC5DA9 /* UOWConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOWConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 		39D4A61E1CDF889400A5853F /* User managament */ = {
 			isa = PBXGroup;
 			children = (
+				5DC832E01CE832F900AEAEF3 /* EditViewController.swift */,
 				39D4A61A1CDF7F1E00A5853F /* SettingViewController.swift */,
 				39D4A6031CDF39C800A5853F /* SignUpViewController.swift */,
 				39D4A6161CDF593500A5853F /* LoginViewController.swift */,
@@ -262,6 +265,7 @@
 				E93B9D5B1CCE5B7F00EC5DA9 /* ViewController.swift in Sources */,
 				E93B9D591CCE5B7F00EC5DA9 /* AppDelegate.swift in Sources */,
 				39D4A6041CDF39C800A5853F /* SignUpViewController.swift in Sources */,
+				5DC832E11CE832F900AEAEF3 /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
