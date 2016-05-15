@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aZg-oV-lCC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aZg-oV-lCC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -199,7 +199,7 @@
         <!--CalenderView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="CalenderView" id="BYZ-38-t0r" customClass="ViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CalenderView" id="BYZ-38-t0r" customClass="ConsulationTimeViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -207,11 +207,69 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6Q-fa-c75" customClass="JTHorizontalCalendarView">
+                                <rect key="frame" x="0.0" y="108" width="600" height="85"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="81p-CD-0As"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ0-84-3tf" customClass="JTCalendarMenuView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1A-5O-rqo">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="KAB-N5-hij"/>
+                                        </constraints>
+                                        <state key="normal" title="Today"/>
+                                        <connections>
+                                            <action selector="buttonToday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jm2-h2-HYB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZe-0F-yUz">
+                                        <rect key="frame" x="520" y="0.0" width="80" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="egu-EX-jDK"/>
+                                        </constraints>
+                                        <state key="normal" title="Year"/>
+                                        <connections>
+                                            <action selector="buttonCalendarMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TSP-PC-Oc6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="GZe-0F-yUz" secondAttribute="bottom" id="0ax-ao-yX3"/>
+                                    <constraint firstItem="I1A-5O-rqo" firstAttribute="leading" secondItem="oZ0-84-3tf" secondAttribute="leading" id="6BK-z8-2nE"/>
+                                    <constraint firstAttribute="bottom" secondItem="I1A-5O-rqo" secondAttribute="bottom" id="FCx-Wj-ABA"/>
+                                    <constraint firstAttribute="trailing" secondItem="GZe-0F-yUz" secondAttribute="trailing" id="G3T-jM-hkv"/>
+                                    <constraint firstItem="GZe-0F-yUz" firstAttribute="top" secondItem="oZ0-84-3tf" secondAttribute="top" id="KhD-kZ-dfQ"/>
+                                    <constraint firstAttribute="height" constant="44" id="N0g-7X-5L3"/>
+                                    <constraint firstItem="I1A-5O-rqo" firstAttribute="top" secondItem="oZ0-84-3tf" secondAttribute="top" id="ax3-eF-MBR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="oZ0-84-3tf" secondAttribute="trailing" constant="-20" id="82Q-vC-m86"/>
+                            <constraint firstItem="M6Q-fa-c75" firstAttribute="top" secondItem="oZ0-84-3tf" secondAttribute="bottom" id="D25-hJ-Wr7"/>
+                            <constraint firstItem="oZ0-84-3tf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="GB7-aK-Ngj"/>
+                            <constraint firstItem="M6Q-fa-c75" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="O3v-HZ-gHu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="M6Q-fa-c75" secondAttribute="trailing" constant="-20" id="P83-KN-wNo"/>
+                            <constraint firstItem="oZ0-84-3tf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="qh7-Yk-nwu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Consultation Time" id="4WL-iw-wVY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fJR-jb-i5r"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="calendarContentView" destination="M6Q-fa-c75" id="CMf-gM-AyU"/>
+                        <outlet property="calendarContentViewHeight" destination="81p-CD-0As" id="WlJ-I5-7k0"/>
+                        <outlet property="calendarMenuView" destination="oZ0-84-3tf" id="LtE-Xh-l3i"/>
+                        <outlet property="yearButton" destination="GZe-0F-yUz" id="aw2-vJ-wE2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
