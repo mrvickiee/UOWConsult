@@ -11,10 +11,13 @@ import Firebase
 import ActionSheetPicker_3_0
 
 class SignUpViewController: UIViewController {
+    
+    @IBOutlet weak var roleBtn: UIButton!
     @IBOutlet weak var userTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var confirmTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
+    var roleName = String()
     let ref = Firebase(url: "https://uow-consult.firebaseio.com")
    
     override func viewDidLoad() {
@@ -36,7 +39,7 @@ class SignUpViewController: UIViewController {
         let confirmPass = confirmTF.text!
         
         if(password == confirmPass){
-            let user = User(name: fullname, email: email, role: "")
+            let user = User(name: fullname, email: email, role: roleName)
             
             
             ref.createUser(user.email, password: password,
@@ -82,6 +85,17 @@ class SignUpViewController: UIViewController {
     @IBAction func backPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func rolePressed(sender: AnyObject) {
+        ActionSheetStringPicker.showPickerWithTitle("Roles", rows: ["Student", "Lecturer"], initialSelection: 0, doneBlock: {
+            picker, value, index in
+            self.roleBtn.setTitle("Role: \(index)" as? String, forState: .Normal)
+            self.roleName = index as! String
+            return
+            }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender)
+
+    }
+    
     /*
     // MARK: - Navigation
 

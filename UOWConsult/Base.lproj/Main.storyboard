@@ -167,6 +167,9 @@
                                 <rect key="frame" x="259" y="361" width="82" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Select role"/>
+                                <connections>
+                                    <action selector="rolePressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="JNS-QM-cTC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -203,6 +206,7 @@
                         <outlet property="confirmTF" destination="2au-4B-aPh" id="7L2-BC-1lc"/>
                         <outlet property="emailTF" destination="z0w-2S-WEA" id="iuR-Ej-hcp"/>
                         <outlet property="passwordTF" destination="92T-LV-zrj" id="6Hg-hl-b3Z"/>
+                        <outlet property="roleBtn" destination="N25-Q7-4WI" id="xA0-32-5OF"/>
                         <outlet property="userTF" destination="RCL-Q8-JQ2" id="hix-yW-rM4"/>
                     </connections>
                 </viewController>
