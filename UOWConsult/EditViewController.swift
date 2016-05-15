@@ -11,17 +11,16 @@ import Firebase
 
 class EditViewController: UITableViewController {
 
-    @IBOutlet weak var newEmail: UITextField!
     
     @IBOutlet weak var newPassword: UITextField!
     
-    var authenticated : Bool = false
-    var oldEmail : String = ""
-    var oldPassword : String = ""
+    @IBOutlet weak var currentPassword: UITextField!
     
+    var updatePassword : String = ""
+    var oldPassword : String = ""
+    var email : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         
         let ref = Firebase(url: "https://uow-consult.firebaseio.com")
@@ -29,13 +28,13 @@ class EditViewController: UITableViewController {
                      withCompletionBlock: { error, authData in
                         if error != nil {
                             // There was an error logging in to this account
+                            
                         } else {
                             // We are now logged in
+
+                            
                             print("Authenticated  \(authData.providerData["email"])")
                             
-                            self.authenticated = true
-                            self.oldEmail = authData.providerData["email"] as! String
-                            self.oldPassword = "batman27"
                         }
         })
 
@@ -47,26 +46,67 @@ class EditViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    @IBAction func cancelPressed(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
     @IBAction func saveChanges(sender: AnyObject) {
         
-        let tempPass = newPassword.text!
-        print("fetched password field : \(tempPass)")
+        self.email = "pyitheinmaung@gmail.com"
+        self.oldPassword = currentPassword.text!
+        self.updatePassword = self.newPassword.text!
+        
+        
+        print("fetched password field : \(updatePassword)")
+        print("fetched old password : \(oldPassword)")
         
         let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-        ref.changePasswordForUser(oldEmail, fromOld: oldPassword,
-                                  toNew: tempPass, withCompletionBlock: { error in
+        ref.changePasswordForUser(email, fromOld: oldPassword,
+                                  toNew: updatePassword, withCompletionBlock: { error in
                                     if error != nil {
-                                        
                                         // There was an error processing the request
-                                    } else {
                                         
+                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
+                                    } else {
+                                    
                                         // Password changed successfully
                                         print("password changed")
+                                        
+                                        self.popUp("Saved!", msg: "Password has been changed", buttonText: "Okay")
                                         
                                     }
         })
         
     }
+    
+    
+    func popUp(okay: String, msg: String, buttonText: String) {
+        // Create the alert controller
+        let alertController = UIAlertController(title: okay, message: msg , preferredStyle: .Alert)
+        
+        // Create the actions
+        let okAction = UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            
+            if okay == "Saved!"{
+                self.navigationController?.popViewControllerAnimated(true)
+            }else{
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        
+        // Present the controller
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
