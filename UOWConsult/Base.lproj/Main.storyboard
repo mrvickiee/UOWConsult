@@ -160,33 +160,45 @@
                                     <action selector="registerPressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="iGv-7N-dKs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N25-Q7-4WI">
-                                <rect key="frame" x="259" y="361" width="82" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Select role"/>
-                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Role" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IIH-LX-Iav">
+                                <rect key="frame" x="180" y="364" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="8jl-na-vkH"/>
+                                    <constraint firstAttribute="width" constant="240" id="aeN-1o-0Dw"/>
+                                    <constraint firstAttribute="height" constant="30" id="cVN-gg-UCE"/>
+                                    <constraint firstAttribute="height" constant="30" id="sky-7n-ip9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aeN-1o-0Dw"/>
+                                        <exclude reference="sky-7n-ip9"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CHN-yd-sj4" firstAttribute="top" secondItem="2au-4B-aPh" secondAttribute="bottom" constant="20" id="6Vt-QG-Isj"/>
                             <constraint firstItem="2zE-WG-YPr" firstAttribute="top" secondItem="OWY-8X-URG" secondAttribute="bottom" constant="20" id="7nx-LM-acV"/>
+                            <constraint firstItem="CHN-yd-sj4" firstAttribute="top" secondItem="IIH-LX-Iav" secondAttribute="bottom" constant="51" id="AWT-Jv-aAI"/>
                             <constraint firstItem="92T-LV-zrj" firstAttribute="top" secondItem="z0w-2S-WEA" secondAttribute="bottom" constant="8" id="ByC-2a-oD3"/>
                             <constraint firstItem="iiI-pz-TqT" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="BzM-B8-RVe"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="leading" secondItem="HX4-6o-kqS" secondAttribute="leadingMargin" constant="160" id="EPz-vO-YKK"/>
                             <constraint firstItem="RCL-Q8-JQ2" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="EVU-p1-nJJ"/>
-                            <constraint firstItem="N25-Q7-4WI" firstAttribute="top" secondItem="2au-4B-aPh" secondAttribute="bottom" constant="8" id="J7i-CV-Cgg"/>
                             <constraint firstItem="CHN-yd-sj4" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="Jd8-Nt-iLC"/>
                             <constraint firstItem="CHN-yd-sj4" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="LrG-at-yLY"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="XWh-1x-Keu"/>
                             <constraint firstItem="92T-LV-zrj" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="bt6-wo-v4G"/>
-                            <constraint firstItem="CHN-yd-sj4" firstAttribute="top" secondItem="N25-Q7-4WI" secondAttribute="bottom" constant="51" id="heo-2b-uZx"/>
+                            <constraint firstItem="IIH-LX-Iav" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="bvH-FC-O8N"/>
                             <constraint firstItem="OWY-8X-URG" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="mI5-Ce-fNZ"/>
                             <constraint firstItem="2au-4B-aPh" firstAttribute="top" secondItem="92T-LV-zrj" secondAttribute="bottom" constant="8" id="npA-yd-3q7"/>
+                            <constraint firstItem="IIH-LX-Iav" firstAttribute="top" secondItem="2au-4B-aPh" secondAttribute="bottom" constant="11" id="okT-ne-QOP"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="top" secondItem="RCL-Q8-JQ2" secondAttribute="bottom" constant="8" id="pWW-LL-hdw"/>
                             <constraint firstItem="92T-LV-zrj" firstAttribute="centerY" secondItem="HX4-6o-kqS" secondAttribute="centerY" id="pwX-4S-cpA"/>
                             <constraint firstItem="iiI-pz-TqT" firstAttribute="top" secondItem="PLh-W1-LUt" secondAttribute="bottom" constant="8" id="qbY-Pc-QtY"/>
                             <constraint firstItem="2au-4B-aPh" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="rV0-9H-F5q"/>
-                            <constraint firstItem="N25-Q7-4WI" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="z0Q-wu-LuZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
