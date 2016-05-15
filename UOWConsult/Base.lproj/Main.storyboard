@@ -155,7 +155,7 @@
                                     <action selector="backPressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="9Zu-nT-Kyz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-yd-sj4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-yd-sj4">
                                 <rect key="frame" x="260" y="445" width="81" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Register"/>
@@ -163,6 +163,27 @@
                                     <action selector="registerPressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="iGv-7N-dKs"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Role" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IIH-LX-Iav">
+                                <rect key="frame" x="180" y="364" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="8jl-na-vkH"/>
+                                    <constraint firstAttribute="width" constant="240" id="aeN-1o-0Dw"/>
+                                    <constraint firstAttribute="height" constant="30" id="cVN-gg-UCE"/>
+                                    <constraint firstAttribute="height" constant="30" id="sky-7n-ip9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aeN-1o-0Dw"/>
+                                        <exclude reference="sky-7n-ip9"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="rolePressed:" destination="87g-4M-vGe" eventType="touchDown" id="cGn-vd-QZA"/>
+                                    <action selector="roleTxtPressed:" destination="87g-4M-vGe" eventType="primaryActionTriggered" id="uTE-D9-ilL"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -177,6 +198,7 @@
                             <constraint firstItem="CHN-yd-sj4" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="LrG-at-yLY"/>
                             <constraint firstItem="z0w-2S-WEA" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="XWh-1x-Keu"/>
                             <constraint firstItem="92T-LV-zrj" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="bt6-wo-v4G"/>
+                            <constraint firstItem="IIH-LX-Iav" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="bvH-FC-O8N"/>
                             <constraint firstItem="OWY-8X-URG" firstAttribute="centerX" secondItem="HX4-6o-kqS" secondAttribute="centerX" id="mI5-Ce-fNZ"/>
                             <constraint firstItem="2au-4B-aPh" firstAttribute="top" secondItem="92T-LV-zrj" secondAttribute="bottom" constant="8" id="npA-yd-3q7"/>
                             <constraint firstItem="IIH-LX-Iav" firstAttribute="top" secondItem="2au-4B-aPh" secondAttribute="bottom" constant="11" id="okT-ne-QOP"/>
@@ -197,6 +219,7 @@
                         <outlet property="confirmTF" destination="2au-4B-aPh" id="7L2-BC-1lc"/>
                         <outlet property="emailTF" destination="z0w-2S-WEA" id="iuR-Ej-hcp"/>
                         <outlet property="passwordTF" destination="92T-LV-zrj" id="6Hg-hl-b3Z"/>
+                        <outlet property="roleTxt" destination="IIH-LX-Iav" id="F6m-ud-D3f"/>
                         <outlet property="userTF" destination="RCL-Q8-JQ2" id="hix-yW-rM4"/>
                     </connections>
                 </viewController>
