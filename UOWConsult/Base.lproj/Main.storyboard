@@ -320,7 +320,6 @@
                         <outlet property="editButton" destination="fox-tR-1FZ" id="wfL-Be-BbN"/>
                         <outlet property="emailLabel" destination="HrK-UC-04O" id="7ph-eT-v57"/>
                         <outlet property="usernameLabel" destination="FJG-zm-S3x" id="tXR-gD-X24"/>
-                        <segue destination="kq2-rE-AGf" kind="show" id="fap-1w-upT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGi-mY-4gY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -449,10 +448,10 @@
             </objects>
             <point key="canvasLocation" x="872" y="-240"/>
         </scene>
-        <!--Settings-->
+        <!--Editing-->
         <scene sceneID="OOJ-Ey-PMU">
             <objects>
-                <tableViewController title="Settings" id="kq2-rE-AGf" customClass="SettingViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Editing" id="kq2-rE-AGf" customClass="SettingViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="7dJ-lK-4hh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -461,7 +460,7 @@
                             <tableViewSection headerTitle="Profile" id="N5n-N2-VqQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="q7Y-ul-Mde">
-                                        <rect key="frame" x="0.0" y="113.5" width="600" height="88"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q7Y-ul-Mde" id="fHB-Li-yFG">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="87.5"/>
@@ -519,7 +518,7 @@
                             <tableViewSection headerTitle="Menu" id="c39-EV-iOS">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3SG-7U-FNw">
-                                        <rect key="frame" x="0.0" y="251.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3SG-7U-FNw" id="nUs-S9-ZDG">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -550,10 +549,6 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="cIv-4k-dmW"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="emailLabel" destination="ASk-uV-c7M" id="XVm-T7-oaE"/>
-                        <outlet property="usernameLabel" destination="H3j-dx-FUP" id="r18-QG-1ud"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ez-3q-NWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
