@@ -18,6 +18,15 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        let userDefault = NSUserDefaults()                  //obtain logged in user id
+        let userID = userDefault.stringForKey("userID")
+        
+        if userID != nil {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -32,9 +41,9 @@ class LoginViewController: UIViewController {
                             print("Incorrect password or id")
                         } else {
                             print(authData.auth["uid"])
-                            let vc =
-                                self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
-                            self.presentViewController(vc, animated: true, completion:nil)
+                            let defaults = NSUserDefaults.standardUserDefaults()
+                            defaults.setObject(authData.auth["uid"], forKey: "userID")
+                           self.dismissViewControllerAnimated(true, completion: nil)
                         }
         })
     }

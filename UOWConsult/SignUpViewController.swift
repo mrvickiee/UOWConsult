@@ -8,13 +8,15 @@
 
 import UIKit
 import Firebase
+import ActionSheetPicker_3_0
 
 class SignUpViewController: UIViewController {
     @IBOutlet weak var userTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var confirmTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
-    
+    let ref = Firebase(url: "https://uow-consult.firebaseio.com")
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,30 +30,58 @@ class SignUpViewController: UIViewController {
     
     
     @IBAction func registerPressed(sender: AnyObject) {
-        let username = userTF.text!
+        let fullname = userTF.text!
         let email = emailTF.text!
         let password = passwordTF.text!
         let confirmPass = confirmTF.text!
         
         if(password == confirmPass){
-            let user = User(name: username, email: email, password: password, role: "", username: username)
-            let ref = Firebase(url: "https://uow-consult.firebaseio.com")
+            let user = User(name: fullname, email: email, role: "")
             
-            ref.createUser(user.email, password: user.password,
+            
+            ref.createUser(user.email, password: password,
                            withValueCompletionBlock: { error, result in
                             if error != nil {
-                                print("Error in creating account")
-                                // There was an error creating the account
+                                print(error)             // There was an error creating the account
+
                             } else {
                                 let uid = result["uid"] as? String
-                                ref.childByAppendingPath("User").childByAppendingPath(uid).setValue(user.getDictionary())
-                               // print("Successfully created user account with uid: \(uid)")
+                                self.ref.childByAppendingPath("User").childByAppendingPath(uid).setValue(user.getDictionary())
+                                let defaults = NSUserDefaults.standardUserDefaults()
+                                defaults.setObject(uid, forKey: "userID")
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             }
             })
+            
+            //let triggerTime = (Int64(NSEC_PER_SEC) * (Int64)(0.5));
+            //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), {
+              //  self.logUserIn(user.email, password: password)
+            
+           // })
+
+       
         }
     }
     
+//    func logUserIn(login:String, password:String){
+//        let triggerTime = (Int64(NSEC_PER_SEC) * (Int64)(3));
+//       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), {
+//            self.ref.authUser(login, password: password,
+//                         withCompletionBlock: { error, authData in
+//                            if error != nil {
+//                                print(error)
+//                            } else {
+//                                let defaults = NSUserDefaults.standardUserDefaults()
+//                                defaults.setObject(authData.auth["uid"], forKey: "userID")
+//                                
+//                            }
+//            })
+//        })
+//    }
+    
+    @IBAction func backPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

@@ -159,6 +159,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWY-8X-URG">
                                 <rect key="frame" x="253.5" y="550" width="93" height="30"/>
                                 <state key="normal" title="Back to Login"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="87g-4M-vGe" eventType="touchUpInside" id="9Zu-nT-Kyz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

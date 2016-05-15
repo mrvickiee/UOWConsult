@@ -20,6 +20,8 @@ class SettingViewController: UITableViewController {
     @IBAction func logOutPressed(sender: AnyObject) {
         ref.unauth()
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        userDefault.removeObjectForKey("userID")
         self.presentViewController(vc, animated: true, completion:nil)
         print("Log out success")
         

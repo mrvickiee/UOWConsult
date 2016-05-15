@@ -18,30 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
-        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:nil)
-        var initialViewController: UIViewController
-        var loggedIn: Bool = false
         
-        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-        
-        if ref.authData != nil {
-            // user authenticated
-            print(ref.authData)
-           // ref.authData()
-            loggedIn = true
-        } else {
-            // No user is signed in
-        }
-        
-        if (loggedIn){
-            initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
-        }else{
-            initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
-        }
-        
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
-    
 		return true
 	}
 

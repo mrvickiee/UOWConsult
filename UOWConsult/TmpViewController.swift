@@ -12,8 +12,17 @@ class TmpViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let userDefault = NSUserDefaults()                  //obtain logged in user id
+        let userID = userDefault.stringForKey("userID")
+        
+        if userID == nil {
+            performSegueWithIdentifier("goToLogin", sender: self)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
