@@ -13,6 +13,10 @@ import Firebase
 class LoginViewController: UIViewController {
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
+    
+    var role = String()
+    var fullName = String()
+    let defaults = NSUserDefaults.standardUserDefaults()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +25,9 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        let userDefault = NSUserDefaults()                  //obtain logged in user id
-        let userID = userDefault.stringForKey("userID")
-        
-        if userID != nil {
+                            //obtain logged in user id
+       let email = defaults.stringForKey("email")
+        if email != nil{
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
             self.presentViewController(vc, animated: true, completion:nil)
         }
@@ -44,12 +47,33 @@ class LoginViewController: UIViewController {
                             HUD.flash(.Label("Incorrect password or email"), delay:1)
                         } else {
                             HUD.flash(.Success, delay:1)
-                            let defaults = NSUserDefaults.standardUserDefaults()
-                            defaults.setObject(authData.auth["uid"], forKey: "userID")
+                            self.obtainUserDetails(self.loginTF.text!)
+                            
+                            self.defaults.setObject(self.loginTF.text, forKey: "email")
+                            self.defaults.setObject(self.role, forKey: "role")
+                            self.defaults.setObject(self.fullName, forKey: "name")
+                            
+                            
                             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
                             self.presentViewController(vc, animated: true, completion:nil)
                         }
         })
+    }
+    
+    
+    func obtainUserDetails(email:String){
+        let ref = Firebase(url:"https://uow-consult.firebaseio.com/User")
+        
+        ref.queryOrderedByChild("email").observeEventType(.ChildAdded, withBlock: { snapshot in
+            if let dbEmail = snapshot.value["email"] as? String {
+                if(dbEmail == email){
+                    self.role = (snapshot.value["role"] as? String)!
+                    self.fullName = (snapshot.value["name"] as? String)!
+                    return
+                }
+            }
+        })
+       
     }
     
     
