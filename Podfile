@@ -7,9 +7,9 @@ target 'UOWConsult' do
 	# https://github.com/pkluz/PKHUD
 	pod "PKHUD"
 
-	# https://github.com/graycampbell/GCCalendar
-	pod 'GCCalendar'
-
+	# https://github.com/jonathantribouharet/JTCalendar
+	pod 'JTCalendar', '~> 2.0'
+	
 	# https://github.com/erichoracek/MSCollectionViewCalendarLayout
 	pod 'MSCollectionViewCalendarLayout'
 
