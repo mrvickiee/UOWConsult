@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 import Firebase
 
 class LoginViewController: UIViewController {
@@ -18,6 +19,16 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        let userDefault = NSUserDefaults()                  //obtain logged in user id
+        let userID = userDefault.stringForKey("userID")
+        
+        if userID != nil {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
+            self.presentViewController(vc, animated: true, completion:nil)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,13 +36,16 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(sender: AnyObject) {
+        HUD.show(.Progress)
         let ref = Firebase(url: "https://uow-consult.firebaseio.com")
         ref.authUser(loginTF.text, password: passwordTF.text,
                      withCompletionBlock: { error, authData in
                         if error != nil {
-                            print("Incorrect password or id")
+                            HUD.flash(.Label("Incorrect password or email"), delay:1)
                         } else {
-                            print(authData.auth["uid"])
+                            HUD.flash(.Success, delay:1)
+                            let defaults = NSUserDefaults.standardUserDefaults()
+                            defaults.setObject(authData.auth["uid"], forKey: "userID")
                             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
                             self.presentViewController(vc, animated: true, completion:nil)
                         }

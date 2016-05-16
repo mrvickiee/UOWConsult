@@ -1,7 +1,7 @@
 PODS:
   - ActionSheetPicker-3.0 (2.0.5)
   - Firebase (2.5.1)
-  - GCCalendar (1.1.3)
+  - JTCalendar (2.1.5)
   - MPGNotification (1.2.4)
   - MSCollectionViewCalendarLayout (0.1.5)
   - PKHUD (3.1.0)
@@ -9,7 +9,7 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0.5)
   - Firebase (>= 2.5.1)
-  - GCCalendar
+  - JTCalendar (~> 2.0)
   - MPGNotification (~> 1.2)
   - MSCollectionViewCalendarLayout
   - PKHUD
@@ -17,7 +17,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
-  GCCalendar: e1d9dbac98ed9458b02e066b53856f03b2fda69e
+  JTCalendar: 57a4420f12d10c93c3b28da96803e7043d1c9281
   MPGNotification: f0e3924087afa9b3eccd5ce624e03965ae31ae61
   MSCollectionViewCalendarLayout: 9c52894930d6b712951f18873618fc32c00cd4fa
   PKHUD: 4167eccdb1b3a892fd80ce2b51cb6ba412a889ab
