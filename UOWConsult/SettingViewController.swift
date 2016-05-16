@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class SettingViewController: UITableViewController {
     
@@ -19,10 +20,19 @@ class SettingViewController: UITableViewController {
 
     
     @IBAction func logOutPressed(sender: AnyObject) {
-        ref.unauth()
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
-        self.presentViewController(vc, animated: true, completion:nil)
-        print("Log out success")
+        
+        HUD.flash(.Label("Logging out.."), delay: 2) { (finished) in
+            self.ref.unauth()
+            let userDefault = NSUserDefaults.standardUserDefaults()
+            userDefault.removeObjectForKey("userID")
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
+            self.presentViewController(vc, animated: true, completion:nil)
+        }
+       
+        
+        
+        
+        
         
     }
     
