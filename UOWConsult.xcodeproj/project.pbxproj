@@ -20,6 +20,7 @@
 		E93B9D611CCE5B7F00EC5DA9 /* UOWConsult.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E93B9D5F1CCE5B7F00EC5DA9 /* UOWConsult.xcdatamodeld */; };
 		E93B9D631CCE5B7F00EC5DA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E93B9D621CCE5B7F00EC5DA9 /* Assets.xcassets */; };
 		E93B9D661CCE5B7F00EC5DA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E93B9D641CCE5B7F00EC5DA9 /* LaunchScreen.storyboard */; };
+		E99BCB421CE6EA72007AA95C /* ConsulationTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BCB411CE6EA72007AA95C /* ConsulationTimeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		E93B9D621CCE5B7F00EC5DA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E93B9D651CCE5B7F00EC5DA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E93B9D671CCE5B7F00EC5DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99BCB411CE6EA72007AA95C /* ConsulationTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsulationTimeViewController.swift; sourceTree = "<group>"; };
 		ECF66FF2A58CC64F0FE76EFD /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				E93B9D581CCE5B7F00EC5DA9 /* AppDelegate.swift */,
 				39D4A61C1CDF886B00A5853F /* Models */,
 				E93B9D5A1CCE5B7F00EC5DA9 /* ViewController.swift */,
+				E99BCB411CE6EA72007AA95C /* ConsulationTimeViewController.swift */,
 				E93B9D5C1CCE5B7F00EC5DA9 /* Main.storyboard */,
 				39D4A61E1CDF889400A5853F /* User managament */,
 				39D4A6181CDF7CAD00A5853F /* TmpViewController.swift */,
@@ -259,6 +262,7 @@
 			files = (
 				39D4A6171CDF593500A5853F /* LoginViewController.swift in Sources */,
 				39D4A5FA1CDF371F00A5853F /* user.swift in Sources */,
+				E99BCB421CE6EA72007AA95C /* ConsulationTimeViewController.swift in Sources */,
 				39D4A6191CDF7CAD00A5853F /* TmpViewController.swift in Sources */,
 				39D4A61B1CDF7F1E00A5853F /* SettingViewController.swift in Sources */,
 				E93B9D611CCE5B7F00EC5DA9 /* UOWConsult.xcdatamodeld in Sources */,
