@@ -60,7 +60,9 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                                 let uid = result["uid"] as? String
                                 self.ref.childByAppendingPath("User").childByAppendingPath(uid).setValue(user.getDictionary())
                                 let defaults = NSUserDefaults.standardUserDefaults()
-                                defaults.setObject(uid, forKey: "userID")
+                                defaults.setObject(user.email, forKey: "email")
+                                defaults.setObject(user.name, forKey: "name")
+                                defaults.setObject(user.role, forKey: "role")
                                 
                                 HUD.flash(.Success, delay:1)
            
