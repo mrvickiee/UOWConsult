@@ -7,23 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BB9CB5FB720FD30EEDEF0AF /* Pods_UOWConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD5F8875D8A8675FE12A121 /* Pods_UOWConsult.framework */; };
 		39D4A5FA1CDF371F00A5853F /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A5F91CDF371F00A5853F /* user.swift */; };
 		39D4A6041CDF39C800A5853F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6031CDF39C800A5853F /* SignUpViewController.swift */; };
 		39D4A6171CDF593500A5853F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6161CDF593500A5853F /* LoginViewController.swift */; };
 		39D4A6191CDF7CAD00A5853F /* TmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A6181CDF7CAD00A5853F /* TmpViewController.swift */; };
 		39D4A61B1CDF7F1E00A5853F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D4A61A1CDF7F1E00A5853F /* SettingViewController.swift */; };
 		5DC832E11CE832F900AEAEF3 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC832E01CE832F900AEAEF3 /* EditViewController.swift */; };
-		778F02047A75BADE168945B3 /* Pods_UOWConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA64DFB256F227C7A2182B35 /* Pods_UOWConsult.framework */; };
 		E93B9D591CCE5B7F00EC5DA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B9D581CCE5B7F00EC5DA9 /* AppDelegate.swift */; };
 		E93B9D5B1CCE5B7F00EC5DA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B9D5A1CCE5B7F00EC5DA9 /* ViewController.swift */; };
 		E93B9D5E1CCE5B7F00EC5DA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E93B9D5C1CCE5B7F00EC5DA9 /* Main.storyboard */; };
 		E93B9D611CCE5B7F00EC5DA9 /* UOWConsult.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E93B9D5F1CCE5B7F00EC5DA9 /* UOWConsult.xcdatamodeld */; };
 		E93B9D631CCE5B7F00EC5DA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E93B9D621CCE5B7F00EC5DA9 /* Assets.xcassets */; };
 		E93B9D661CCE5B7F00EC5DA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E93B9D641CCE5B7F00EC5DA9 /* LaunchScreen.storyboard */; };
+		E99184021CEEE0690099DBFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99184011CEEE0690099DBFE /* GoogleService-Info.plist */; };
 		E99BCB421CE6EA72007AA95C /* ConsulationTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BCB411CE6EA72007AA95C /* ConsulationTimeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DD5F8875D8A8675FE12A121 /* Pods_UOWConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UOWConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3724B87B3C2AAABC14BA5E1F /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 		39D4A5F91CDF371F00A5853F /* user.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		39D4A6031CDF39C800A5853F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		39D4A60C1CDF4E5C00A5853F /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -34,9 +37,8 @@
 		39D4A6161CDF593500A5853F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		39D4A6181CDF7CAD00A5853F /* TmpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TmpViewController.swift; sourceTree = "<group>"; };
 		39D4A61A1CDF7F1E00A5853F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4A0A404EE40CBFE1215CDBF3 /* Pods-UOWConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.release.xcconfig"; sourceTree = "<group>"; };
 		5DC832E01CE832F900AEAEF3 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		B9670419072CA22B6AFB0A65 /* Pods-UOWConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.release.xcconfig"; sourceTree = "<group>"; };
-		CA64DFB256F227C7A2182B35 /* Pods_UOWConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UOWConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B9D551CCE5B7F00EC5DA9 /* UOWConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOWConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B9D581CCE5B7F00EC5DA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E93B9D5A1CCE5B7F00EC5DA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,8 +47,8 @@
 		E93B9D621CCE5B7F00EC5DA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E93B9D651CCE5B7F00EC5DA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E93B9D671CCE5B7F00EC5DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99184011CEEE0690099DBFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E99BCB411CE6EA72007AA95C /* ConsulationTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsulationTimeViewController.swift; sourceTree = "<group>"; };
-		ECF66FF2A58CC64F0FE76EFD /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778F02047A75BADE168945B3 /* Pods_UOWConsult.framework in Frameworks */,
+				0BB9CB5FB720FD30EEDEF0AF /* Pods_UOWConsult.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,11 +82,11 @@
 			name = "User managament";
 			sourceTree = "<group>";
 		};
-		6BA2C400D7B81A94BC843334 /* Pods */ = {
+		4376FE8ED0453C4B3FCA2778 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ECF66FF2A58CC64F0FE76EFD /* Pods-UOWConsult.debug.xcconfig */,
-				B9670419072CA22B6AFB0A65 /* Pods-UOWConsult.release.xcconfig */,
+				3724B87B3C2AAABC14BA5E1F /* Pods-UOWConsult.debug.xcconfig */,
+				4A0A404EE40CBFE1215CDBF3 /* Pods-UOWConsult.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -94,8 +96,8 @@
 			children = (
 				E93B9D571CCE5B7F00EC5DA9 /* UOWConsult */,
 				E93B9D561CCE5B7F00EC5DA9 /* Products */,
-				6BA2C400D7B81A94BC843334 /* Pods */,
 				FC4F9FF17EFF2F393D8E6D80 /* Frameworks */,
+				4376FE8ED0453C4B3FCA2778 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +122,7 @@
 				E93B9D621CCE5B7F00EC5DA9 /* Assets.xcassets */,
 				E93B9D641CCE5B7F00EC5DA9 /* LaunchScreen.storyboard */,
 				E93B9D671CCE5B7F00EC5DA9 /* Info.plist */,
+				E99184011CEEE0690099DBFE /* GoogleService-Info.plist */,
 				E93B9D5F1CCE5B7F00EC5DA9 /* UOWConsult.xcdatamodeld */,
 			);
 			path = UOWConsult;
@@ -133,7 +136,7 @@
 				39D4A6101CDF4E7400A5853F /* CFNetwork.framework */,
 				39D4A60E1CDF4E6B00A5853F /* libc++.tbd */,
 				39D4A60C1CDF4E5C00A5853F /* libicucore.tbd */,
-				CA64DFB256F227C7A2182B35 /* Pods_UOWConsult.framework */,
+				0DD5F8875D8A8675FE12A121 /* Pods_UOWConsult.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,12 +148,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E93B9D6A1CCE5B7F00EC5DA9 /* Build configuration list for PBXNativeTarget "UOWConsult" */;
 			buildPhases = (
-				66E89A949627F7002F21FADD /* Check Pods Manifest.lock */,
+				B77F12129231A1C49A64E58C /* 📦 Check Pods Manifest.lock */,
 				E93B9D511CCE5B7F00EC5DA9 /* Sources */,
 				E93B9D521CCE5B7F00EC5DA9 /* Frameworks */,
 				E93B9D531CCE5B7F00EC5DA9 /* Resources */,
-				D5D5AEFAF33CA3DA95AE18E3 /* Embed Pods Frameworks */,
-				36C397155A0EA0CDACB7C1FB /* Copy Pods Resources */,
+				8727A7F1A19FF654A38355B1 /* 📦 Embed Pods Frameworks */,
+				3C804A4F70F0C4546997654E /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E93B9D661CCE5B7F00EC5DA9 /* LaunchScreen.storyboard in Resources */,
+				E99184021CEEE0690099DBFE /* GoogleService-Info.plist in Resources */,
 				E93B9D631CCE5B7F00EC5DA9 /* Assets.xcassets in Resources */,
 				E93B9D5E1CCE5B7F00EC5DA9 /* Main.storyboard in Resources */,
 			);
@@ -208,14 +212,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		36C397155A0EA0CDACB7C1FB /* Copy Pods Resources */ = {
+		3C804A4F70F0C4546997654E /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,34 +227,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		66E89A949627F7002F21FADD /* Check Pods Manifest.lock */ = {
+		8727A7F1A19FF654A38355B1 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D5D5AEFAF33CA3DA95AE18E3 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B77F12129231A1C49A64E58C /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -382,7 +386,7 @@
 		};
 		E93B9D6B1CCE5B7F00EC5DA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECF66FF2A58CC64F0FE76EFD /* Pods-UOWConsult.debug.xcconfig */;
+			baseConfigurationReference = 3724B87B3C2AAABC14BA5E1F /* Pods-UOWConsult.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -401,7 +405,7 @@
 		};
 		E93B9D6C1CCE5B7F00EC5DA9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9670419072CA22B6AFB0A65 /* Pods-UOWConsult.release.xcconfig */;
+			baseConfigurationReference = 4A0A404EE40CBFE1215CDBF3 /* Pods-UOWConsult.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
