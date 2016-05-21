@@ -1,7 +1,7 @@
 platform :ios, '9.0'
-use_frameworks!
 
 target 'UOWConsult' do
+use_frameworks!
 	source 'https://github.com/CocoaPods/Specs.git'
 
 	# https://github.com/pkluz/PKHUD
@@ -25,4 +25,3 @@ target 'UOWConsult' do
 	pod 'Firebase/Auth'
 
 end
-
