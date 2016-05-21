@@ -8,6 +8,7 @@
 
 import UIKit
 import JTCalendar
+import Firebase
 
 class ConsulationTimeViewController: UIViewController {
 
@@ -16,14 +17,33 @@ class ConsulationTimeViewController: UIViewController {
 	@IBOutlet weak var calendarContentViewHeight: NSLayoutConstraint!
 	@IBOutlet weak var yearButton: UIButton!
 	
-	let user = NSUserDefaults.standardUserDefaults()
-	
 	var calendar = JTCalendarManager()
 	
+	let ConsultRef = FIRDatabase.database().referenceWithPath("Consult")
+	let TimetableRef = FIRDatabase.database().referenceWithPath("Timetable")
+	let SubjectRef = FIRDatabase.database().referenceWithPath("Subject")
+	let EnrolledRef = FIRDatabase.database().referenceWithPath("Enrolled")
+	
+	let user = NSUserDefaults.standardUserDefaults()
+	var subjects = Dictionary<String, Array<Subject>>()
+	var subject = [String]()
 	var dateSelected = NSDate()
+	
+	struct Subject {
+		var code:String
+		var name:String
+		var startTime:String
+		var endTime:String
+		var location:String
+		var type:String
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		ConsultRef.keepSynced(true)
+		TimetableRef.keepSynced(true)
+		SubjectRef.keepSynced(true)
+		EnrolledRef.keepSynced(true)
 		
 		setCalendar()
 	}
@@ -43,6 +63,37 @@ class ConsulationTimeViewController: UIViewController {
 	
 }
 
+extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSource {
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return subjects.count
+	}
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return subjects[subject[section]]!.count
+	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier("timetableCell", forIndexPath: indexPath) as! ConsultationTimetableTableViewCell
+		
+		let section = indexPath.section
+		let row = indexPath.row
+		
+		let sectionSubjects = subjects[subject[section]]!
+		let subjectItem: Subject = sectionSubjects[row]
+		
+		cell.labelSubjectCode.text = subjectItem.code
+		cell.labelSubjectTime.text = subjectItem.startTime + " - " + subjectItem.endTime
+		cell.labelSubjectType.text = subjectItem.type
+		cell.labelSubjectLocation.text = subjectItem.location
+		
+		return cell
+	}
+	
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return subject[section]
+	}
+}
+
 extension ConsulationTimeViewController: JTCalendarDelegate {
 	func setCalendar(){
 		calendar.delegate = self
@@ -54,6 +105,10 @@ extension ConsulationTimeViewController: JTCalendarDelegate {
 		calendar.menuView = calendarMenuView
 		calendar.contentView = calendarContentView
 		calendar.setDate(NSDate())
+	}
+	
+	override func viewDidLayoutSubviews() {
+		calendar.reload()
 	}
 	
 	func transition() -> Void{
