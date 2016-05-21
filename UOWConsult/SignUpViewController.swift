@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var confirmTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     var roleName = String()
-    let ref = Firebase(url: "https://uow-consult.firebaseio.com")
+	//let ref = Firebase(url: "https://uow-consult.firebaseio.com")
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,25 +51,25 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             let user = User(name: fullname, email: email, role: roleName)
             HUD.show(.Progress)
             
-            ref.createUser(user.email, password: password,
-                           withValueCompletionBlock: { error, result in
-                            if error != nil {
-                                print(error)             // There was an error creating the account
-                                HUD.flash(.Error, delay:1.0)
-                            } else {
-                                let uid = result["uid"] as? String
-                                self.ref.childByAppendingPath("User").childByAppendingPath(uid).setValue(user.getDictionary())
-                                let defaults = NSUserDefaults.standardUserDefaults()
-                                defaults.setObject(user.email, forKey: "email")
-                                defaults.setObject(user.name, forKey: "name")
-                                defaults.setObject(user.role, forKey: "role")
-                                
-                                HUD.flash(.Success, delay:1)
-           
-                                self.dismissViewControllerAnimated(true, completion: nil)
-                            }
-            })
-            
+//            ref.createUser(user.email, password: password,
+//                           withValueCompletionBlock: { error, result in
+//                            if error != nil {
+//                                print(error)             // There was an error creating the account
+//                                HUD.flash(.Error, delay:1.0)
+//                            } else {
+//                                let uid = result["uid"] as? String
+//                                self.ref.childByAppendingPath("User").childByAppendingPath(uid).setValue(user.getDictionary())
+//                                let defaults = NSUserDefaults.standardUserDefaults()
+//                                defaults.setObject(user.email, forKey: "email")
+//                                defaults.setObject(user.name, forKey: "name")
+//                                defaults.setObject(user.role, forKey: "role")
+//                                
+//                                HUD.flash(.Success, delay:1)
+//           
+//                                self.dismissViewControllerAnimated(true, completion: nil)
+//                            }
+//            })
+			
             //let triggerTime = (Int64(NSEC_PER_SEC) * (Int64)(0.5));
             //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), {
               //  self.logUserIn(user.email, password: password)
