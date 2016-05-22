@@ -21,11 +21,13 @@ struct Class {
 	var endTime:String
 	var type:String
 	var location:String
-	var day:String
+	//var day:String
 }
 
 class ConsulationTimeViewController: UIViewController {
 
+	@IBOutlet weak var tableView: UITableView!
+	
 	@IBOutlet weak var calendarMenuView: JTCalendarMenuView!
 	@IBOutlet weak var calendarContentView: JTHorizontalCalendarView!
 	@IBOutlet weak var calendarContentViewHeight: NSLayoutConstraint!
@@ -43,9 +45,7 @@ class ConsulationTimeViewController: UIViewController {
 	var dateSelected = NSDate()
 	
 	// Test Data
-	var enrolledSubject = ["CSCI342", "CSCI361"]
-	var email = "fake@cy.my"
-	
+	var enrolledSubject = ["CSCI342", "CSCI366"]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -84,11 +84,18 @@ class ConsulationTimeViewController: UIViewController {
 	}
 	
 	func getEnrolledSubjects(){
+		user.setObject("fake@cy.my", forKey: "email")
+		guard let email = user.stringForKey("email") else {
+			showDialog("User not logged in, please login.")
+			performLogin()
+			return
+		}
+		
 		EnrolledRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
 			let enrolledDict = snapshot.value as! NSArray
 			self.enrolledSubject.removeAll()
 			for enrolled in enrolledDict {
-				if enrolled["student"] as? String == self.email {
+				if enrolled["student"] as? String == email {
 					self.enrolledSubject.append((enrolled["subject"] as? String)!)
 				}
 			}
@@ -109,20 +116,53 @@ class ConsulationTimeViewController: UIViewController {
 			     "Friday":
 				getSubjectsInfo(day)
 			default:
+				self.classes.removeAll()
+				self.subject.removeAll()
+				self.tableView.reloadData()
 				showDialog("Have a nice day! Today is weekend!")
 		}
 		
 	}
 	
 	func getSubjectsInfo(day:String){
-		//TODO: get Subject Detail from Firebase
+		self.classes.removeAll()
+		self.subject.removeAll()
+		
 		TimetableRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-			let postDict = snapshot.value as! [String : AnyObject]
-			print(postDict)
+			let timetableDict = snapshot.value as! [String : AnyObject]
+			for time in timetableDict {
+				if self.enrolledSubject.contains(time.0) {
+					let timetable = time.1 as! NSArray
+					for a in timetable {
+						if a["day"] as? String == day {
+							let object = Class(startTime: (a["start_time"] as? String)!,
+												endTime: (a["end_time"] as? String)!,
+												type: (a["activity"] as? String)!,
+												location: (a["location"] as? String)!)
+							
+							if !self.subject.contains(time.0) {
+								self.subject.append(time.0)
+								self.classes[time.0] = [object]
+							} else {
+								self.classes[time.0]?.append(object)
+								self.classes[time.0]?.sortInPlace({ $0.startTime.compare($1.startTime) == NSComparisonResult.OrderedAscending })
+							}
+						}
+					}
+				}
+			}
+			print(self.subject)
+			print(self.classes)
+			self.tableView.reloadData()
 		})
 		
-		//TODO: compare with day and student email
-		//TODO: Populate TableView
+	}
+	
+	func performLogin(){
+		let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc : LoginViewController = storyboard.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
+		
+		self.presentViewController(vc, animated: true, completion: nil)
 	}
 	
 	func showDialog(message:String){
