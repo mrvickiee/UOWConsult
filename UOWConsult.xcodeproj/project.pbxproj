@@ -98,12 +98,11 @@
 		E91A34581CF04FF800A35DB1 /* UOWConsult */ = {
 			isa = PBXGroup;
 			children = (
+				E91A34821CF0558A00A35DB1 /* Timetable */,
 				E91A347F1CF050AC00A35DB1 /* User Management */,
 				E91A347E1CF0509E00A35DB1 /* Model */,
 				E91A34591CF04FF800A35DB1 /* AppDelegate.swift */,
 				E91A345B1CF04FF800A35DB1 /* ViewController.swift */,
-				E91A34721CF0508B00A35DB1 /* ConsulationTimeViewController.swift */,
-				E91A34701CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift */,
 				E91A34771CF0509500A35DB1 /* TmpViewController.swift */,
 				E91A345D1CF04FF800A35DB1 /* Main.storyboard */,
 				E91A34631CF04FF800A35DB1 /* Assets.xcassets */,
@@ -132,6 +131,15 @@
 				E91A34761CF0509500A35DB1 /* SignUpViewController.swift */,
 			);
 			name = "User Management";
+			sourceTree = "<group>";
+		};
+		E91A34821CF0558A00A35DB1 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				E91A34721CF0508B00A35DB1 /* ConsulationTimeViewController.swift */,
+				E91A34701CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift */,
+			);
+			name = Timetable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
