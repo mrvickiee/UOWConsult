@@ -9,9 +9,12 @@
 import UIKit
 import JTCalendar
 import Firebase
+import PKHUD
 
 class ConsulationTimeViewController: UIViewController {
 
+	@IBOutlet weak var tableView: UITableView!
+	
 	@IBOutlet weak var calendarMenuView: JTCalendarMenuView!
 	@IBOutlet weak var calendarContentView: JTHorizontalCalendarView!
 	@IBOutlet weak var calendarContentViewHeight: NSLayoutConstraint!
@@ -19,40 +22,44 @@ class ConsulationTimeViewController: UIViewController {
 	
 	var calendar = JTCalendarManager()
 	
-	let ConsultRef = FIRDatabase.database().referenceWithPath("Consult")
 	let TimetableRef = FIRDatabase.database().referenceWithPath("Timetable")
-	let SubjectRef = FIRDatabase.database().referenceWithPath("Subject")
 	let EnrolledRef = FIRDatabase.database().referenceWithPath("Enrolled")
 	
 	let user = NSUserDefaults.standardUserDefaults()
-	var subjects = Dictionary<String, Array<Subject>>()
+	var classes = Dictionary<String, Array<Class>>()
 	var subject = [String]()
 	var dateSelected = NSDate()
 	
-	struct Subject {
-		var code:String
-		var name:String
-		var startTime:String
-		var endTime:String
-		var location:String
-		var type:String
-	}
+	var enrolledSubject = [String]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		ConsultRef.keepSynced(true)
 		TimetableRef.keepSynced(true)
-		SubjectRef.keepSynced(true)
 		EnrolledRef.keepSynced(true)
 		
 		setCalendar()
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		getEnrolledSubjects()
+		updateViewWithDate(dateSelected)
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		EnrolledRef.removeAllObservers()
+		TimetableRef.removeAllObservers()
+	}
+	
 
 	@IBAction func buttonToday(sender: AnyObject) {
-		//TODO: API Call
+		dateSelected = NSDate()
+		updateViewWithDate(dateSelected)
 	
-		calendar.setDate(NSDate())
+		calendar.setDate(dateSelected)
 		calendar.reload()
 	}
 	
@@ -61,15 +68,107 @@ class ConsulationTimeViewController: UIViewController {
 		transition()
 	}
 	
+	func getEnrolledSubjects(){
+		user.setObject("fake@cy.my", forKey: "email")
+		guard let email = user.stringForKey("email") else {
+			showDialog("User not logged in, please login.")
+			performLogin()
+			return
+		}
+		
+		EnrolledRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+			let enrolledDict = snapshot.value as! NSArray
+			self.enrolledSubject.removeAll()
+			for enrolled in enrolledDict {
+				if enrolled["student"] as? String == email {
+					self.enrolledSubject.append((enrolled["subject"] as? String)!)
+				}
+			}
+		})
+	}
+	
+	func updateViewWithDate(date: NSDate){
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.locale = NSLocale(localeIdentifier: "en_AU")
+		dateFormatter.dateFormat = "EEEE"
+		let day = dateFormatter.stringFromDate(dateSelected)
+
+		switch(day){
+			case "Monday",
+			     "Tuesday",
+			     "Wednesday",
+			     "Thursday",
+			     "Friday":
+				getSubjectsInfo(day)
+			default:
+				self.classes.removeAll()
+				self.subject.removeAll()
+				self.tableView.reloadData()
+				showDialog("Life is short, go out and play!")
+		}
+		
+	}
+	
+	func getSubjectsInfo(day:String){
+		TimetableRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+			self.classes.removeAll()
+			self.subject.removeAll()
+			
+			let timetableDict = snapshot.value as! [String : AnyObject]
+			
+			for time in timetableDict {
+				if self.enrolledSubject.contains(time.0) {
+					let timetable = time.1 as! NSArray
+					for a in timetable {
+						if a["day"] as? String == day {
+							let object = Class(startTime: (a["start_time"] as? String)!,
+												endTime: (a["end_time"] as? String)!,
+												type: (a["activity"] as? String)!,
+												location: (a["location"] as? String)!)
+							
+							if !self.subject.contains(time.0) {
+								self.subject.append(time.0)
+								self.classes[time.0] = [object]
+							} else {
+								self.classes[time.0]?.append(object)
+								self.classes[time.0]?.sortInPlace({ $0.startTime.compare($1.startTime) == NSComparisonResult.OrderedAscending })
+							}
+						}
+					}
+				}
+			}
+			print(self.subject)
+			print(self.classes)
+			self.tableView.reloadData()
+		})
+		
+	}
+	
+	func performLogin(){
+		let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc : LoginViewController = storyboard.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
+		
+		self.presentViewController(vc, animated: true, completion: nil)
+	}
+	
+	func showDialog(message:String){
+		HUD.flash(.Label(message), delay: 1)
+	}
+	
 }
 
+//MARK:- TABLEVIEW Related
 extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSource {
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return subjects.count
+		return classes.count
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return subjects[subject[section]]!.count
+		return classes[subject[section]]!.count
+	}
+	
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return subject[section]
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -78,10 +177,10 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		let section = indexPath.section
 		let row = indexPath.row
 		
-		let sectionSubjects = subjects[subject[section]]!
-		let subjectItem: Subject = sectionSubjects[row]
+		let sectionSubjects = classes[subject[section]]!
+		let subjectItem: Class = sectionSubjects[row]
 		
-		cell.labelSubjectCode.text = subjectItem.code
+		cell.labelSubjectCode.text = subject[section]
 		cell.labelSubjectTime.text = subjectItem.startTime + " - " + subjectItem.endTime
 		cell.labelSubjectType.text = subjectItem.type
 		cell.labelSubjectLocation.text = subjectItem.location
@@ -89,11 +188,40 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		return cell
 	}
 	
-	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return subject[section]
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let cell = tableView.cellForRowAtIndexPath(indexPath) as! ConsultationTimetableTableViewCell
+		guard let type = cell.labelSubjectType.text, location = cell.labelSubjectLocation.text else {
+			return
+		}
+		
+		let role = user.stringForKey("role")
+		if role == "Student"{
+			switch type {
+			case "Consultation":
+				()
+			default:
+				performSegueWithIdentifier("goToLocationView", sender: location)
+			}
+		} else {
+			switch type {
+			case "Consultation":
+				()
+			default:
+				performSegueWithIdentifier("goToLocationView", sender: location)
+			}
+		}
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "goToLocationView" {
+			let vc = segue.destinationViewController as! LocationViewController
+			let location = sender!.componentsSeparatedByString("-").first
+			vc.buildingNo = location
+		}
 	}
 }
 
+//MARK:- JTCalendar Related
 extension ConsulationTimeViewController: JTCalendarDelegate {
 	func setCalendar(){
 		calendar.delegate = self
@@ -177,12 +305,8 @@ extension ConsulationTimeViewController: JTCalendarDelegate {
 		if let calendarDayView = dayView as? JTCalendarDayView {
 			
 			dateSelected = calendarDayView.date
-			let dateFormatter = NSDateFormatter()
-			dateFormatter.locale = NSLocale(localeIdentifier: "en_AU")
-			dateFormatter.dateFormat = "yyyy-MM-dd"
-			let _ = dateFormatter.stringFromDate(dateSelected)
 			
-			//TODO: API CALL
+			updateViewWithDate(dateSelected)
 			
 			// Animation for the circleView
 			calendarDayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
