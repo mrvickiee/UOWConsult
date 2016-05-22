@@ -57,35 +57,6 @@ class EditViewController: UITableViewController {
         print("fetched password field : \(updatePassword)")
         print("fetched old password : \(oldPassword)")
         
-        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-        ref.changePasswordForUser(email, fromOld: oldPassword,
-                                  toNew: updatePassword, withCompletionBlock: { error in
-                                    if error != nil {
-                                        // There was an error processing the request
-                                        
-                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
-                                    } else {
-                                        
-                                        // Password changed successfully
-                                        print("password changed")
-                                        
-                                        self.popUp("Saved!", msg: "Password has been changed", buttonText: "Okay")
-                                        
-                                    }
-        })
-        
-    }
-    
-    @IBAction func saveChanges(sender: AnyObject) {
-        
-        self.email = "pyitheinmaung@gmail.com"
-        self.oldPassword = currentPassword.text!
-        self.updatePassword = self.newPassword.text!
-        
-        
-        print("fetched password field : \(updatePassword)")
-        print("fetched old password : \(oldPassword)")
-        
 //        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
 //        ref.changePasswordForUser(email, fromOld: oldPassword,
 //                                  toNew: updatePassword, withCompletionBlock: { error in
@@ -94,7 +65,7 @@ class EditViewController: UITableViewController {
 //                                        
 //                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
 //                                    } else {
-//                                    
+//                                        
 //                                        // Password changed successfully
 //                                        print("password changed")
 //                                        
@@ -102,9 +73,20 @@ class EditViewController: UITableViewController {
 //                                        
 //                                    }
 //        })
-		
+        
     }
     
+    
+    func saveChanges() {
+        self.email = "pyitheinmaung@gmail.com"
+        self.oldPassword = currentPassword.text!
+        self.updatePassword = self.newPassword.text!
+        
+        
+        print("fetched password field : \(updatePassword)")
+        print("fetched old password : \(oldPassword)")
+
+    }
     
     func popUp(okay: String, msg: String, buttonText: String) {
         // Create the alert controller
@@ -202,5 +184,6 @@ class EditViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+ 
 
 }
