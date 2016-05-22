@@ -21,6 +21,7 @@ class LocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		LocationRef.keepSynced(true)
 		
 		mapView.showsBuildings = true
     }
