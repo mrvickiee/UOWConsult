@@ -363,6 +363,7 @@
                         <outlet property="calendarContentView" destination="M6Q-fa-c75" id="CMf-gM-AyU"/>
                         <outlet property="calendarContentViewHeight" destination="81p-CD-0As" id="WlJ-I5-7k0"/>
                         <outlet property="calendarMenuView" destination="oZ0-84-3tf" id="LtE-Xh-l3i"/>
+                        <outlet property="tableView" destination="C7I-eb-Ev2" id="hAU-xf-bpD"/>
                         <outlet property="yearButton" destination="GZe-0F-yUz" id="aw2-vJ-wE2"/>
                     </connections>
                 </viewController>
