@@ -9,6 +9,7 @@
 import Foundation
 
 struct Class {
+	var id:String
 	var startTime:String
 	var endTime:String
 	var type:String

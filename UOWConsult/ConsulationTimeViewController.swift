@@ -10,10 +10,12 @@ import UIKit
 import JTCalendar
 import Firebase
 import PKHUD
+import ActionSheetPicker_3_0
 
 class ConsulationTimeViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var addConsultationButton: UIBarButtonItem!
 	
 	@IBOutlet weak var calendarMenuView: JTCalendarMenuView!
 	@IBOutlet weak var calendarContentView: JTHorizontalCalendarView!
@@ -24,6 +26,7 @@ class ConsulationTimeViewController: UIViewController {
 	
 	let TimetableRef = FIRDatabase.database().referenceWithPath("Timetable")
 	let EnrolledRef = FIRDatabase.database().referenceWithPath("Enrolled")
+	let ConsultRef = FIRDatabase.database().referenceWithPath("Booking")
 	
 	let user = NSUserDefaults.standardUserDefaults()
 	var classes = Dictionary<String, Array<Class>>()
@@ -42,6 +45,15 @@ class ConsulationTimeViewController: UIViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		
+		user.setObject("Student", forKey: "role")
+		if let role = user.stringForKey("role"){
+			if role == "Student" {
+				navigationItem.rightBarButtonItem = nil
+			} else if role == "Lecturer" {
+				navigationItem.rightBarButtonItem = addConsultationButton
+			}
+		}
 		
 		getEnrolledSubjects()
 		updateViewWithDate(dateSelected)
@@ -66,6 +78,10 @@ class ConsulationTimeViewController: UIViewController {
 	@IBAction func buttonCalendarMode(sender: AnyObject) {
 		calendar.settings.weekModeEnabled = !calendar.settings.weekModeEnabled
 		transition()
+	}
+	
+	@IBAction func buttonAddNewConsultation(sender: AnyObject) {
+		
 	}
 	
 	func getEnrolledSubjects(){
@@ -94,17 +110,13 @@ class ConsulationTimeViewController: UIViewController {
 		let day = dateFormatter.stringFromDate(dateSelected)
 
 		switch(day){
-			case "Monday",
-			     "Tuesday",
-			     "Wednesday",
-			     "Thursday",
-			     "Friday":
-				getSubjectsInfo(day)
-			default:
-				self.classes.removeAll()
-				self.subject.removeAll()
-				self.tableView.reloadData()
-				showDialog("Life is short, go out and play!")
+		case "Monday", "Tuesday", "Wednesday", "Thursday", "Friday":
+			getSubjectsInfo(day)
+		default:
+			self.classes.removeAll()
+			self.subject.removeAll()
+			self.tableView.reloadData()
+			showDialog("Life is short, go out and play!")
 		}
 		
 	}
@@ -118,26 +130,29 @@ class ConsulationTimeViewController: UIViewController {
 			
 			for time in timetableDict {
 				if self.enrolledSubject.contains(time.0) {
-					let timetable = time.1 as! NSArray
-					for a in timetable {
-						if a["day"] as? String == day {
-							let object = Class(startTime: (a["start_time"] as? String)!,
-												endTime: (a["end_time"] as? String)!,
-												type: (a["activity"] as? String)!,
-												location: (a["location"] as? String)!)
+					let timetable = time.1 as! [String:AnyObject]
+					print(timetable)
+					for timeslot in timetable {
+						let slot = timeslot.1
+						if slot["day"] as? String == day {
+							let object = Class(id: timeslot.0,
+								startTime: (slot["start_time"] as? String)!,
+								endTime: (slot["end_time"] as? String)!,
+								type: (slot["activity"] as? String)!,
+								location: (slot["location"] as? String)!)
 							
 							if !self.subject.contains(time.0) {
 								self.subject.append(time.0)
 								self.classes[time.0] = [object]
 							} else {
 								self.classes[time.0]?.append(object)
-								self.classes[time.0]?.sortInPlace({ $0.startTime.compare($1.startTime) == NSComparisonResult.OrderedAscending })
 							}
+
 						}
 					}
+					self.classes[time.0]?.sortInPlace({ $0.startTime.compare($1.startTime) == NSComparisonResult.OrderedAscending })
 				}
 			}
-			print(self.subject)
 			print(self.classes)
 			self.tableView.reloadData()
 		})
@@ -145,16 +160,13 @@ class ConsulationTimeViewController: UIViewController {
 	}
 	
 	func performLogin(){
-		let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc : LoginViewController = storyboard.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
-		
+		let vc = storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LocationViewController
 		self.presentViewController(vc, animated: true, completion: nil)
 	}
 	
 	func showDialog(message:String){
 		HUD.flash(.Label(message), delay: 1)
 	}
-	
 }
 
 //MARK:- TABLEVIEW Related
@@ -189,27 +201,84 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let cell = tableView.cellForRowAtIndexPath(indexPath) as! ConsultationTimetableTableViewCell
-		guard let type = cell.labelSubjectType.text, location = cell.labelSubjectLocation.text else {
-			return
-		}
+		let row = indexPath.row
+		let section = indexPath.section
+		let selectedTimeslot = classes[subject[section]]![row]
 		
 		let role = user.stringForKey("role")
 		if role == "Student"{
-			switch type {
+			switch selectedTimeslot.type {
 			case "Consultation":
-				()
+				bookingConsultation(subject[section], timeslot:selectedTimeslot)
 			default:
-				performSegueWithIdentifier("goToLocationView", sender: location)
+				performSegueWithIdentifier("goToLocationView", sender: selectedTimeslot.location)
 			}
 		} else {
-			switch type {
+			switch selectedTimeslot.type  {
 			case "Consultation":
-				()
+				deleteConsultationTime(subject[section], timeslot:selectedTimeslot)
 			default:
-				performSegueWithIdentifier("goToLocationView", sender: location)
+				performSegueWithIdentifier("goToLocationView", sender: selectedTimeslot.location)
 			}
 		}
+	}
+	
+	func bookingConsultation(subject:String, timeslot: Class){
+		guard let email = user.stringForKey("email") else {
+			showDialog("User not logged in, please login.")
+			performLogin()
+			return
+		}
+		
+		let dateFormatter: NSDateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "HH:mm"
+		
+		let calendar = NSCalendar.currentCalendar()
+		let dateComponent = NSDateComponents()
+		dateComponent.minute = -15
+		
+		let startTime = dateFormatter.dateFromString(timeslot.startTime)
+		var endTime = dateFormatter.dateFromString(timeslot.endTime)
+		endTime = calendar.dateByAddingComponents(dateComponent, toDate: endTime!, options: [])
+		
+		let datePicker = ActionSheetDatePicker(title: "Reservation Time", datePickerMode: UIDatePickerMode.Time, selectedDate: startTime, doneBlock: {
+			picker, value, index in
+			
+			let time = dateFormatter.stringFromDate(value as! NSDate)
+			
+			dateFormatter.dateFormat = "YYYY-MM-dd"
+			let parameter = [
+				"student" : email,
+				"date" : dateFormatter.stringFromDate(self.dateSelected),
+				"subject" : subject,
+				"time" : time
+			]
+		
+			self.ConsultRef.childByAutoId().setValue(parameter)
+			
+			return
+			}, cancelBlock: { ActionStringCancelBlock in return }, origin: self.tableView)
+		
+		datePicker.minimumDate = startTime
+		datePicker.maximumDate = endTime
+		datePicker.locale = NSLocale(localeIdentifier: "en_AU")
+		datePicker.minuteInterval = 15
+		datePicker.showActionSheetPicker()
+	}
+	
+	func deleteConsultationTime(subject:String, timeslot: Class){
+		let alert = UIAlertController(title: "Remove Consultation Slot",
+		                              message: "Do you want to remove selected consultation slot?",
+		                              preferredStyle: .Alert)
+		alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+		alert.addAction(UIAlertAction(title: "Confirm", style: .Destructive) { UIAlertAction in
+			let ref = self.TimetableRef.child(subject).child(timeslot.id)
+			ref.removeValue()
+			
+			alert.dismissViewControllerAnimated(true, completion: nil)
+		})
+		
+		self.presentViewController(alert, animated: true, completion: nil)
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
