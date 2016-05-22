@@ -16,15 +16,18 @@ class SettingViewController: UITableViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    let ref = Firebase(url: "https://uow-consult.firebaseio.com")
+	//let ref = Firebase(url: "https://uow-consult.firebaseio.com")
 
     
     @IBAction func logOutPressed(sender: AnyObject) {
         
         HUD.flash(.Label("Logging out.."), delay: 2) { (finished) in
-            self.ref.unauth()
+			//self.ref.unauth()
             let userDefault = NSUserDefaults.standardUserDefaults()
-            userDefault.removeObjectForKey("userID")
+            userDefault.removeObjectForKey("email")
+            userDefault.removeObjectForKey("role")
+            userDefault.removeObjectForKey("name")
+            
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
             self.presentViewController(vc, animated: true, completion:nil)
         }
