@@ -365,11 +365,45 @@
                         <outlet property="calendarMenuView" destination="oZ0-84-3tf" id="LtE-Xh-l3i"/>
                         <outlet property="tableView" destination="C7I-eb-Ev2" id="hAU-xf-bpD"/>
                         <outlet property="yearButton" destination="GZe-0F-yUz" id="aw2-vJ-wE2"/>
+                        <segue destination="vtc-5n-kjI" kind="show" identifier="goToLocationView" id="RMs-gT-YXs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1684" y="420"/>
+        </scene>
+        <!--Location-->
+        <scene sceneID="7HJ-7F-QOA">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="vtc-5n-kjI" customClass="LocationViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yQH-Um-yWK"/>
+                        <viewControllerLayoutGuide type="bottom" id="a0X-tf-r9e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wpp-nr-NUH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9pz-W8-paY">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9pz-W8-paY" firstAttribute="top" secondItem="yQH-Um-yWK" secondAttribute="bottom" id="H4C-dt-tWi"/>
+                            <constraint firstItem="a0X-tf-r9e" firstAttribute="top" secondItem="9pz-W8-paY" secondAttribute="bottom" id="OiX-vT-lQ6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9pz-W8-paY" secondAttribute="trailing" constant="-20" id="a0A-8W-chr"/>
+                            <constraint firstItem="9pz-W8-paY" firstAttribute="leading" secondItem="wpp-nr-NUH" secondAttribute="leadingMargin" constant="-20" id="e0v-7L-YCO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Location" id="QM4-JE-W8C"/>
+                    <connections>
+                        <outlet property="mapView" destination="9pz-W8-paY" id="BB2-ng-LLU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ABh-ht-FGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2410" y="420"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Li6-RI-EVu">

@@ -11,19 +11,6 @@ import JTCalendar
 import Firebase
 import PKHUD
 
-struct Subject {
-	var code:String
-	var timetable:[Class]
-}
-
-struct Class {
-	var startTime:String
-	var endTime:String
-	var type:String
-	var location:String
-	//var day:String
-}
-
 class ConsulationTimeViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
@@ -35,7 +22,6 @@ class ConsulationTimeViewController: UIViewController {
 	
 	var calendar = JTCalendarManager()
 	
-	let ref = FIRDatabase.database().reference()
 	let TimetableRef = FIRDatabase.database().referenceWithPath("Timetable")
 	let EnrolledRef = FIRDatabase.database().referenceWithPath("Enrolled")
 	
@@ -44,8 +30,7 @@ class ConsulationTimeViewController: UIViewController {
 	var subject = [String]()
 	var dateSelected = NSDate()
 	
-	// Test Data
-	var enrolledSubject = ["CSCI342", "CSCI366"]
+	var enrolledSubject = [String]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -119,17 +104,18 @@ class ConsulationTimeViewController: UIViewController {
 				self.classes.removeAll()
 				self.subject.removeAll()
 				self.tableView.reloadData()
-				showDialog("Have a nice day! Today is weekend!")
+				showDialog("Life is short, go out and play!")
 		}
 		
 	}
 	
 	func getSubjectsInfo(day:String){
-		self.classes.removeAll()
-		self.subject.removeAll()
-		
 		TimetableRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+			self.classes.removeAll()
+			self.subject.removeAll()
+			
 			let timetableDict = snapshot.value as! [String : AnyObject]
+			
 			for time in timetableDict {
 				if self.enrolledSubject.contains(time.0) {
 					let timetable = time.1 as! NSArray
@@ -181,6 +167,10 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		return classes[subject[section]]!.count
 	}
 	
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return subject[section]
+	}
+	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("timetableCell", forIndexPath: indexPath) as! ConsultationTimetableTableViewCell
 		
@@ -198,8 +188,36 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		return cell
 	}
 	
-	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return subject[section]
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let cell = tableView.cellForRowAtIndexPath(indexPath) as! ConsultationTimetableTableViewCell
+		guard let type = cell.labelSubjectType.text, location = cell.labelSubjectLocation.text else {
+			return
+		}
+		
+		let role = user.stringForKey("role")
+		if role == "Student"{
+			switch type {
+			case "Consultation":
+				()
+			default:
+				performSegueWithIdentifier("goToLocationView", sender: location)
+			}
+		} else {
+			switch type {
+			case "Consultation":
+				()
+			default:
+				performSegueWithIdentifier("goToLocationView", sender: location)
+			}
+		}
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "goToLocationView" {
+			let vc = segue.destinationViewController as! LocationViewController
+			let location = sender!.componentsSeparatedByString("-").first
+			vc.location = location
+		}
 	}
 }
 
