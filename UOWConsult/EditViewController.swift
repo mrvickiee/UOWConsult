@@ -23,20 +23,20 @@ class EditViewController: UITableViewController {
         super.viewDidLoad()
         
         
-        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-        ref.authUser("pyitheinmaung@gmail.com", password: "batman27",
-                     withCompletionBlock: { error, authData in
-                        if error != nil {
-                            // There was an error logging in to this account
-                            
-                        } else {
-                            // We are now logged in
-
-                            
-                            print("Authenticated  \(authData.providerData["email"])")
-                            
-                        }
-        })
+//        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
+//        ref.authUser("pyitheinmaung@gmail.com", password: "batman27",
+//                     withCompletionBlock: { error, authData in
+//                        if error != nil {
+//                            // There was an error logging in to this account
+//                            
+//                        } else {
+//                            // We are now logged in
+//
+//                            
+//                            print("Authenticated  \(authData.providerData["email"])")
+//                            
+//                        }
+//        })
 
         
         // Uncomment the following line to preserve selection between presentations
@@ -63,23 +63,23 @@ class EditViewController: UITableViewController {
         print("fetched password field : \(updatePassword)")
         print("fetched old password : \(oldPassword)")
         
-        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-        ref.changePasswordForUser(email, fromOld: oldPassword,
-                                  toNew: updatePassword, withCompletionBlock: { error in
-                                    if error != nil {
-                                        // There was an error processing the request
-                                        
-                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
-                                    } else {
-                                    
-                                        // Password changed successfully
-                                        print("password changed")
-                                        
-                                        self.popUp("Saved!", msg: "Password has been changed", buttonText: "Okay")
-                                        
-                                    }
-        })
-        
+//        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
+//        ref.changePasswordForUser(email, fromOld: oldPassword,
+//                                  toNew: updatePassword, withCompletionBlock: { error in
+//                                    if error != nil {
+//                                        // There was an error processing the request
+//                                        
+//                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
+//                                    } else {
+//                                    
+//                                        // Password changed successfully
+//                                        print("password changed")
+//                                        
+//                                        self.popUp("Saved!", msg: "Password has been changed", buttonText: "Okay")
+//                                        
+//                                    }
+//        })
+		
     }
     
     

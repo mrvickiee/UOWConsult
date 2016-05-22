@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  UOWConsult
 //
-//  Created by CY Lim on 26/04/2016.
+//  Created by CY Lim on 21/05/2016.
 //  Copyright © 2016 CY Lim. All rights reserved.
 //
 
@@ -14,11 +14,15 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-
+	override init() {
+		// Firebase Init
+		FIRApp.configure()
+		FIRDatabase.database().persistenceEnabled = true
+	}
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
-        
+	
 		return true
 	}
 
