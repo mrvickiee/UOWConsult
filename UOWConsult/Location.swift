@@ -11,7 +11,7 @@ import Foundation
 
 struct Location {
 	var name:String
-	var building:String
+	var building:Int
 	var coordinate:Coordinate
 }
 

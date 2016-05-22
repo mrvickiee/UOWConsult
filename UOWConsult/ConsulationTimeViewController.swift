@@ -216,7 +216,7 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		if segue.identifier == "goToLocationView" {
 			let vc = segue.destinationViewController as! LocationViewController
 			let location = sender!.componentsSeparatedByString("-").first
-			vc.location = location
+			vc.buildingNo = location
 		}
 	}
 }

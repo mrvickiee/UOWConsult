@@ -16,11 +16,13 @@ class LocationViewController: UIViewController {
 	
 	let LocationRef = FIRDatabase.database().referenceWithPath("Location")
 	
-	var location:String?
+	var buildingNo:String?
+	
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		
+		mapView.showsBuildings = true
     }
 	
 	override func viewWillAppear(animated: Bool) {
@@ -33,10 +35,39 @@ class LocationViewController: UIViewController {
 		}
 	}
 	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		LocationRef.removeAllObservers()
+	}
+	
 	func observeLocationFromDatabase(){
-		LocationRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-			let enrolledDict = snapshot.value as! NSArray
-			
+		LocationRef.child(buildingNo!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+			if let location = snapshot.value {
+				let building = Location(name: location["name"] as! String,
+										 building: location["id"] as! Int,
+										 coordinate: Coordinate(latitude: location["center"]!![0] as! Double,
+																longitude: location["center"]!![1] as! Double))
+				
+				self.populateMapView(building)
+
+			}
 		})
+	}
+	
+	func populateMapView(building: Location){
+		if mapView.annotations.count != 0 {
+			mapView.removeAnnotations(mapView.annotations)
+		}
+		
+		let annotation = MKPointAnnotation()
+		annotation.coordinate = CLLocationCoordinate2D(latitude: building.coordinate.latitude, longitude: building.coordinate.longitude)
+		annotation.title = building.name
+		
+		mapView.setCenterCoordinate(annotation.coordinate, animated: true)
+		
+		let region = mapView.regionThatFits(MKCoordinateRegionMakeWithDistance(annotation.coordinate, 500, 500))
+		mapView.setRegion(region, animated: true)
+		
+		mapView.addAnnotation(annotation)
 	}
 }
