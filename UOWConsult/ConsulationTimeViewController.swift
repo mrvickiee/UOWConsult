@@ -192,6 +192,12 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		let sectionSubjects = classes[subject[section]]!
 		let subjectItem: Class = sectionSubjects[row]
 		
+		if subjectItem.type == "Consultation" {
+			cell.backgroundColor = UIColor.init(red: 0, green: 0.8, blue: 0, alpha: 0.2)
+		} else {
+			cell.backgroundColor = UIColor.clearColor()
+		}
+		
 		cell.labelSubjectCode.text = subject[section]
 		cell.labelSubjectTime.text = subjectItem.startTime + " - " + subjectItem.endTime
 		cell.labelSubjectType.text = subjectItem.type
