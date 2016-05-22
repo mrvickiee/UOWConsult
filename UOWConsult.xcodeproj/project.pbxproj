@@ -23,6 +23,11 @@
 		E91A347B1CF0509500A35DB1 /* TmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34771CF0509500A35DB1 /* TmpViewController.swift */; };
 		E91A347D1CF0509C00A35DB1 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A347C1CF0509C00A35DB1 /* user.swift */; };
 		E91A34811CF050C200A35DB1 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34801CF050C200A35DB1 /* EditViewController.swift */; };
+		E91A34841CF164B900A35DB1 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34831CF164B900A35DB1 /* LocationViewController.swift */; };
+		E91A34861CF16A5600A35DB1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34851CF16A5600A35DB1 /* Location.swift */; };
+		E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34871CF16AD800A35DB1 /* Coordinate.swift */; };
+		E91A348A1CF16AE700A35DB1 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34891CF16AE700A35DB1 /* Class.swift */; };
+		E91A348C1CF16B4600A35DB1 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A348B1CF16B4600A35DB1 /* Subject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		E91A34771CF0509500A35DB1 /* TmpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TmpViewController.swift; sourceTree = "<group>"; };
 		E91A347C1CF0509C00A35DB1 /* user.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		E91A34801CF050C200A35DB1 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		E91A34831CF164B900A35DB1 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		E91A34851CF16A5600A35DB1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		E91A34871CF16AD800A35DB1 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		E91A34891CF16AE700A35DB1 /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		E91A348B1CF16B4600A35DB1 /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,10 @@
 			isa = PBXGroup;
 			children = (
 				E91A347C1CF0509C00A35DB1 /* user.swift */,
+				E91A34851CF16A5600A35DB1 /* Location.swift */,
+				E91A34891CF16AE700A35DB1 /* Class.swift */,
+				E91A34871CF16AD800A35DB1 /* Coordinate.swift */,
+				E91A348B1CF16B4600A35DB1 /* Subject.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -138,6 +152,7 @@
 			children = (
 				E91A34721CF0508B00A35DB1 /* ConsulationTimeViewController.swift */,
 				E91A34701CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift */,
+				E91A34831CF164B900A35DB1 /* LocationViewController.swift */,
 			);
 			name = Timetable;
 			sourceTree = "<group>";
@@ -268,11 +283,16 @@
 				E91A347D1CF0509C00A35DB1 /* user.swift in Sources */,
 				E91A34781CF0509500A35DB1 /* LoginViewController.swift in Sources */,
 				E91A34711CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift in Sources */,
+				E91A34841CF164B900A35DB1 /* LocationViewController.swift in Sources */,
 				E91A347A1CF0509500A35DB1 /* SignUpViewController.swift in Sources */,
 				E91A34621CF04FF800A35DB1 /* UOWConsult.xcdatamodeld in Sources */,
+				E91A34861CF16A5600A35DB1 /* Location.swift in Sources */,
+				E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */,
+				E91A348C1CF16B4600A35DB1 /* Subject.swift in Sources */,
 				E91A347B1CF0509500A35DB1 /* TmpViewController.swift in Sources */,
 				E91A345C1CF04FF800A35DB1 /* ViewController.swift in Sources */,
 				E91A34731CF0508B00A35DB1 /* ConsulationTimeViewController.swift in Sources */,
+				E91A348A1CF16AE700A35DB1 /* Class.swift in Sources */,
 				E91A34791CF0509500A35DB1 /* SettingViewController.swift in Sources */,
 				E91A34811CF050C200A35DB1 /* EditViewController.swift in Sources */,
 				E91A345A1CF04FF800A35DB1 /* AppDelegate.swift in Sources */,
