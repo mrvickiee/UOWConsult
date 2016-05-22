@@ -1,7 +1,7 @@
 platform :ios, '9.0'
-use_frameworks!
 
 target 'UOWConsult' do
+use_frameworks!
 	source 'https://github.com/CocoaPods/Specs.git'
 
 	# https://github.com/pkluz/PKHUD
@@ -20,7 +20,8 @@ target 'UOWConsult' do
 	pod 'MPGNotification', '~> 1.2'
 	
 	# https://www.firebase.com/docs/ios/quickstart.html
-	pod 'Firebase', '>= 2.5.1'
+	pod 'Firebase/Core'
+	pod 'Firebase/Database'
+	pod 'Firebase/Auth'
 
 end
-

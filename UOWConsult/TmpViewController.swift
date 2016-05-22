@@ -9,17 +9,18 @@
 import UIKit
 
 class TmpViewController: UITabBarController {
-
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
-        let userDefault = NSUserDefaults()                  //obtain logged in user id
-        let userID = userDefault.stringForKey("userID")
+                                                    //obtain logged in user id
+        let email = defaults.stringForKey("email")
         
-        if userID == nil {
+     if email == nil{
             performSegueWithIdentifier("goToLogin", sender: self)
         }
         
