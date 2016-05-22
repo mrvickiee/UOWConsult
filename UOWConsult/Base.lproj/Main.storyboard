@@ -285,7 +285,7 @@
                                 <rect key="frame" x="0.0" y="193" width="600" height="358"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timetableCell" rowHeight="80" id="FcO-rd-9GJ" customClass="ConsultationTimetableTableViewCell" customModule="UOWConsult" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="timetableCell" rowHeight="80" id="FcO-rd-9GJ" customClass="ConsultationTimetableTableViewCell" customModule="UOWConsult" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FcO-rd-9GJ" id="czE-mw-MUE">
@@ -357,9 +357,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Consultation Time" id="4WL-iw-wVY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fJR-jb-i5r"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fJR-jb-i5r">
+                            <connections>
+                                <action selector="buttonAddNewConsultation:" destination="BYZ-38-t0r" id="qtw-sL-NRR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addConsultationButton" destination="fJR-jb-i5r" id="KFB-QQ-HBQ"/>
                         <outlet property="calendarContentView" destination="M6Q-fa-c75" id="CMf-gM-AyU"/>
                         <outlet property="calendarContentViewHeight" destination="81p-CD-0As" id="WlJ-I5-7k0"/>
                         <outlet property="calendarMenuView" destination="oZ0-84-3tf" id="LtE-Xh-l3i"/>
