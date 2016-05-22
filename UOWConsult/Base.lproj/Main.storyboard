@@ -714,28 +714,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Menu" id="c39-EV-iOS">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3SG-7U-FNw">
-                                        <rect key="frame" x="0.0" y="281.5" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3SG-7U-FNw" id="nUs-S9-ZDG">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvc-6Z-yFO">
-                                                    <rect key="frame" x="274" y="7" width="52" height="30"/>
-                                                    <state key="normal" title="Log out"/>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="yvc-6Z-yFO" firstAttribute="top" secondItem="nUs-S9-ZDG" secondAttribute="topMargin" constant="-1" id="KqO-yk-rqf"/>
-                                                <constraint firstItem="yvc-6Z-yFO" firstAttribute="centerX" secondItem="nUs-S9-ZDG" secondAttribute="centerX" id="OQ0-4E-E91"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="kq2-rE-AGf" id="nft-f7-Eg6"/>
