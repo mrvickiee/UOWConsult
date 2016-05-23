@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import PKHUD
+import ActionSheetPicker_3_0
 
 class NewConsultationTableViewController: UITableViewController, UITextFieldDelegate {
 	
@@ -44,26 +45,34 @@ class NewConsultationTableViewController: UITableViewController, UITextFieldDele
 	}
 	
 	@IBAction func performSave(sender: AnyObject) {
-		guard let subject = subjectCodeTextField.text else {
-			showDialog("Subject can't be empty")
-			return
-		}
-		guard let day = dayTextField.text else {
-			showDialog("Day of the week can't be empty")
-			return
-		}
-		guard let startTime = startTimeTextField.text else {
-			showDialog("Start Time can't be empty")
-			return
-		}
-		guard let endTime = endTimeTextField.text else {
-			showDialog("End Time can't be empty")
-			return
-		}
+		guard subjectCodeTextField.text != "" else { showDialog("Subject can't be empty"); return }
+		guard dayTextField.text != "" else { showDialog("Day of the week can't be empty"); return }
+		guard startTimeTextField.text != "" else { showDialog("Start Time can't be empty"); return }
+		guard endTimeTextField.text != "" else { showDialog("End Time can't be empty"); return }
 		
+		let subject = subjectCodeTextField.text
+		let day = dayTextField.text
+		let startTime = startTimeTextField.text
+		let endTime = endTimeTextField.text
+		
+		navigationController?.popViewControllerAnimated(true)
+	}
+	
+	@IBAction func selectSubjectCode(sender: AnyObject) {
 		
 	}
 	
+	@IBAction func selectDayOfWeek(sender: AnyObject) {
+		
+	}
+	
+	@IBAction func selectStartTime(sender: AnyObject) {
+		
+	}
+	
+	@IBAction func selectEndTime(sender: AnyObject) {
+		
+	}
 	
 	func showDialog(message:String){
 		HUD.flash(.Label(message), delay: 1)
