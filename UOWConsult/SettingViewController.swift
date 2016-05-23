@@ -22,7 +22,7 @@ class SettingViewController: UITableViewController {
     @IBAction func logOutPressed(sender: AnyObject) {
         
         HUD.flash(.Label("Logging out.."), delay: 2) { (finished) in
-			//self.ref.unauth()
+			try! FIRAuth.auth()!.signOut()
             let userDefault = NSUserDefaults.standardUserDefaults()
             userDefault.removeObjectForKey("email")
             userDefault.removeObjectForKey("role")
