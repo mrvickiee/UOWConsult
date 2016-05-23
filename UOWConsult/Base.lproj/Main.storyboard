@@ -230,7 +230,7 @@
         <!--New Consultation-->
         <scene sceneID="XSI-ok-jHV">
             <objects>
-                <tableViewController id="g5T-NI-WKi" customClass="NewConsultationTableViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="g5T-NI-WKi" customClass="NewConsultationTableViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eVw-JB-F2f">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,17 +245,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRO-uG-G1b">
-                                                    <rect key="frame" x="119.5" y="10.5" width="472.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhR-02-RK5">
                                                     <rect key="frame" x="8" y="11.5" width="103.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRO-uG-G1b">
+                                                    <rect key="frame" x="119" y="11" width="472.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="selectSubjectCode:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="Nmv-zc-pah"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="zRO-uG-G1b" firstAttribute="centerY" secondItem="tmi-sv-Jft" secondAttribute="centerY" id="KUJ-cE-Odk"/>
@@ -287,6 +290,9 @@
                                                     <rect key="frame" x="46" y="11" width="546" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="selectDayOfWeek:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="6ai-WZ-q40"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -315,6 +321,9 @@
                                                     <rect key="frame" x="96" y="11.5" width="496" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="selectStartTime:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="zfo-hI-tDX"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -343,6 +352,9 @@
                                                     <rect key="frame" x="88" y="11" width="504" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="selectEndTime:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="enx-oe-Fsk"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
