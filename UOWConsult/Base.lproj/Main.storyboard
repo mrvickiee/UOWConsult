@@ -722,11 +722,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="UBG-DD-t4y">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="cIv-4k-dmW">
-                            <connections>
-                                <action selector="cancelPressed:" destination="kq2-rE-AGf" id="GGn-RU-tmz"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="cIv-4k-dmW"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

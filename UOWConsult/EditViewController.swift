@@ -5,7 +5,7 @@
 //  Created by Pyi Thein Maung on 15/05/2016.
 //  Copyright © 2016 CY Lim. All rights reserved.
 //
-
+/*
 import UIKit
 import Firebase
 
@@ -181,3 +181,4 @@ class EditViewController: UITableViewController {
     */
 
 }
+ */
