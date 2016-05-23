@@ -231,14 +231,14 @@
         <scene sceneID="XSI-ok-jHV">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="g5T-NI-WKi" customClass="NewConsultationTableViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eVw-JB-F2f">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eVw-JB-F2f">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Subject Information" id="Jar-8L-9IL">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="b8w-4F-Ktk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="b8w-4F-Ktk">
                                         <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b8w-4F-Ktk" id="tmi-sv-Jft">
@@ -273,7 +273,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Consultation Information" id="H7o-px-pnE">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uxb-je-CD3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="uxb-je-CD3">
                                         <rect key="frame" x="0.0" y="207.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uxb-je-CD3" id="h20-CR-2Ao">
@@ -304,7 +304,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ly0-gt-GL0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Ly0-gt-GL0">
                                         <rect key="frame" x="0.0" y="251.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ly0-gt-GL0" id="77F-eH-tAC">
@@ -335,7 +335,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NBf-Lj-zax">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="NBf-Lj-zax">
                                         <rect key="frame" x="0.0" y="295.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NBf-Lj-zax" id="jOv-ek-KrB">
@@ -366,6 +366,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="JwX-cq-xeb">
+                                        <rect key="frame" x="0.0" y="339.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JwX-cq-xeb" id="b0G-WX-7p3">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="location" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TIJ-5o-0fi">
+                                                    <rect key="frame" x="82" y="11" width="510" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uen-As-iFB">
+                                                    <rect key="frame" x="8" y="11" width="66" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TIJ-5o-0fi" firstAttribute="trailing" secondItem="b0G-WX-7p3" secondAttribute="trailingMargin" id="7E0-GC-MQ3"/>
+                                                <constraint firstItem="uen-As-iFB" firstAttribute="leading" secondItem="b0G-WX-7p3" secondAttribute="leadingMargin" id="K5p-u2-UBW"/>
+                                                <constraint firstItem="TIJ-5o-0fi" firstAttribute="leading" secondItem="uen-As-iFB" secondAttribute="trailing" constant="8" id="UdI-KR-9OW"/>
+                                                <constraint firstItem="uen-As-iFB" firstAttribute="centerY" secondItem="b0G-WX-7p3" secondAttribute="centerY" id="ghc-RG-FJl"/>
+                                                <constraint firstItem="TIJ-5o-0fi" firstAttribute="centerY" secondItem="b0G-WX-7p3" secondAttribute="centerY" id="vkC-hO-j7U"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -384,6 +412,7 @@
                     <connections>
                         <outlet property="dayTextField" destination="E3a-iC-tN1" id="xAW-ua-62i"/>
                         <outlet property="endTimeTextField" destination="Su5-FD-zKo" id="Pex-eD-lPg"/>
+                        <outlet property="locationTextField" destination="TIJ-5o-0fi" id="scS-ir-2oh"/>
                         <outlet property="startTimeTextField" destination="brP-nP-ZQI" id="Ykj-jb-uBp"/>
                         <outlet property="subjectCodeTextField" destination="zRO-uG-G1b" id="0mU-go-Tnu"/>
                     </connections>
