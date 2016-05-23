@@ -46,7 +46,6 @@ class ConsulationTimeViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		user.setObject("Student", forKey: "role")
 		if let role = user.stringForKey("role"){
 			if role == "Student" {
 				navigationItem.rightBarButtonItem = nil
@@ -85,7 +84,6 @@ class ConsulationTimeViewController: UIViewController {
 	}
 	
 	func getEnrolledSubjects(){
-		user.setObject("fake@cy.my", forKey: "email")
 		guard let email = user.stringForKey("email") else {
 			showDialog("User not logged in, please login.")
 			performLogin()
