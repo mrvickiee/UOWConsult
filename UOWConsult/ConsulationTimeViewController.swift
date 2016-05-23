@@ -81,7 +81,7 @@ class ConsulationTimeViewController: UIViewController {
 	}
 	
 	@IBAction func buttonAddNewConsultation(sender: AnyObject) {
-		
+		performSegueWithIdentifier("goToAddNewConsultationView", sender: self)
 	}
 	
 	func getEnrolledSubjects(){
@@ -93,11 +93,12 @@ class ConsulationTimeViewController: UIViewController {
 		}
 		
 		EnrolledRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-			let enrolledDict = snapshot.value as! NSArray
+			let enrolledDict = snapshot.value as! [String:AnyObject]
 			self.enrolledSubject.removeAll()
 			for enrolled in enrolledDict {
-				if enrolled["student"] as? String == email {
-					self.enrolledSubject.append((enrolled["subject"] as? String)!)
+				let enrol = enrolled.1
+				if enrol["student"] as? String == email {
+					self.enrolledSubject.append((enrol["subject"] as? String)!)
 				}
 			}
 		})
