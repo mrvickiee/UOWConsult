@@ -113,6 +113,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender)
         
     }
+    
     /*
     // MARK: - Navigation
 

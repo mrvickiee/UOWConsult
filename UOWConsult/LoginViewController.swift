@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
                             //obtain logged in user id
+
        let email = defaults.stringForKey("email")
         if email != nil{
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
