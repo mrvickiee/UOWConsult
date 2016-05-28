@@ -12,9 +12,9 @@ import Firebase
 class EditViewController: UITableViewController {
 
     
+    @IBOutlet weak var newUsername: UITextField!
     @IBOutlet weak var newPassword: UITextField!
-    
-    @IBOutlet weak var currentPassword: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
     
     var updatePassword : String = ""
     var oldPassword : String = ""
@@ -70,38 +70,87 @@ class EditViewController: UITableViewController {
 //        
 //    }
 
-    func cancelPressed() {
+    func changeUsername()  {
         
         
+        let user = FIRAuth.auth()?.currentUser
+        if let user = user {
+            let changeRequest = user.profileChangeRequest()
+            
+            changeRequest.displayName = self.newUsername.text!
+            print(" changing to \(changeRequest.displayName)")
+            
+            changeRequest.commitChangesWithCompletion { error in
+                if let error = error {
+                    // An error happened.
+                    print(error)
+                    
+                    
+                } else {
+                    // Profile updated.
+                    
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    func changePassword() -> Bool {
+        var success = true
+        
+        let user = FIRAuth.auth()?.currentUser
+        let updatePassword = newPassword.text!
+        
+        user?.updatePassword(updatePassword) { error in
+            if let error = error {
+                // An error happened.
+                success = false
+            } else {
+                // Password updated.
+                success = true
+            }
+        }
+        return success
+    }
+    
+    func matchInput() -> Bool {
+        var matched = true
+        
+        if newPassword.text == "" || confirmPassword.text == "" {
+            matched = false
+        }else if newPassword.text == confirmPassword.text {
+            matched = true
+        }else{
+            matched = false
+        }
+        
+        return matched
     }
     
     
      func saveChanges() {
         
-        self.email = "pyitheinmaung@gmail.com"
-        self.oldPassword = currentPassword.text!
-        self.updatePassword = self.newPassword.text!
+        var updated : Bool?
         
+        if newUsername.text != "" {
+            changeUsername()
+        }else{
+            print("user name field empty")
+        }
         
-        print("fetched password field : \(updatePassword)")
-        print("fetched old password : \(oldPassword)")
+        let checkInput = matchInput()
+        if checkInput == true {
+            updated = changePassword()
+        }
         
-//        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-//        ref.changePasswordForUser(email, fromOld: oldPassword,
-//                                  toNew: updatePassword, withCompletionBlock: { error in
-//                                    if error != nil {
-//                                        // There was an error processing the request
-//                                        
-//                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
-//                                    } else {
-//                                    
-//                                        // Password changed successfully
-//                                        print("password changed")
-//                                        
-//                                        self.popUp("Saved!", msg: "Password has been changed", buttonText: "Okay")
-//                                        
-//                                    }
-//        })
+        if updated == true {
+            popUp("Saved!", msg: "updated details successfully", buttonText: "Okay")
+        }else{
+            popUp("Invalid input!", msg: "Password fields does not match", buttonText: "Retry")
+        }
+        
 		
     }
     
@@ -128,6 +177,12 @@ class EditViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func saveButtonPressed(sender: AnyObject) {
+        
+        saveChanges()
+        
+        
+    }
     
     
     override func didReceiveMemoryWarning() {
