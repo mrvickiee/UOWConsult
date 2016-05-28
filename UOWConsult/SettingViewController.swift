@@ -34,10 +34,6 @@ class SettingViewController: UITableViewController {
             self.presentViewController(vc, animated: true, completion:nil)
             
             
-            //display user info 
-            self.usernameLabel.text = self.defaults.stringForKey("name")
-            self.emailLabel.text = self.defaults.stringForKey("email")
-            
         }
        
         
@@ -58,12 +54,24 @@ class SettingViewController: UITableViewController {
     }*/
     
     
+    @IBOutlet weak var actionButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        //display user info
+        self.usernameLabel.text = self.defaults.stringForKey("name")
+        self.emailLabel.text = self.defaults.stringForKey("email")
         
+        if self.defaults.stringForKey("role") == "Student" {
+            self.actionButton.setTitle("Enroll" , forState: UIControlState.Normal)
+        }else{
+            self.actionButton.setTitle("Create Subject" , forState: UIControlState.Normal)
+
+        }
+        
+        print("  &  \(self.emailLabel.text)")
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
