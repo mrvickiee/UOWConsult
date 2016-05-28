@@ -863,8 +863,8 @@
                         <sections>
                             <tableViewSection headerTitle="Profile" footerTitle="" id="N5n-N2-VqQ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="q7Y-ul-Mde">
-                                        <rect key="frame" x="0.0" y="143.5" width="600" height="88"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="46" id="q7Y-ul-Mde">
+                                        <rect key="frame" x="0.0" y="135.5" width="600" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q7Y-ul-Mde" id="fHB-Li-yFG">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="45.5"/>
@@ -996,10 +996,10 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Edit details" prompt=" " id="UBG-DD-t4y">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="nfl-5V-16Z">
+                    <navigationItem key="navigationItem" title="Settings" id="UBG-DD-t4y">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="cIv-4k-dmW">
                             <connections>
-                                <action selector="SavePressed:" destination="kq2-rE-AGf" id="ukS-dC-IpN"/>
+                                <action selector="saveButtonPressed:" destination="kq2-rE-AGf" id="kgP-6b-cNg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1012,7 +1012,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ez-3q-NWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2593" y="1201"/>
+            <point key="canvasLocation" x="830" y="2222"/>
         </scene>
     </scenes>
 </document>
