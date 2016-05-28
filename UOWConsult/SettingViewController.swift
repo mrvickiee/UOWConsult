@@ -107,6 +107,19 @@ class SettingViewController: UITableViewController {
         
     }
     
+    @IBAction func actionButtonPressed(sender: AnyObject) {
+        let role = defaults.stringForKey("role")
+        if role == "Student" {
+            performSegueWithIdentifier("goToEnroll", sender: sender)
+        }else if role == "Lecturer" {
+            performSegueWithIdentifier("goToSubject", sender: sender)
+        }else{
+            print(" no roles ? ")
+        }
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
