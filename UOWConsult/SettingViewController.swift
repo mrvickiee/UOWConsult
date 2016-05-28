@@ -12,6 +12,8 @@ import PKHUD
 
 class SettingViewController: UITableViewController {
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -30,6 +32,12 @@ class SettingViewController: UITableViewController {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
             self.presentViewController(vc, animated: true, completion:nil)
+            
+            
+            //display user info 
+            self.usernameLabel.text = self.defaults.stringForKey("name")
+            self.emailLabel.text = self.defaults.stringForKey("email")
+            
         }
        
         
@@ -53,6 +61,8 @@ class SettingViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         
         // Uncomment the following line to preserve selection between presentations

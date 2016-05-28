@@ -5,7 +5,7 @@
 //  Created by Pyi Thein Maung on 15/05/2016.
 //  Copyright © 2016 CY Lim. All rights reserved.
 //
-/*
+
 import UIKit
 import Firebase
 
@@ -45,15 +45,38 @@ class EditViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    @IBAction func cancelPressed(sender: AnyObject) {
+    
+    
+    @IBAction func saveButtonPressed(sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if let user = FIRAuth.auth()?.currentUser {
+            
+            let tempPassword = user
+        }
+        
+        let newPassword = self.newPassword.text!
+        
+        
+        
+        user?.updatePassword(newPassword) { error in
+            if let error = error {
+                // An error happened.
+                
+            } else {
+                // Password updated.
+                self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
+            }
+        }
+        
+    }
+
+    func cancelPressed() {
+        
         
     }
     
     
-    @IBAction func saveChanges(sender: AnyObject) {
+     func saveChanges() {
         
         self.email = "pyitheinmaung@gmail.com"
         self.oldPassword = currentPassword.text!
@@ -181,4 +204,4 @@ class EditViewController: UITableViewController {
     */
 
 }
- */
+
