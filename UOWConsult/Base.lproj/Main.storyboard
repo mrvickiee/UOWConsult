@@ -1121,7 +1121,7 @@
         <!--Edit-->
         <scene sceneID="laC-ln-qhU">
             <objects>
-                <tableViewController storyboardIdentifier="CreateSubjectController" title="Edit" id="kmx-ch-uzG" customClass="EditViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreateSubjectController" title="Edit" id="kmx-ch-uzG" customClass="CreateSubjectViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="G3J-vg-NCK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1142,7 +1142,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="user email" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KjS-MW-gC9">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KjS-MW-gC9">
                                                     <rect key="frame" x="119" y="11" width="472.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1179,6 +1179,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="lSq-QD-iMy"/>
+                                                        <action selector="subjectCodeSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="s9b-wL-RoR"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1204,12 +1205,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-QO-Ymk">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="starting date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-QO-Ymk">
                                                     <rect key="frame" x="119" y="11" width="472.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="XrC-z7-3b8"/>
+                                                        <action selector="startDateSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="Cqf-5E-ZqL"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1235,11 +1237,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOf-K7-PTH">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ending date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOf-K7-PTH">
                                                     <rect key="frame" x="119" y="11" width="472.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="endDateSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="h4j-K7-8US"/>
                                                         <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="Yeb-MN-x2Q"/>
                                                     </connections>
                                                 </textField>
@@ -1263,9 +1266,19 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Create Subject" id="Fcc-dV-N8A">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ojr-lI-VIS"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ojr-lI-VIS">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="kmx-ch-uzG" id="vLk-Qd-bgj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="endingDate" destination="OOf-K7-PTH" id="Zge-a2-B30"/>
+                        <outlet property="startingDate" destination="8bq-QO-Ymk" id="kSQ-4D-EN7"/>
+                        <outlet property="subjectCode" destination="JAn-Kz-seU" id="YRO-Zi-xEf"/>
+                        <outlet property="subjectName" destination="KjS-MW-gC9" id="t1m-vY-sZe"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMo-5p-Dfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
