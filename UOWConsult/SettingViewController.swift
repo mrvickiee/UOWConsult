@@ -115,6 +115,7 @@ class SettingViewController: UITableViewController {
             performSegueWithIdentifier("goToSubject", sender: sender)
         }else{
             print(" no roles ? ")
+            performSegueWithIdentifier("goToSubject", sender: sender)
         }
         
     }

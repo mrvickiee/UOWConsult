@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C4FE7A3D501D779674C345F /* Pods_UOWConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293DDA9E2C4408D2A22E4AB2 /* Pods_UOWConsult.framework */; };
 		5D0CCBAE1CF9AEA4001096F1 /* EnrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */; };
+		5D0CCBB01CF9CD0C001096F1 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CCBAF1CF9CD0C001096F1 /* CreateSubjectViewController.swift */; };
 		E91A345A1CF04FF800A35DB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34591CF04FF800A35DB1 /* AppDelegate.swift */; };
 		E91A345C1CF04FF800A35DB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A345B1CF04FF800A35DB1 /* ViewController.swift */; };
 		E91A345F1CF04FF800A35DB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91A345D1CF04FF800A35DB1 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		293DDA9E2C4408D2A22E4AB2 /* Pods_UOWConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UOWConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CABE4FFC0E695ADBF52B2DD /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 		5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollViewController.swift; sourceTree = "<group>"; };
+		5D0CCBAF1CF9CD0C001096F1 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		9BEBCCF0EC8C992F42F05B99 /* Pods-UOWConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.release.xcconfig"; sourceTree = "<group>"; };
 		E91A34561CF04FF800A35DB1 /* UOWConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOWConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91A34591CF04FF800A35DB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				E91A34751CF0509500A35DB1 /* SettingViewController.swift */,
 				E91A34761CF0509500A35DB1 /* SignUpViewController.swift */,
 				5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */,
+				5D0CCBAF1CF9CD0C001096F1 /* CreateSubjectViewController.swift */,
 			);
 			name = "User Management";
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				E91A34791CF0509500A35DB1 /* SettingViewController.swift in Sources */,
 				E91A34811CF050C200A35DB1 /* EditViewController.swift in Sources */,
 				E91A345A1CF04FF800A35DB1 /* AppDelegate.swift in Sources */,
+				5D0CCBB01CF9CD0C001096F1 /* CreateSubjectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
