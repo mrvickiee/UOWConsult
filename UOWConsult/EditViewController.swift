@@ -45,30 +45,30 @@ class EditViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-    
-    @IBAction func saveButtonPressed(sender: AnyObject) {
-        
-        if let user = FIRAuth.auth()?.currentUser {
-            
-            let tempPassword = user
-        }
-        
-        let newPassword = self.newPassword.text!
-        
-        
-        
-        user?.updatePassword(newPassword) { error in
-            if let error = error {
-                // An error happened.
-                
-            } else {
-                // Password updated.
-                self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
-            }
-        }
-        
-    }
+//    
+//    
+//    @IBAction func saveButtonPressed(sender: AnyObject) {
+//        
+//        if let user = FIRAuth.auth()?.currentUser {
+//            
+//            let tempPassword = user
+//        }
+//        
+//        let newPassword = self.newPassword.text!
+//        
+//        
+//        
+//        user?.updatePassword(newPassword) { error in
+//            if let error = error {
+//                // An error happened.
+//                
+//            } else {
+//                // Password updated.
+//                self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
+//            }
+//        }
+//        
+//    }
 
     func cancelPressed() {
         
