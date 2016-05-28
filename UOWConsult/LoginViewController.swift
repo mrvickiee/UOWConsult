@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import PKHUD
 import Firebase
+import PKHUD
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var loginTF: UITextField!
@@ -17,13 +17,18 @@ class LoginViewController: UIViewController {
     var role = String()
     var fullName = String()
     let defaults = NSUserDefaults.standardUserDefaults()
-	
+    
+    let userRef = FIRDatabase.database().referenceWithPath("User")
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+      // userRef.removeAllObservers()
+    }
     override func viewDidAppear(animated: Bool) {
                             //obtain logged in user id
 
@@ -41,41 +46,38 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginPressed(sender: AnyObject) {
         HUD.show(.Progress)
-//        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-//        ref.authUser(loginTF.text, password: passwordTF.text,
-//                     withCompletionBlock: { error, authData in
-//                        if error != nil {
-//                            HUD.flash(.Label("Incorrect password or email"), delay:1)
-//                        } else {
-//                            HUD.flash(.Success, delay:1)
-//                            self.obtainUserDetails(self.loginTF.text!)
-//                            
-//                            self.defaults.setObject(self.loginTF.text, forKey: "email")
-//                            self.defaults.setObject(self.role, forKey: "role")
-//                            self.defaults.setObject(self.fullName, forKey: "name")
-//                            
-//                            
-//                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
-//                            self.presentViewController(vc, animated: true, completion:nil)
-//                        }
-//        })
+
+        FIRAuth.auth()?.signInWithEmail(loginTF.text!, password: passwordTF.text!, completion: { (user, error) in
+                        if error != nil {
+                            HUD.flash(.Label("Incorrect password or email"), delay:1)
+                        } else {
+                            HUD.flash(.Success, delay:1)
+                            self.obtainUserDetails((user?.uid)!)
+                            
+                            
+                            
+                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
+                            self.presentViewController(vc, animated: true, completion:nil)
+                        }
+        })
     }
     
     
-    func obtainUserDetails(email:String){
-//        let ref = Firebase(url:"https://uow-consult.firebaseio.com/User")
-//        
-//        ref.queryOrderedByChild("email").observeEventType(.ChildAdded, withBlock: { snapshot in
-//            if let dbEmail = snapshot.value["email"] as? String {
-//                if(dbEmail == email){
-//                    self.role = (snapshot.value["role"] as? String)!
-//                    self.fullName = (snapshot.value["name"] as? String)!
-//                    return
-//                }
-//            }
-//        })
-		
+    func obtainUserDetails(id:String){
+
+           userRef.child(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let user = snapshot.value{
+                self.defaults.setObject(user["email"], forKey: "email")
+                self.defaults.setObject(user["name"], forKey: "name")
+                self.defaults.setObject(user["role"], forKey: "role")
+
+            }
+           })
+
+    
     }
+    
+
     
     
 
