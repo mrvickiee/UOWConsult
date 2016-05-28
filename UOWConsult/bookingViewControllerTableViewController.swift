@@ -16,6 +16,9 @@ class bookingViewControllerTableViewController: UITableViewController {
 	var role : String = ""
 	var email: String = ""
 	var test = [Int]()
+	let dateFormatter = NSDateFormatter()
+	
+
 	
 	func populateBooking(){
 		self.bookingArr.removeAll()
@@ -26,13 +29,14 @@ class bookingViewControllerTableViewController: UITableViewController {
 				for data in bookingDict{
 					let bookSlot = data.1
 					if (bookSlot["student"] as! String == self.email){
-					//	print(bookSlot["date"] as! String)
-					//	print(bookSlot["student"] as! String)
-						let date = bookSlot["date"] as! String
+
+						let dateStr = bookSlot["date"] as! String
+						let date = self.dateFormatter.dateFromString(dateStr)
 						let sub = bookSlot["subject"] as! String
 						let time = bookSlot["time"] as! String
-						let booked = Booking(date: date,student: self.email,subject: sub,time: time)
+						let booked = Booking(date: date!,student: self.email,subject: sub,time: time)
 						self.bookingArr.append(booked)
+						self.bookingArr.sortInPlace({$0.date.compare($1.date) == NSComparisonResult.OrderedAscending})
 						self.tableView.reloadData()
 					}
 				}
@@ -52,7 +56,8 @@ class bookingViewControllerTableViewController: UITableViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		
 		
 		
         // Uncomment the following line to preserve selection between presentations
@@ -89,11 +94,25 @@ class bookingViewControllerTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("bookingCell", forIndexPath: indexPath) as! BookingTableViewCell
 		
 		cell.subjectLabel?.text = bookingArr[indexPath.row].subject
-		cell.dateLabel?.text = bookingArr[indexPath.row].date
+		cell.dateLabel?.text = dateFormatter.stringFromDate(bookingArr[indexPath.row].date)
 		cell.timeLabel?.text  = bookingArr[indexPath.row].time
 
         return cell
     }
+	
+	override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?  {
+		let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action , indexPath) -> Void in
+//			let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as BookingTableViewCell
+//			
+//			self.scrapBook.deleteClipping(currentCell.tag)
+//			self.initialiseClipArr()
+//			self.searchActive = false
+//			self.searchBar.text = ""
+//			tableView.reloadData()
+		})
+		deleteAction.backgroundColor = UIColor.redColor()
+		return [deleteAction]
+	}
 	
 
     /*
