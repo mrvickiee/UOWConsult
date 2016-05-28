@@ -28,6 +28,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,33 +50,28 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         let confirmPass = confirmTF.text!
         
         if(password == confirmPass){
-            let user = User(name: fullname, email: email, role: roleName)
+            let userObj = User(name: fullname, email: email, role: roleName)
             HUD.show(.Progress)
             
-//            ref.createUser(user.email, password: password,
-//                           withValueCompletionBlock: { error, result in
-//                            if error != nil {
-//                                print(error)             // There was an error creating the account
-//                                HUD.flash(.Error, delay:1.0)
-//                            } else {
-//                                let uid = result["uid"] as? String
-//                                self.ref.childByAppendingPath("User").childByAppendingPath(uid).setValue(user.getDictionary())
-//                                let defaults = NSUserDefaults.standardUserDefaults()
-//                                defaults.setObject(user.email, forKey: "email")
-//                                defaults.setObject(user.name, forKey: "name")
-//                                defaults.setObject(user.role, forKey: "role")
-//                                
-//                                HUD.flash(.Success, delay:1)
-//           
-//                                self.dismissViewControllerAnimated(true, completion: nil)
-//                            }
-//            })
-			
-            //let triggerTime = (Int64(NSEC_PER_SEC) * (Int64)(0.5));
-            //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), {
-              //  self.logUserIn(user.email, password: password)
+           FIRAuth.auth()?.createUserWithEmail(userObj.email, password: password, completion: { (user, error) in
+                            if error != nil {
+                                print(error)             // There was an error creating the account
+                                HUD.flash(.Error, delay:1.0)
+                            } else {
+                                let ref = FIRDatabase.database().reference()
+                             //   let uid = user?.uid
+                                ref.child("User").child(user!.uid).setValue(userObj.getDictionary())
+                                let defaults = NSUserDefaults.standardUserDefaults()
+                                defaults.setObject(userObj.email, forKey: "email")
+                                defaults.setObject(userObj.name, forKey: "name")
+                                defaults.setObject(userObj.role, forKey: "role")
+                                
+                                HUD.flash(.Success, delay:1)
+           
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
             
-           // })
+            })
 
        
         }else{
@@ -113,6 +110,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender)
         
     }
+    
     /*
     // MARK: - Navigation
 

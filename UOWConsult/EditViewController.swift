@@ -12,9 +12,9 @@ import Firebase
 class EditViewController: UITableViewController {
 
     
+    @IBOutlet weak var newUsername: UITextField!
     @IBOutlet weak var newPassword: UITextField!
-    
-    @IBOutlet weak var currentPassword: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
     
     var updatePassword : String = ""
     var oldPassword : String = ""
@@ -45,17 +45,52 @@ class EditViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+//    
+//    
+//    @IBAction func saveButtonPressed(sender: AnyObject) {
+//        
+//        if let user = FIRAuth.auth()?.currentUser {
+//            
+//            let tempPassword = user
+//        }
+//        
+//        let newPassword = self.newPassword.text!
+//        
+//        
+//        
+//        user?.updatePassword(newPassword) { error in
+//            if let error = error {
+//                // An error happened.
+//                
+//            } else {
+//                // Password updated.
+//                self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
+//            }
+//        }
+//        
+//    }
 
     @IBAction func SavePressed(sender: AnyObject) {
         
         
-        self.email = "pyitheinmaung@gmail.com"
-        self.oldPassword = currentPassword.text!
-        self.updatePassword = self.newPassword.text!
+        var updated : Bool?
         
+        if newUsername.text != "" {
+            changeUsername()
+        }else{
+            print("user name field empty")
+        }
         
-        print("fetched password field : \(updatePassword)")
-        print("fetched old password : \(oldPassword)")
+        let checkInput = matchInput()
+        if checkInput == true {
+            updated = changePassword()
+        }
+        
+        if updated == true {
+            popUp("Saved!", msg: "updated details successfully", buttonText: "Okay")
+        }else{
+            popUp("Invalid input!", msg: "Password fields does not match", buttonText: "Retry")
+        }
         
 //        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
 //        ref.changePasswordForUser(email, fromOld: oldPassword,
@@ -110,6 +145,12 @@ class EditViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func saveButtonPressed(sender: AnyObject) {
+        
+        saveChanges()
+        
+        
+    }
     
     
     override func didReceiveMemoryWarning() {
@@ -187,3 +228,4 @@ class EditViewController: UITableViewController {
  
 
 }
+

@@ -27,6 +27,7 @@ class ConsulationTimeViewController: UIViewController {
 	let TimetableRef = FIRDatabase.database().referenceWithPath("Timetable")
 	let EnrolledRef = FIRDatabase.database().referenceWithPath("Enrolled")
 	let ConsultRef = FIRDatabase.database().referenceWithPath("Booking")
+	let SubjectRef = FIRDatabase.database().referenceWithPath("Subject")
 	
 	let user = NSUserDefaults.standardUserDefaults()
 	var classes = Dictionary<String, Array<Class>>()
@@ -39,6 +40,7 @@ class ConsulationTimeViewController: UIViewController {
 		super.viewDidLoad()
 		TimetableRef.keepSynced(true)
 		EnrolledRef.keepSynced(true)
+		SubjectRef.keepSynced(true)
 		
 		setCalendar()
 	}
@@ -46,7 +48,6 @@ class ConsulationTimeViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		user.setObject("Student", forKey: "role")
 		if let role = user.stringForKey("role"){
 			if role == "Student" {
 				navigationItem.rightBarButtonItem = nil
@@ -64,6 +65,7 @@ class ConsulationTimeViewController: UIViewController {
 		
 		EnrolledRef.removeAllObservers()
 		TimetableRef.removeAllObservers()
+		SubjectRef.removeAllObservers()
 	}
 	
 
@@ -81,26 +83,42 @@ class ConsulationTimeViewController: UIViewController {
 	}
 	
 	@IBAction func buttonAddNewConsultation(sender: AnyObject) {
-		
+		performSegueWithIdentifier("goToAddNewConsultationView", sender: self)
 	}
 	
 	func getEnrolledSubjects(){
-		user.setObject("fake@cy.my", forKey: "email")
-		guard let email = user.stringForKey("email") else {
+		guard let email = user.stringForKey("email"), role = user.stringForKey("role") else {
 			showDialog("User not logged in, please login.")
 			performLogin()
 			return
 		}
 		
-		EnrolledRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-			let enrolledDict = snapshot.value as! NSArray
-			self.enrolledSubject.removeAll()
-			for enrolled in enrolledDict {
-				if enrolled["student"] as? String == email {
-					self.enrolledSubject.append((enrolled["subject"] as? String)!)
+		self.enrolledSubject.removeAll()
+		
+		if role == "Lecturer" {
+			SubjectRef.observeEventType(.Value, withBlock: { (snapshot) in
+				let subjectDict = snapshot.value as! [String:AnyObject]
+				
+				for enrolled in subjectDict {
+					let enrol = enrolled.1
+					if enrol["lecturer"] as? String == email {
+						self.enrolledSubject.append(enrolled.0)
+					}
 				}
-			}
-		})
+			})
+		} else {
+			EnrolledRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+				let enrolledDict = snapshot.value as! [String:AnyObject]
+				
+				for enrolled in enrolledDict {
+					let enrol = enrolled.1
+					if enrol["student"] as? String == email {
+						self.enrolledSubject.append((enrol["subject"] as? String)!)
+					}
+				}
+			})
+		}
+		
 	}
 	
 	func updateViewWithDate(date: NSDate){
@@ -192,6 +210,12 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		let sectionSubjects = classes[subject[section]]!
 		let subjectItem: Class = sectionSubjects[row]
 		
+		if subjectItem.type == "Consultation" {
+			cell.backgroundColor = UIColor.init(red: 0, green: 0.8, blue: 0, alpha: 0.2)
+		} else {
+			cell.backgroundColor = UIColor.clearColor()
+		}
+		
 		cell.labelSubjectCode.text = subject[section]
 		cell.labelSubjectTime.text = subjectItem.startTime + " - " + subjectItem.endTime
 		cell.labelSubjectType.text = subjectItem.type
@@ -257,7 +281,7 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 			self.ConsultRef.childByAutoId().setValue(parameter)
 			
 			return
-			}, cancelBlock: { ActionStringCancelBlock in return }, origin: self.tableView)
+			}, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
 		
 		datePicker.minimumDate = startTime
 		datePicker.maximumDate = endTime
