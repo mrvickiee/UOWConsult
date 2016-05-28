@@ -24,7 +24,11 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   roleTxt.userInteractionEnabled = false
+		roleTxt.delegate = self
+		userTF.delegate = self
+		emailTF.delegate = self
+		confirmTF.delegate = self
+		passwordTF.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -36,12 +40,19 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        return false
+		if (textField.tag == 1){
+			return false
+		}else{
+			return true
+		}
     }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return false
-    }
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
+	
+
     
     @IBAction func registerPressed(sender: AnyObject) {
         let fullname = userTF.text!
@@ -59,7 +70,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                                 HUD.flash(.Error, delay:1.0)
                             } else {
                                 let ref = FIRDatabase.database().reference()
-                             //   let uid = user?.uid
                                 ref.child("User").child(user!.uid).setValue(userObj.getDictionary())
                                 let defaults = NSUserDefaults.standardUserDefaults()
                                 defaults.setObject(userObj.email, forKey: "email")
@@ -78,22 +88,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             HUD.flash(.Label("Password do not match!"), delay: 1)
         }
     }
-    
-//    func logUserIn(login:String, password:String){
-//        let triggerTime = (Int64(NSEC_PER_SEC) * (Int64)(3));
-//       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), {
-//            self.ref.authUser(login, password: password,
-//                         withCompletionBlock: { error, authData in
-//                            if error != nil {
-//                                print(error)
-//                            } else {
-//                                let defaults = NSUserDefaults.standardUserDefaults()
-//                                defaults.setObject(authData.auth["uid"], forKey: "userID")
-//                                
-//                            }
-//            })
-//        })
-//    }
     
     @IBAction func backPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
