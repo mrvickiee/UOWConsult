@@ -28,6 +28,7 @@
 		E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34871CF16AD800A35DB1 /* Coordinate.swift */; };
 		E91A348A1CF16AE700A35DB1 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34891CF16AE700A35DB1 /* Class.swift */; };
 		E91A348C1CF16B4600A35DB1 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A348B1CF16B4600A35DB1 /* Subject.swift */; };
+		E9CCE3D91CF2813700BC2A4B /* NewConsultationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CCE3D81CF2813700BC2A4B /* NewConsultationTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		E91A34871CF16AD800A35DB1 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		E91A34891CF16AE700A35DB1 /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		E91A348B1CF16B4600A35DB1 /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		E9CCE3D81CF2813700BC2A4B /* NewConsultationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewConsultationTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				E91A34721CF0508B00A35DB1 /* ConsulationTimeViewController.swift */,
 				E91A34701CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift */,
 				E91A34831CF164B900A35DB1 /* LocationViewController.swift */,
+				E9CCE3D81CF2813700BC2A4B /* NewConsultationTableViewController.swift */,
 			);
 			name = Timetable;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				E91A34711CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift in Sources */,
 				E91A34841CF164B900A35DB1 /* LocationViewController.swift in Sources */,
 				E91A347A1CF0509500A35DB1 /* SignUpViewController.swift in Sources */,
+				E9CCE3D91CF2813700BC2A4B /* NewConsultationTableViewController.swift in Sources */,
 				E91A34621CF04FF800A35DB1 /* UOWConsult.xcdatamodeld in Sources */,
 				E91A34861CF16A5600A35DB1 /* Location.swift in Sources */,
 				E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */,
