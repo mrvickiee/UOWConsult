@@ -178,7 +178,7 @@ class ConsulationTimeViewController: UIViewController {
 	}
 	
 	func performLogin(){
-		let vc = storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LocationViewController
+		let vc = storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
 		self.presentViewController(vc, animated: true, completion: nil)
 	}
 	

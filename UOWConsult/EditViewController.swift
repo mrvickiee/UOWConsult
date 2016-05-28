@@ -76,16 +76,16 @@ class EditViewController: UITableViewController {
         var updated : Bool?
         
         if newUsername.text != "" {
-            changeUsername()
+      //      changeUsername()
         }else{
             print("user name field empty")
         }
         
-        let checkInput = matchInput()
-        if checkInput == true {
-            updated = changePassword()
-        }
-        
+//        let checkInput = matchInput()
+//        if checkInput == true {
+//            updated = changePassword()
+//        }
+		
         if updated == true {
             popUp("Saved!", msg: "updated details successfully", buttonText: "Okay")
         }else{
@@ -114,8 +114,9 @@ class EditViewController: UITableViewController {
     
     func saveChanges() {
         self.email = "pyitheinmaung@gmail.com"
-        self.oldPassword = currentPassword.text!
-        self.updatePassword = self.newPassword.text!
+        //self.oldPassword = currentPassword.text!
+		
+		self.updatePassword = self.newPassword.text!
         
         
         print("fetched password field : \(updatePassword)")
