@@ -26,15 +26,16 @@ class bookingViewControllerTableViewController: UITableViewController {
 		if(role == "Student"){
 			bookingRef.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
 				let bookingDict = snapshot.value as! [String:AnyObject]
+				
 				for data in bookingDict{
 					let bookSlot = data.1
+					print(data.0)
 					if (bookSlot["student"] as! String == self.email){
-
 						let dateStr = bookSlot["date"] as! String
 						let date = self.dateFormatter.dateFromString(dateStr)
 						let sub = bookSlot["subject"] as! String
 						let time = bookSlot["time"] as! String
-						let booked = Booking(date: date!,student: self.email,subject: sub,time: time)
+						let booked = Booking(date: date!,student: self.email,subject: sub,time: time, key: data.0)
 						self.bookingArr.append(booked)
 						self.bookingArr.sortInPlace({$0.date.compare($1.date) == NSComparisonResult.OrderedAscending})
 						self.tableView.reloadData()
@@ -93,6 +94,7 @@ class bookingViewControllerTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("bookingCell", forIndexPath: indexPath) as! BookingTableViewCell
 		
+		cell.accessibilityIdentifier = bookingArr[indexPath.row].key
 		cell.subjectLabel?.text = bookingArr[indexPath.row].subject
 		cell.dateLabel?.text = dateFormatter.stringFromDate(bookingArr[indexPath.row].date)
 		cell.timeLabel?.text  = bookingArr[indexPath.row].time
@@ -102,13 +104,22 @@ class bookingViewControllerTableViewController: UITableViewController {
 	
 	override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?  {
 		let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action , indexPath) -> Void in
-//			let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as BookingTableViewCell
-//			
-//			self.scrapBook.deleteClipping(currentCell.tag)
-//			self.initialiseClipArr()
-//			self.searchActive = false
-//			self.searchBar.text = ""
-//			tableView.reloadData()
+			
+			let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as! BookingTableViewCell
+			let key = currentCell.accessibilityIdentifier!
+			let ref = self.bookingRef.child(key)
+			ref.removeValue()
+			
+			var i = 0
+			for arr in self.bookingArr {
+				if arr.key == key{
+					self.bookingArr.removeAtIndex(i)
+				}
+				i += 1
+			}
+			
+			self.tableView.reloadData()
+			
 		})
 		deleteAction.backgroundColor = UIColor.redColor()
 		return [deleteAction]
