@@ -28,13 +28,16 @@ class EnrollViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        SubjectRef.keepSynced(true)
+        getSubjects()
         
         
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        SubjectRef.removeAllObservers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +45,18 @@ class EnrollViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func getSubjects() {
+        
+        SubjectRef.observeEventType(FIRDataEventType.Value, withBlock: {(snaphot) in
+            
+            let subjectDict = snaphot.value as! [String:AnyObject]
+            for subject in subjectDict {
+                self.subject.append(subject.0)
+            }
+            
+        })
+        
+    }
 
 
     
@@ -51,8 +66,10 @@ class EnrollViewController: UITableViewController {
             popUp("Invalid input!", msg: "Fields must not be empty", buttonText: "Retry")
         }else{
             
+            email = userEmail.text!
             let ref = FIRDatabase.database().reference()
             ref.child("Enrolled").childByAutoId().setValue(getDictionary())
+            popUp("Enrolled!", msg: "Your information has been added", buttonText: "Okay")
             
             
         }
@@ -69,6 +86,8 @@ class EnrollViewController: UITableViewController {
             return
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender)
         
+    
+        
     }
     
     func popUp(okay: String, msg: String, buttonText: String) {
@@ -79,7 +98,7 @@ class EnrollViewController: UITableViewController {
         let okAction = UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default) {
             UIAlertAction in
             
-            if okay == "Saved!"{
+            if okay == "Enrolled!"{
                 self.navigationController?.popViewControllerAnimated(true)
             }else{
                 self.dismissViewControllerAnimated(true, completion: nil)

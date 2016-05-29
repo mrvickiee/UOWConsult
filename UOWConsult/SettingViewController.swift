@@ -93,8 +93,8 @@ class SettingViewController: UITableViewController {
         if let user = FIRAuth.auth()?.currentUser {
             for profile in user.providerData {
 
-                currentUser = profile.displayName
-                currentEmail = profile.email
+                currentUser = defaults.stringForKey("name")
+                currentEmail = defaults.stringForKey("email")
                 
                 print(" \(profile.displayName) & \(profile.email)")
                 
@@ -115,7 +115,7 @@ class SettingViewController: UITableViewController {
             performSegueWithIdentifier("goToSubject", sender: sender)
         }else{
             print(" no roles ? ")
-            performSegueWithIdentifier("goToSubject", sender: sender)
+          //  performSegueWithIdentifier("goToEnroll", sender: sender)
         }
         
     }
