@@ -27,6 +27,8 @@ class CreateSubjectViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        email = user.stringForKey("email")!
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -39,18 +41,6 @@ class CreateSubjectViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func subjectCodeSelect(sender: AnyObject) {
-        
-        ActionSheetStringPicker.showPickerWithTitle("Select Subject", rows: subject, initialSelection: 0, doneBlock: {
-            picker, value, index in
-            self.subjectCode.text = index as? String
-            self.selectedSubject = self.subjectCode.text!
-            return
-            }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender)
-        
-        
-    }
     
     
     @IBAction func startDateSelect(sender: AnyObject) {
@@ -59,14 +49,22 @@ class CreateSubjectViewController: UITableViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        ActionSheetDatePicker(title: "Start Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
+        let datePicker = ActionSheetDatePicker(title: "Start Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
             
             
             self.startingDate.text = dateFormatter.stringFromDate(value as! NSDate)
             return
             }, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
         
-    }
+        let endTime = endingDate.text
+        if endTime != "" {
+            datePicker.maximumDate = dateFormatter.dateFromString(endTime!)
+        }
+        
+        datePicker.showActionSheetPicker()
+        
+        
+        }
     
     
     @IBAction func endDateSelect(sender: AnyObject) {
@@ -74,16 +72,21 @@ class CreateSubjectViewController: UITableViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        ActionSheetDatePicker(title: "End Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
+        let datePicker = ActionSheetDatePicker(title: "End Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
             
             
             self.endingDate.text = dateFormatter.stringFromDate(value as! NSDate)
             return
             }, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
         
+        datePicker.showActionSheetPicker()
+
+        
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
+        
+        print( " lectuerer = \(email) , \(subjectName.text) , \(subjectCode.text) , \(startingDate.text), \(endingDate.text)")
         
         if subjectName.text == "" || subjectCode.text == "" || startingDate.text == "" || endingDate.text == "" {
             popUp("Invalid input!", msg: "Fields must not be empty", buttonText: "Retry")
@@ -91,6 +94,7 @@ class CreateSubjectViewController: UITableViewController {
             
             let ref = FIRDatabase.database().reference()
             ref.child("Subject").child(subjectCode.text!).setValue(getDictionary())
+            popUp("Subject Added!", msg: "Subject has been created in the database", buttonText: "Okay")
             
         }
     }
@@ -105,7 +109,7 @@ class CreateSubjectViewController: UITableViewController {
         let okAction = UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default) {
             UIAlertAction in
             
-            if okay == "Saved!"{
+            if okay == "Subject Added!"{
                 self.navigationController?.popViewControllerAnimated(true)
             }else{
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -122,13 +126,20 @@ class CreateSubjectViewController: UITableViewController {
     
     func getDictionary()->Dictionary<String,String>{
         let userDictionary = [
-            "student" : email,
-            "subject" : selectedSubject
+            "lecturer" : email,
+            "subject_name" : self.subjectName.text!,
+            "subject_code" : self.subjectCode.text!,
+            "start_date" : self.startingDate.text!,
+            "end_date" : self.endingDate.text!,
+            "passphrase" : " "
         ]
         
         return userDictionary
     }
     
+    
+
+
     
     
     
