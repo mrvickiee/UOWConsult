@@ -35,6 +35,9 @@
 
 /* Begin PBXFileReference section */
 		293DDA9E2C4408D2A22E4AB2 /* Pods_UOWConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UOWConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		395515731CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bookingViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		395515751CF9D3EB005C7BC6 /* booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = booking.swift; sourceTree = "<group>"; };
+		3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		3CABE4FFC0E695ADBF52B2DD /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 		9BEBCCF0EC8C992F42F05B99 /* Pods-UOWConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.release.xcconfig"; sourceTree = "<group>"; };
 		E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConsultationTimetableViewController-JTCalendar.swift"; sourceTree = "<group>"; };
@@ -138,6 +141,7 @@
 				E91A34891CF16AE700A35DB1 /* Class.swift */,
 				E91A34871CF16AD800A35DB1 /* Coordinate.swift */,
 				E91A348B1CF16B4600A35DB1 /* Subject.swift */,
+				395515751CF9D3EB005C7BC6 /* booking.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -160,8 +164,10 @@
 				E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */,
 				E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */,
 				E91A34701CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift */,
+				3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */,
 				E91A34831CF164B900A35DB1 /* LocationViewController.swift */,
 				E9CCE3D81CF2813700BC2A4B /* NewConsultationTableViewController.swift */,
+				395515731CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift */,
 			);
 			name = Timetable;
 			sourceTree = "<group>";
@@ -292,9 +298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395515761CF9D3EC005C7BC6 /* booking.swift in Sources */,
+				395515741CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift in Sources */,
 				E91A347D1CF0509C00A35DB1 /* user.swift in Sources */,
 				E91A34781CF0509500A35DB1 /* LoginViewController.swift in Sources */,
 				E91A34711CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift in Sources */,
+				3995BAC01CF9E84A0087A4B9 /* BookingTableViewCell.swift in Sources */,
 				E91A34841CF164B900A35DB1 /* LocationViewController.swift in Sources */,
 				E91A347A1CF0509500A35DB1 /* SignUpViewController.swift in Sources */,
 				E9CCE3D91CF2813700BC2A4B /* NewConsultationTableViewController.swift in Sources */,
