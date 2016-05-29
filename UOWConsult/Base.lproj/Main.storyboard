@@ -60,8 +60,8 @@
                                     <action selector="loginPressed:" destination="6hl-fq-c4v" eventType="touchUpInside" id="JSd-KJ-mzg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UOW Consult" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJC-YE-8tN">
-                                <rect key="frame" x="203.5" y="28" width="193" height="38.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UOW Consult" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJC-YE-8tN">
+                                <rect key="frame" x="203.5" y="50" width="193" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -665,8 +665,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="her-ko-7F0">
-                                                    <rect key="frame" x="228" y="7" width="145" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="her-ko-7F0">
+                                                    <rect key="frame" x="229" y="7" width="143" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <state key="normal" title="Enroll/Create Subject"/>
                                                     <connections>
@@ -735,10 +735,10 @@
             </objects>
             <point key="canvasLocation" x="-456" y="985"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab View Controller-->
         <scene sceneID="cf0-0s-z7h">
             <objects>
-                <tabBarController storyboardIdentifier="mainView" automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainView" automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" customClass="MainTabViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JYx-9T-f5G">
                         <autoresizingMask key="autoresizingMask"/>
@@ -873,11 +873,11 @@
             </objects>
             <point key="canvasLocation" x="-456" y="-1292"/>
         </scene>
-        <!--Calendar-->
+        <!--Timetable-->
         <scene sceneID="y7W-2a-1Qh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7yZ-GZ-YC6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" id="DZd-05-Ada"/>
+                    <tabBarItem key="tabBarItem" title="Timetable" image="calendar" id="DZd-05-Ada"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9ut-rT-mWW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
