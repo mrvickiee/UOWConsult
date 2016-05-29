@@ -57,8 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             HUD.flash(.Success, delay:1)
                             self.obtainUserDetails((user?.uid)!)
-                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
-                            self.presentViewController(vc, animated: true, completion:nil)
+                            self.dismissViewControllerAnimated(true, completion: nil)
                         }
         })
     }
