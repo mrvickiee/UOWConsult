@@ -155,17 +155,7 @@ class EditViewController: UITableViewController {
     }
     
     
-    func saveChanges() {
-        self.email = "pyitheinmaung@gmail.com"
-        //self.oldPassword = currentPassword.text!
-		
-		self.updatePassword = self.newPassword.text!
-        
-        
-        print("fetched password field : \(updatePassword)")
-        print("fetched old password : \(oldPassword)")
 
-    }
     
     func popUp(okay: String, msg: String, buttonText: String) {
         // Create the alert controller
