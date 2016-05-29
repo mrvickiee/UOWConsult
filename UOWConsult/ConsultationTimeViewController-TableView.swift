@@ -8,6 +8,7 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import PKHUD
 
 //MARK:- TABLEVIEW Related
 extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -94,6 +95,8 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 			return
 		}
 		
+		getBookingInfo(subject, date: dateSelected)
+		
 		let dateFormatter: NSDateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "HH:mm"
 		
@@ -108,16 +111,22 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 		let datePicker = ActionSheetDatePicker(title: "Reservation Time", datePickerMode: UIDatePickerMode.Time, selectedDate: startTime, doneBlock: { picker, value, index in
 			let time = dateFormatter.stringFromDate(value as! NSDate)
 			
-			dateFormatter.dateFormat = "YYYY-MM-dd"
-			let parameter = [
-				"student" : email,
-				"date" : dateFormatter.stringFromDate(self.dateSelected),
-				"subject" : subject,
-				"time" : time
-			]
-			self.ConsultRef.childByAutoId().setValue(parameter)
-			return
-			}, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
+			if self.booked.contains(time) {
+				HUD.flash(.Label("Choose another time, slot is booked."), delay: 1, completion: nil)
+			} else {
+				dateFormatter.dateFormat = "YYYY-MM-dd"
+				let parameter = [
+					"student" : email,
+					"date" : dateFormatter.stringFromDate(self.dateSelected),
+					"subject" : subject,
+					"time" : time
+				]
+				self.ConsultRef.childByAutoId().setValue(parameter)
+				
+				return
+			}
+		}, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
+		
 		datePicker.minimumDate = startTime
 		datePicker.maximumDate = endTime
 		datePicker.locale = NSLocale(localeIdentifier: "en_AU")
