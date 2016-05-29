@@ -11,7 +11,8 @@ import Firebase
 
 class bookingViewControllerTableViewController: UITableViewController {
 	let user = NSUserDefaults.standardUserDefaults()
-	var bookingArr = [Booking]()
+	var bookingArr = Dictionary<String,Array<Booking>>()
+	var dateArr = [String]()
 	let bookingRef = FIRDatabase.database().referenceWithPath("Booking")
 	var role : String = ""
 	var email: String = ""
@@ -22,22 +23,29 @@ class bookingViewControllerTableViewController: UITableViewController {
 	
 	func populateBooking(){
 		self.bookingArr.removeAll()
+		self.dateArr.removeAll()
 		
 		if(role == "Student"){
-			bookingRef.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+			bookingRef.observeEventType(.Value, withBlock: {(snapshot) in
 				let bookingDict = snapshot.value as! [String:AnyObject]
-				
+				print(bookingDict)
 				for data in bookingDict{
 					let bookSlot = data.1
-					print(data.0)
 					if (bookSlot["student"] as! String == self.email){
 						let dateStr = bookSlot["date"] as! String
 						let date = self.dateFormatter.dateFromString(dateStr)
 						let sub = bookSlot["subject"] as! String
 						let time = bookSlot["time"] as! String
 						let booked = Booking(date: date!,student: self.email,subject: sub,time: time, key: data.0)
-						self.bookingArr.append(booked)
-						self.bookingArr.sortInPlace({$0.date.compare($1.date) == NSComparisonResult.OrderedAscending})
+						
+						if !self.dateArr.contains(dateStr){
+							self.dateArr.append(dateStr)
+							self.bookingArr[dateStr] = [booked]
+						}else{
+							self.bookingArr[dateStr]?.append(booked)
+						}
+						print(self.dateArr)
+						print(self.bookingArr)
 						self.tableView.reloadData()
 					}
 				}
@@ -58,7 +66,7 @@ class bookingViewControllerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		dateFormatter.dateFormat = "yyyy-MM-dd"
-		
+		bookingRef.keepSynced(true)
 		
 		
         // Uncomment the following line to preserve selection between presentations
@@ -69,7 +77,7 @@ class bookingViewControllerTableViewController: UITableViewController {
     }
 	
 	override func viewWillDisappear(animated: Bool) {
-		//bookingRef.removeAllObservers()
+		bookingRef.removeAllObservers()
 	}
 
     override func didReceiveMemoryWarning() {
@@ -81,23 +89,32 @@ class bookingViewControllerTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return dateArr.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return bookingArr.count
+        return bookingArr[dateArr[section]]!.count
     }
 	
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return dateArr[section]
+	}
 	
 	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("bookingCell", forIndexPath: indexPath) as! BookingTableViewCell
+		let section = indexPath.section
+		let row = indexPath.row
 		
-		cell.accessibilityIdentifier = bookingArr[indexPath.row].key
-		cell.subjectLabel?.text = bookingArr[indexPath.row].subject
-		cell.dateLabel?.text = dateFormatter.stringFromDate(bookingArr[indexPath.row].date)
-		cell.timeLabel?.text  = bookingArr[indexPath.row].time
+		let bookings = bookingArr[dateArr[section]]!
+		let booking : Booking = bookings[row]
+		
+		
+		cell.accessibilityIdentifier = booking.key
+		cell.subjectLabel?.text = booking.subject
+		cell.dateLabel?.text = dateFormatter.stringFromDate(booking.date)
+		cell.timeLabel?.text  = booking.time
 
         return cell
     }
@@ -110,16 +127,7 @@ class bookingViewControllerTableViewController: UITableViewController {
 			let ref = self.bookingRef.child(key)
 			ref.removeValue()
 			
-			var i = 0
-			for arr in self.bookingArr {
-				if arr.key == key{
-					self.bookingArr.removeAtIndex(i)
-				}
-				i += 1
-			}
-			
-			self.tableView.reloadData()
-			
+			self.populateBooking()
 		})
 		deleteAction.backgroundColor = UIColor.redColor()
 		return [deleteAction]
