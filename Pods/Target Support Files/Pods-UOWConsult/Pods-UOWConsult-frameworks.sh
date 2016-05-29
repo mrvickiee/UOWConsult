@@ -86,14 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JTCalendar/JTCalendar.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MPGNotification/MPGNotification.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MSCollectionViewCalendarLayout/MSCollectionViewCalendarLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PKHUD/PKHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework"
   install_framework "$BUILT_PRODUCTS_DIR/JTCalendar/JTCalendar.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MPGNotification/MPGNotification.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MSCollectionViewCalendarLayout/MSCollectionViewCalendarLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PKHUD/PKHUD.framework"
 fi
