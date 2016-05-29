@@ -1,159 +1,103 @@
 //
-//  EditViewController.swift
+//  CreateSubjectViewController.swift
 //  UOWConsult
 //
-//  Created by Pyi Thein Maung on 15/05/2016.
+//  Created by Pyi Thein Maung on 28/05/2016.
 //  Copyright © 2016 CY Lim. All rights reserved.
 //
 
 import UIKit
 import Firebase
+import PKHUD
+import ActionSheetPicker_3_0
 
-class EditViewController: UITableViewController {
-
+class CreateSubjectViewController: UITableViewController {
     
-    @IBOutlet weak var newUsername: UITextField!
-    @IBOutlet weak var newPassword: UITextField!
-    @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var subjectName: UITextField!
+    @IBOutlet weak var subjectCode: UITextField!
     
-    var updatePassword : String = ""
-    var oldPassword : String = ""
+    @IBOutlet weak var startingDate: UITextField!
+    @IBOutlet weak var endingDate: UITextField!
+    
+    let user = NSUserDefaults.standardUserDefaults()
+    
     var email : String = ""
+    var subject = [String]()
+    var selectedSubject : String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-//        ref.authUser("pyitheinmaung@gmail.com", password: "batman27",
-//                     withCompletionBlock: { error, authData in
-//                        if error != nil {
-//                            // There was an error logging in to this account
-//                            
-//                        } else {
-//                            // We are now logged in
-//
-//                            
-//                            print("Authenticated  \(authData.providerData["email"])")
-//                            
-//                        }
-//        })
+        email = user.stringForKey("email")!
 
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-//    
-//    
-//    @IBAction func saveButtonPressed(sender: AnyObject) {
-//        
-//        if let user = FIRAuth.auth()?.currentUser {
-//            
-//            let tempPassword = user
-//        }
-//        
-//        let newPassword = self.newPassword.text!
-//        
-//        
-//        
-//        user?.updatePassword(newPassword) { error in
-//            if let error = error {
-//                // An error happened.
-//                
-//            } else {
-//                // Password updated.
-//                self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
-//            }
-//        }
-//        
-//    }
 
-    func changeUsername()  {
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func startDateSelect(sender: AnyObject) {
         
         
-        let user = FIRAuth.auth()?.currentUser
-        if let user = user {
-            let changeRequest = user.profileChangeRequest()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        
+        let datePicker = ActionSheetDatePicker(title: "Start Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
             
-            changeRequest.displayName = self.newUsername.text!
-            print(" changing to \(changeRequest.displayName)")
             
-            changeRequest.commitChangesWithCompletion { error in
-                if let error = error {
-                    // An error happened.
-                    print(error)
-                    
-                    
-                } else {
-                    // Profile updated.
-                    
-                }
-            }
+            self.startingDate.text = dateFormatter.stringFromDate(value as! NSDate)
+            return
+            }, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
+        
+        let endTime = endingDate.text
+        if endTime != "" {
+            datePicker.maximumDate = dateFormatter.dateFromString(endTime!)
         }
         
+        datePicker.showActionSheetPicker()
         
+        
+        }
+    
+    
+    @IBAction func endDateSelect(sender: AnyObject) {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        
+        let datePicker = ActionSheetDatePicker(title: "End Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
+            
+            
+            self.endingDate.text = dateFormatter.stringFromDate(value as! NSDate)
+            return
+            }, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
+        
+        datePicker.showActionSheetPicker()
+
         
     }
     
-    func changePassword() -> Bool {
-        var success = true
+    @IBAction func saveButtonPressed(sender: AnyObject) {
         
-        let user = FIRAuth.auth()?.currentUser
-        let updatePassword = newPassword.text!
+        print( " lectuerer = \(email) , \(subjectName.text) , \(subjectCode.text) , \(startingDate.text), \(endingDate.text)")
         
-        user?.updatePassword(updatePassword) { error in
-            if let error = error {
-                // An error happened.
-                success = false
-            } else {
-                // Password updated.
-                success = true
-            }
-        }
-        return success
-    }
-    
-    func matchInput() -> Bool {
-        var matched = true
-        
-        if newPassword.text == "" || confirmPassword.text == "" {
-            matched = false
-        }else if newPassword.text == confirmPassword.text {
-            matched = true
+        if subjectName.text == "" || subjectCode.text == "" || startingDate.text == "" || endingDate.text == "" {
+            popUp("Invalid input!", msg: "Fields must not be empty", buttonText: "Retry")
         }else{
-            matched = false
+            
+            let ref = FIRDatabase.database().reference()
+            ref.child("Subject").child(subjectCode.text!).setValue(getDictionary())
+            popUp("Subject Added!", msg: "Subject has been created in the database", buttonText: "Okay")
+            
         }
-        
-        return matched
     }
-    
-    
-     func saveChanges() {
-        
-        var updated : Bool?
-        
-        if newUsername.text != "" {
-      //      changeUsername()
-        }else{
-            print("user name field empty")
-        }
-        
-//        let checkInput = matchInput()
-//        if checkInput == true {
-//            updated = changePassword()
-//        }
-		
-        if updated == true {
-            popUp("Saved!", msg: "updated details successfully", buttonText: "Okay")
-        }else{
-            popUp("Invalid input!", msg: "Password fields does not match", buttonText: "Retry")
-        }
-        
-		
-    }
-    
     
 
     
@@ -165,7 +109,7 @@ class EditViewController: UITableViewController {
         let okAction = UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default) {
             UIAlertAction in
             
-            if okay == "Saved!"{
+            if okay == "Subject Added!"{
                 self.navigationController?.popViewControllerAnimated(true)
             }else{
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -179,19 +123,26 @@ class EditViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func saveButtonPressed(sender: AnyObject) {
+    
+    func getDictionary()->Dictionary<String,String>{
+        let userDictionary = [
+            "lecturer" : email,
+            "subject_name" : self.subjectName.text!,
+            "subject_code" : self.subjectCode.text!,
+            "start_date" : self.startingDate.text!,
+            "end_date" : self.endingDate.text!,
+            "passphrase" : " "
+        ]
         
-        saveChanges()
-        
-        
+        return userDictionary
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
+
+    
+    
+    
     /*
     // MARK: - Table view data source
 
@@ -261,4 +212,3 @@ class EditViewController: UITableViewController {
     */
 
 }
-
