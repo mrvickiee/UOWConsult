@@ -11,8 +11,9 @@ import Firebase
 
 class bookingViewControllerTableViewController: UITableViewController {
 	let user = NSUserDefaults.standardUserDefaults()
-	var bookingArr = Dictionary<String,Array<Booking>>()
-	var dateArr = [String]()
+	var bookingArr = Dictionary<NSDate,Array<Booking>>()
+	var dateArr = [NSDate]()
+	var subjectArr = [String]()
 	let bookingRef = FIRDatabase.database().referenceWithPath("Booking")
 	var role : String = ""
 	var email: String = ""
@@ -26,7 +27,7 @@ class bookingViewControllerTableViewController: UITableViewController {
 		self.dateArr.removeAll()
 		
 		if(role == "Student"){
-			bookingRef.observeEventType(.Value, withBlock: {(snapshot) in
+			bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
 				let bookingDict = snapshot.value as! [String:AnyObject]
 				print(bookingDict)
 				for data in bookingDict{
@@ -38,19 +39,30 @@ class bookingViewControllerTableViewController: UITableViewController {
 						let time = bookSlot["time"] as! String
 						let booked = Booking(date: date!,student: self.email,subject: sub,time: time, key: data.0)
 						
-						if !self.dateArr.contains(dateStr){
-							self.dateArr.append(dateStr)
-							self.bookingArr[dateStr] = [booked]
+						if !self.dateArr.contains(date!){
+							self.dateArr.append(date!)
+							self.bookingArr[date!] = [booked]
 						}else{
-							self.bookingArr[dateStr]?.append(booked)
+							self.bookingArr[date!]?.append(booked)
 						}
-						print(self.dateArr)
-						print(self.bookingArr)
+						self.dateArr.sortInPlace({$0.compare($1) == NSComparisonResult.OrderedAscending})
 						self.tableView.reloadData()
 					}
 				}
 			})
 		}else{					//if lecturer
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 		}
 	}
@@ -98,7 +110,7 @@ class bookingViewControllerTableViewController: UITableViewController {
     }
 	
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return dateArr[section]
+		return dateFormatter.stringFromDate(dateArr[section])
 	}
 	
 	
@@ -127,7 +139,30 @@ class bookingViewControllerTableViewController: UITableViewController {
 			let ref = self.bookingRef.child(key)
 			ref.removeValue()
 			
-			self.populateBooking()
+			let row = indexPath.row
+			let section = indexPath.section
+			
+			var booking = self.bookingArr[self.dateArr[section]]!
+			
+//			for (var i = 0; i < booking.count ; i++){
+//				
+//				if(booking[i].key == key){
+//					booking.removeAtIndex(i)
+//				}
+//			}
+
+			booking.removeAtIndex(row)
+			
+			self.bookingArr[self.dateArr[section]]! = booking
+			
+			
+			if(self.bookingArr[self.dateArr[section]]!.count == 0){
+				self.dateArr.removeAtIndex(section)
+			}
+			
+			self.tableView.reloadData()
+			
+			
 		})
 		deleteAction.backgroundColor = UIColor.redColor()
 		return [deleteAction]
