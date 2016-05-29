@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C4FE7A3D501D779674C345F /* Pods_UOWConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293DDA9E2C4408D2A22E4AB2 /* Pods_UOWConsult.framework */; };
+		E9024FF91CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */; };
+		E9024FFB1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */; };
 		E91A345A1CF04FF800A35DB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34591CF04FF800A35DB1 /* AppDelegate.swift */; };
 		E91A345C1CF04FF800A35DB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A345B1CF04FF800A35DB1 /* ViewController.swift */; };
 		E91A345F1CF04FF800A35DB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91A345D1CF04FF800A35DB1 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
@@ -35,6 +37,8 @@
 		293DDA9E2C4408D2A22E4AB2 /* Pods_UOWConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UOWConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CABE4FFC0E695ADBF52B2DD /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 		9BEBCCF0EC8C992F42F05B99 /* Pods-UOWConsult.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.release.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.release.xcconfig"; sourceTree = "<group>"; };
+		E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConsultationTimetableViewController-JTCalendar.swift"; sourceTree = "<group>"; };
+		E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConsultationTimeViewController-TableView.swift"; sourceTree = "<group>"; };
 		E91A34561CF04FF800A35DB1 /* UOWConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOWConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91A34591CF04FF800A35DB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E91A345B1CF04FF800A35DB1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				E91A34721CF0508B00A35DB1 /* ConsulationTimeViewController.swift */,
+				E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */,
+				E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */,
 				E91A34701CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift */,
 				E91A34831CF164B900A35DB1 /* LocationViewController.swift */,
 				E9CCE3D81CF2813700BC2A4B /* NewConsultationTableViewController.swift */,
@@ -293,6 +299,7 @@
 				E91A347A1CF0509500A35DB1 /* SignUpViewController.swift in Sources */,
 				E9CCE3D91CF2813700BC2A4B /* NewConsultationTableViewController.swift in Sources */,
 				E91A34621CF04FF800A35DB1 /* UOWConsult.xcdatamodeld in Sources */,
+				E9024FFB1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift in Sources */,
 				E91A34861CF16A5600A35DB1 /* Location.swift in Sources */,
 				E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */,
 				E91A348C1CF16B4600A35DB1 /* Subject.swift in Sources */,
@@ -303,6 +310,7 @@
 				E91A34791CF0509500A35DB1 /* SettingViewController.swift in Sources */,
 				E91A34811CF050C200A35DB1 /* EditViewController.swift in Sources */,
 				E91A345A1CF04FF800A35DB1 /* AppDelegate.swift in Sources */,
+				E9024FF91CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
