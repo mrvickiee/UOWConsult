@@ -11,6 +11,8 @@ import JTCalendar
 import Firebase
 import PKHUD
 
+
+
 class ConsulationTimeViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
@@ -31,6 +33,7 @@ class ConsulationTimeViewController: UIViewController {
 	let user = NSUserDefaults.standardUserDefaults()
 	var classes = Dictionary<String, Array<Class>>()
 	var subject = [String]()
+	var booked = [String]()
 	var dateSelected = NSDate()
 	
 	var enrolledSubject = [String]()
@@ -187,6 +190,24 @@ extension ConsulationTimeViewController {
 			}
 			print(self.classes)
 			self.tableView.reloadData()
+		})
+	}
+	
+	func getBookingInfo(subject:String, date:NSDate){
+		ConsultRef.observeEventType(.Value, withBlock: { (snapshot) in
+			self.booked.removeAll()
+			
+			let dateFormatter = NSDateFormatter()
+			dateFormatter.dateFormat = "YYYY-MM-dd"
+			
+			let bookingDict = snapshot.value as! [String:AnyObject]
+			let subjectFiltered = bookingDict.filter{ ($0.1["subject"] as! String) == subject }
+			let dateFiltered = subjectFiltered.filter{ ($0.1["date"] as! String) == dateFormatter.stringFromDate(date) }
+			
+			for booking in dateFiltered{
+				self.booked.append(booking.1["time"] as! String)
+			}
+			print(self.booked)
 		})
 	}
 }
