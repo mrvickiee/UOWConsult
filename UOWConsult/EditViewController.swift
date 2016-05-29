@@ -70,8 +70,67 @@ class EditViewController: UITableViewController {
 //        
 //    }
 
-    @IBAction func SavePressed(sender: AnyObject) {
+    func changeUsername()  {
         
+        
+        let user = FIRAuth.auth()?.currentUser
+        if let user = user {
+            let changeRequest = user.profileChangeRequest()
+            
+            changeRequest.displayName = self.newUsername.text!
+            print(" changing to \(changeRequest.displayName)")
+            
+            changeRequest.commitChangesWithCompletion { error in
+                if let error = error {
+                    // An error happened.
+                    print(error)
+                    
+                    
+                } else {
+                    // Profile updated.
+                    
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    func changePassword() -> Bool {
+        var success = true
+        
+        let user = FIRAuth.auth()?.currentUser
+        let updatePassword = newPassword.text!
+        
+        user?.updatePassword(updatePassword) { error in
+            if let error = error {
+                // An error happened.
+                success = false
+            } else {
+                // Password updated.
+                success = true
+            }
+        }
+        return success
+    }
+    
+    func matchInput() -> Bool {
+        var matched = true
+        
+        if newPassword.text == "" || confirmPassword.text == "" {
+            matched = false
+        }else if newPassword.text == confirmPassword.text {
+            matched = true
+        }else{
+            matched = false
+        }
+        
+        return matched
+    }
+    
+    
+     func saveChanges() {
         
         var updated : Bool?
         
@@ -92,23 +151,7 @@ class EditViewController: UITableViewController {
             popUp("Invalid input!", msg: "Password fields does not match", buttonText: "Retry")
         }
         
-//        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-//        ref.changePasswordForUser(email, fromOld: oldPassword,
-//                                  toNew: updatePassword, withCompletionBlock: { error in
-//                                    if error != nil {
-//                                        // There was an error processing the request
-//                                        
-//                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
-//                                    } else {
-//                                        
-//                                        // Password changed successfully
-//                                        print("password changed")
-//                                        
-//                                        self.popUp("Saved!", msg: "Password has been changed", buttonText: "Okay")
-//                                        
-//                                    }
-//        })
-        
+		
     }
     
     
@@ -226,7 +269,6 @@ class EditViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
- 
 
 }
 
