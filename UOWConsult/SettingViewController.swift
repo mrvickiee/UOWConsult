@@ -12,6 +12,11 @@ import PKHUD
 
 class SettingViewController: UITableViewController {
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    var currentUser : String?
+    var currentEmail : String?
+    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -30,6 +35,8 @@ class SettingViewController: UITableViewController {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
             self.presentViewController(vc, animated: true, completion:nil)
+            
+            
         }
        
         
@@ -39,16 +46,40 @@ class SettingViewController: UITableViewController {
         
     }
     
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
+        var editSegue = segue.destinationViewController as! UINavigationController
+        var editView =  editSegue.topViewController as! EditViewController
+        
+
+    }*/
     
     
+    @IBOutlet weak var actionButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        obtainUserInfo()
+        
+//        //display user info
+//        self.usernameLabel.text = self.defaults.stringForKey("name")
+//        self.emailLabel.text = self.defaults.stringForKey("email")
+        
+        print("current user = \(self.currentUser)")
+        self.usernameLabel.text = self.currentUser
+        self.emailLabel.text = self.currentEmail
+        
+        if self.defaults.stringForKey("role") == "Student" {
+            self.actionButton.setTitle("Enroll" , forState: UIControlState.Normal)
+        }else{
+            self.actionButton.setTitle("Create Subject" , forState: UIControlState.Normal)
+
+        }
+        
+        print(" \(self.currentUser)  &  \(self.emailLabel.text)")
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -58,6 +89,21 @@ class SettingViewController: UITableViewController {
     }
 
     func obtainUserInfo(){
+        
+        if let user = FIRAuth.auth()?.currentUser {
+            for profile in user.providerData {
+
+                currentUser = profile.displayName
+                currentEmail = profile.email
+                
+                print(" \(profile.displayName) & \(profile.email)")
+                
+            }
+        } else {
+            // No user is signed in.
+            print("not signed in ! ")
+        }
+        
         
     }
     
