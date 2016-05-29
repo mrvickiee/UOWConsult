@@ -13,4 +13,5 @@ struct Booking{
 	var student : String
 	var subject : String
 	var time : String
+	var key : String
 }
