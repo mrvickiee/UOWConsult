@@ -12,9 +12,11 @@ import Firebase
 class bookingViewControllerTableViewController: UITableViewController {
 	let user = NSUserDefaults.standardUserDefaults()
 	var bookingArr = Dictionary<NSDate,Array<Booking>>()
+	var lecBookingArr = Dictionary<String,Array<Booking>>()
 	var dateArr = [NSDate]()
 	var subjectArr = [String]()
 	let bookingRef = FIRDatabase.database().referenceWithPath("Booking")
+	let subjectRef = FIRDatabase.database().referenceWithPath("Subject")
 	var role : String = ""
 	var email: String = ""
 	var test = [Int]()
@@ -29,7 +31,7 @@ class bookingViewControllerTableViewController: UITableViewController {
 		if(role == "Student"){
 			bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
 				let bookingDict = snapshot.value as! [String:AnyObject]
-				print(bookingDict)
+				
 				for data in bookingDict{
 					let bookSlot = data.1
 					if (bookSlot["student"] as! String == self.email){
@@ -53,17 +55,45 @@ class bookingViewControllerTableViewController: UITableViewController {
 		}else{					//if lecturer
 			
 			
+			subjectRef.observeEventType(.Value, withBlock: { (snapshot) in	//obtain lecturer subject
+				let subjectDict = snapshot.value as! [String:AnyObject]
+				
+				for data in subjectDict{
+					let sub = data.1
+					if(sub["lecturer"] as! String == self.email){
+						self.subjectArr.append(data.0)
+					}
+				}
+			})
 			
+			bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
+				let bookingDict = snapshot.value as! [String:AnyObject]
+				
+				for data in bookingDict{
+					let bookSlot = data.1
+					
+					let dateStr = bookSlot["date"] as! String
+					let date = self.dateFormatter.dateFromString(dateStr)
+					let sub = bookSlot["subject"] as! String
+					let time = bookSlot["time"] as! String
+					let booked = Booking(date: date!,student: self.email,subject: sub,time: time, key: data.0)
+					
+					for(var i = 0; i < self.subjectArr.count ; i++){
+						if (booked.subject == self.subjectArr[i]){
+							if(self.lecBookingArr[self.subjectArr[i]] != nil){
+								self.lecBookingArr[self.subjectArr[i]]?.append(booked)
+							}else{
+								self.lecBookingArr[self.subjectArr[i]]? = [booked]
+								
+							}
+						}
+					}
+					
+				}
+				print(self.lecBookingArr)
+				self.tableView.reloadData()
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			})
 		}
 	}
 	
@@ -101,33 +131,54 @@ class bookingViewControllerTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return dateArr.count
+		if(role == "Student"){
+			return dateArr.count
+		}else{
+			return subjectArr.count
+		}
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return bookingArr[dateArr[section]]!.count
-    }
+		if(role == "Student"){
+			return bookingArr[dateArr[section]]!.count
+		}else{
+			return lecBookingArr[subjectArr[section]]!.count
+		}
+			
+	
+	}
 	
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return dateFormatter.stringFromDate(dateArr[section])
+		if(role == "Student"){
+			return dateFormatter.stringFromDate(dateArr[section])
+		}else{
+			return subjectArr[section]
+		}
+	
+	
 	}
 	
 	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("bookingCell", forIndexPath: indexPath) as! BookingTableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("bookingCell", forIndexPath: indexPath) as! BookingTableViewCell
 		let section = indexPath.section
 		let row = indexPath.row
-		
-		let bookings = bookingArr[dateArr[section]]!
-		let booking : Booking = bookings[row]
-		
+		let bookings : [Booking]
+		let booking : Booking
+
+		if(role == "Student"){
+			 bookings = bookingArr[dateArr[section]]!
+			 booking  = bookings[row]
+		}else{
+			bookings = lecBookingArr[subjectArr[section]]!
+			 booking = bookings[row]
+		}
 		
 		cell.accessibilityIdentifier = booking.key
 		cell.subjectLabel?.text = booking.subject
 		cell.dateLabel?.text = dateFormatter.stringFromDate(booking.date)
 		cell.timeLabel?.text  = booking.time
-
         return cell
     }
 	
