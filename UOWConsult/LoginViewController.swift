@@ -10,28 +10,28 @@ import UIKit
 import Firebase
 import PKHUD
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
     var role = String()
     var fullName = String()
     let defaults = NSUserDefaults.standardUserDefaults()
-    
     let userRef = FIRDatabase.database().referenceWithPath("User")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		loginTF.delegate = self
+		passwordTF.delegate = self
         // Do any additional setup after loading the view.
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-      // userRef.removeAllObservers()
     }
     override func viewDidAppear(animated: Bool) {
                             //obtain logged in user id
        let email = defaults.stringForKey("email")
+		
         if email != nil{
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
             self.presentViewController(vc, animated: true, completion:nil)
@@ -42,6 +42,11 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
     
     @IBAction func loginPressed(sender: AnyObject) {
         HUD.show(.Progress)
@@ -52,13 +57,11 @@ class LoginViewController: UIViewController {
                         } else {
                             HUD.flash(.Success, delay:1)
                             self.obtainUserDetails((user?.uid)!)
-                            
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
         })
     }
-    
-    
+	
     func obtainUserDetails(id:String){
 
            userRef.child(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
@@ -66,16 +69,9 @@ class LoginViewController: UIViewController {
                 self.defaults.setObject(user["email"], forKey: "email")
                 self.defaults.setObject(user["name"], forKey: "name")
                 self.defaults.setObject(user["role"], forKey: "role")
-
             }
            })
-
-    
     }
-    
-
-    
-    
 
     /*
     // MARK: - Navigation

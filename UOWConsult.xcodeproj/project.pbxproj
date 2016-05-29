@@ -12,7 +12,7 @@
 		E9024FFB1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */; };
 		E91A345A1CF04FF800A35DB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34591CF04FF800A35DB1 /* AppDelegate.swift */; };
 		E91A345C1CF04FF800A35DB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A345B1CF04FF800A35DB1 /* ViewController.swift */; };
-		E91A345F1CF04FF800A35DB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91A345D1CF04FF800A35DB1 /* Main.storyboard */; };
+		E91A345F1CF04FF800A35DB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91A345D1CF04FF800A35DB1 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		E91A34621CF04FF800A35DB1 /* UOWConsult.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E91A34601CF04FF800A35DB1 /* UOWConsult.xcdatamodeld */; };
 		E91A34641CF04FF800A35DB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91A34631CF04FF800A35DB1 /* Assets.xcassets */; };
 		E91A34671CF04FF800A35DB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91A34651CF04FF800A35DB1 /* LaunchScreen.storyboard */; };
@@ -195,6 +195,9 @@
 		E91A344E1CF04FF800A35DB1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					1,
+				);
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "CY Lim";
