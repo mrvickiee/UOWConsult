@@ -32,7 +32,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
 		UIGraphicsBeginImageContext(self.view.frame.size)
 		UIImage(named: "wallpaper_consult.png")?.drawInRect(self.view.bounds)
 		
-		var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+		let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
 		
 		UIGraphicsEndImageContext()
 		
