@@ -29,6 +29,14 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
 		emailTF.delegate = self
 		confirmTF.delegate = self
 		passwordTF.delegate = self
+		UIGraphicsBeginImageContext(self.view.frame.size)
+		UIImage(named: "wallpaper_consult.png")?.drawInRect(self.view.bounds)
+		
+		var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+		
+		UIGraphicsEndImageContext()
+		
+		self.view.backgroundColor = UIColor(patternImage: image)
         // Do any additional setup after loading the view.
     }
 
