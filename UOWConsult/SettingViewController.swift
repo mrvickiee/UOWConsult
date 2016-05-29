@@ -93,8 +93,8 @@ class SettingViewController: UITableViewController {
         if let user = FIRAuth.auth()?.currentUser {
             for profile in user.providerData {
 
-                currentUser = profile.displayName
-                currentEmail = profile.email
+                currentUser = defaults.stringForKey("name")
+                currentEmail = defaults.stringForKey("email")
                 
                 print(" \(profile.displayName) & \(profile.email)")
                 
@@ -106,6 +106,20 @@ class SettingViewController: UITableViewController {
         
         
     }
+    
+    @IBAction func actionButtonPressed(sender: AnyObject) {
+        let role = defaults.stringForKey("role")
+        if role == "Student" {
+            performSegueWithIdentifier("goToEnroll", sender: sender)
+        }else if role == "Lecturer" {
+            performSegueWithIdentifier("goToSubject", sender: sender)
+        }else{
+            print(" no roles ? ")
+          //  performSegueWithIdentifier("goToEnroll", sender: sender)
+        }
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
