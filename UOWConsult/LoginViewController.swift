@@ -33,7 +33,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
        let email = defaults.stringForKey("email")
 		
         if email != nil{
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainController") as! TmpViewController
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainView") as! UITabBarController
             self.presentViewController(vc, animated: true, completion:nil)
         }
     }
@@ -57,7 +57,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             HUD.flash(.Success, delay:1)
                             self.obtainUserDetails((user?.uid)!)
-                            self.dismissViewControllerAnimated(true, completion: nil)
+							self.defaults.setObject(self.loginTF.text!, forKey: "email")
+							let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainView") as! UITabBarController
+							self.presentViewController(vc, animated: true, completion:nil)
+
                         }
         })
     }
@@ -66,10 +69,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
            userRef.child(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let user = snapshot.value{
-                self.defaults.setObject(user["email"], forKey: "email")
                 self.defaults.setObject(user["name"], forKey: "name")
                 self.defaults.setObject(user["role"], forKey: "role")
-            }
+				
+			}
            })
     }
 

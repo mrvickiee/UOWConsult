@@ -723,10 +723,10 @@
             </objects>
             <point key="canvasLocation" x="-456" y="985"/>
         </scene>
-        <!--Tmp View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="cf0-0s-z7h">
             <objects>
-                <tabBarController storyboardIdentifier="mainController" automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" customClass="TmpViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainView" automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JYx-9T-f5G">
                         <autoresizingMask key="autoresizingMask"/>
@@ -747,7 +747,7 @@
         <scene sceneID="ebb-hb-M1d">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MMA-Kt-Vi1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="fDu-hL-aTg"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="fDu-hL-aTg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RAd-NE-sW8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -809,7 +809,7 @@
                                                 <constraint firstAttribute="width" constant="148" id="oxq-kj-suz"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
