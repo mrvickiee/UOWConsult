@@ -12,9 +12,9 @@ import Firebase
 class EditViewController: UITableViewController {
 
     
+    @IBOutlet weak var newUsername: UITextField!
     @IBOutlet weak var newPassword: UITextField!
-    
-    @IBOutlet weak var currentPassword: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
     
     var updatePassword : String = ""
     var oldPassword : String = ""
@@ -45,23 +45,52 @@ class EditViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+//    
+//    
+//    @IBAction func saveButtonPressed(sender: AnyObject) {
+//        
+//        if let user = FIRAuth.auth()?.currentUser {
+//            
+//            let tempPassword = user
+//        }
+//        
+//        let newPassword = self.newPassword.text!
+//        
+//        
+//        
+//        user?.updatePassword(newPassword) { error in
+//            if let error = error {
+//                // An error happened.
+//                
+//            } else {
+//                // Password updated.
+//                self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
+//            }
+//        }
+//        
+//    }
 
-    @IBAction func cancelPressed(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
-    
-    @IBAction func saveChanges(sender: AnyObject) {
-        
-        self.email = "pyitheinmaung@gmail.com"
-        self.oldPassword = currentPassword.text!
-        self.updatePassword = self.newPassword.text!
+    @IBAction func SavePressed(sender: AnyObject) {
         
         
-        print("fetched password field : \(updatePassword)")
-        print("fetched old password : \(oldPassword)")
+        var updated : Bool?
+        
+        if newUsername.text != "" {
+      //      changeUsername()
+        }else{
+            print("user name field empty")
+        }
+        
+//        let checkInput = matchInput()
+//        if checkInput == true {
+//            updated = changePassword()
+//        }
+		
+        if updated == true {
+            popUp("Saved!", msg: "updated details successfully", buttonText: "Okay")
+        }else{
+            popUp("Invalid input!", msg: "Password fields does not match", buttonText: "Retry")
+        }
         
 //        let ref = Firebase(url: "https://uow-consult.firebaseio.com")
 //        ref.changePasswordForUser(email, fromOld: oldPassword,
@@ -71,7 +100,7 @@ class EditViewController: UITableViewController {
 //                                        
 //                                        self.popUp("Error!", msg: "Incorrect Password", buttonText: "Retry")
 //                                    } else {
-//                                    
+//                                        
 //                                        // Password changed successfully
 //                                        print("password changed")
 //                                        
@@ -79,9 +108,21 @@ class EditViewController: UITableViewController {
 //                                        
 //                                    }
 //        })
-		
+        
     }
     
+    
+    func saveChanges() {
+        self.email = "pyitheinmaung@gmail.com"
+        //self.oldPassword = currentPassword.text!
+		
+		self.updatePassword = self.newPassword.text!
+        
+        
+        print("fetched password field : \(updatePassword)")
+        print("fetched old password : \(oldPassword)")
+
+    }
     
     func popUp(okay: String, msg: String, buttonText: String) {
         // Create the alert controller
@@ -105,6 +146,12 @@ class EditViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func saveButtonPressed(sender: AnyObject) {
+        
+        saveChanges()
+        
+        
+    }
     
     
     override func didReceiveMemoryWarning() {
@@ -179,5 +226,7 @@ class EditViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+ 
 
 }
+
