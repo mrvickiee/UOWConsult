@@ -22,7 +22,9 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		LocationRef.keepSynced(true)
-		
+		mapView.mapType = MKMapType.Satellite
+		mapView.showsPointsOfInterest = true
+		mapView.showsUserLocation = true
 		mapView.showsBuildings = true
     }
 	
