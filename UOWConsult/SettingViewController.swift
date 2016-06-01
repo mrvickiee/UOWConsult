@@ -16,14 +16,13 @@ class SettingViewController: UITableViewController {
     
     var currentUser : String?
     var currentEmail : String?
+	var currentRole:String?
+	@IBOutlet weak var actionButton: UIButton!
     
+	@IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
-    
-	//let ref = Firebase(url: "https://uow-consult.firebaseio.com")
-
-    
     @IBAction func logOutPressed(sender: AnyObject) {
         
         HUD.flash(.Label("Logging out.."), delay: 2) { (finished) in
@@ -35,15 +34,7 @@ class SettingViewController: UITableViewController {
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
             self.presentViewController(vc, animated: true, completion:nil)
-            
-            
         }
-       
-        
-        
-        
-        
-        
     }
     
     /*
@@ -55,76 +46,48 @@ class SettingViewController: UITableViewController {
         
 
     }*/
+	
+	
     
-    
-    @IBOutlet weak var actionButton: UIButton!
+	
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         obtainUserInfo()
-        
-//        //display user info
-//        self.usernameLabel.text = self.defaults.stringForKey("name")
-//        self.emailLabel.text = self.defaults.stringForKey("email")
-        
-        print("current user = \(self.currentUser)")
-        self.usernameLabel.text = self.currentUser
-        self.emailLabel.text = self.currentEmail
-        
-        if self.defaults.stringForKey("role") == "Student" {
+		
+		self.usernameLabel.text = self.currentUser
+		self.emailLabel.text = self.currentEmail
+		self.roleLabel.text = self.currentRole
+	
+        if currentRole == "Student" {
             self.actionButton.setTitle("Enroll" , forState: UIControlState.Normal)
         }else{
             self.actionButton.setTitle("Create Subject" , forState: UIControlState.Normal)
-
-        }
-        
-        print(" \(self.currentUser)  &  \(self.emailLabel.text)")
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+		}
+		
     }
 
     func obtainUserInfo(){
-        
-        if let user = FIRAuth.auth()?.currentUser {
-            for profile in user.providerData {
-
-                currentUser = defaults.stringForKey("name")
-                currentEmail = defaults.stringForKey("email")
-                
-                print(" \(profile.displayName) & \(profile.email)")
-                
-            }
-        } else {
-            // No user is signed in.
-            print("not signed in ! ")
-        }
-        
-        
-    }
-    
-    @IBAction func actionButtonPressed(sender: AnyObject) {
-        let role = defaults.stringForKey("role")
-        if role == "Student" {
-            performSegueWithIdentifier("goToEnroll", sender: sender)
-        }else if role == "Lecturer" {
-            performSegueWithIdentifier("goToSubject", sender: sender)
-        }else{
-            print(" no roles ? ")
-          //  performSegueWithIdentifier("goToEnroll", sender: sender)
-        }
-        
-    }
-    
-    
+		currentUser = defaults.stringForKey("name")
+		currentEmail = defaults.stringForKey("email")
+		currentRole = defaults.stringForKey("role")
+	}
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	@IBAction func createPressed(sender: AnyObject) {
+		let role = defaults.stringForKey("role")
+		if role == "Student" {
+			performSegueWithIdentifier("goToEnroll", sender: sender)
+		}else if role == "Lecturer" {
+			performSegueWithIdentifier("goToSubject", sender: sender)
+		}
+
+	}
 
     // MARK: - Table view data source
 
