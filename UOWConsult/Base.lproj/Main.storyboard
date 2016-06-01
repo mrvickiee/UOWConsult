@@ -1151,22 +1151,30 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3x-lq-30l">
-                                                    <rect key="frame" x="119" y="11" width="472.5" height="21"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3x-lq-30l">
+                                                    <rect key="frame" x="119" y="11" width="472.5" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="C77-QI-jgd"/>
+                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="primaryActionTriggered" id="NXy-mk-ISj"/>
+                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="touchDown" id="aHd-kx-c6A"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="H3x-lq-30l" firstAttribute="leading" secondItem="n4I-ko-KGi" secondAttribute="trailing" constant="8" id="4RP-TU-c1A"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="H3x-lq-30l" secondAttribute="bottom" id="5TI-K5-hON"/>
+                                                <constraint firstItem="H3x-lq-30l" firstAttribute="top" secondItem="UPF-SZ-x7b" secondAttribute="topMargin" constant="3" id="9hu-XH-VQz"/>
                                                 <constraint firstItem="H3x-lq-30l" firstAttribute="trailing" secondItem="UPF-SZ-x7b" secondAttribute="trailingMargin" id="cks-AC-B6m"/>
                                                 <constraint firstItem="n4I-ko-KGi" firstAttribute="centerY" secondItem="UPF-SZ-x7b" secondAttribute="centerY" id="iL9-mm-Gqc"/>
                                                 <constraint firstItem="H3x-lq-30l" firstAttribute="centerY" secondItem="UPF-SZ-x7b" secondAttribute="centerY" id="oZR-7I-iss"/>
                                                 <constraint firstItem="n4I-ko-KGi" firstAttribute="leading" secondItem="UPF-SZ-x7b" secondAttribute="leadingMargin" id="u6o-rc-0Nh"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="9hu-XH-VQz"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1187,7 +1195,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="subjectCode" destination="H3x-lq-30l" id="rOn-9K-njc"/>
+                        <outlet property="subjectCode" destination="H3x-lq-30l" id="cJL-dt-zX9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zq-ij-Ulr" userLabel="First Responder" sceneMemberID="firstResponder"/>

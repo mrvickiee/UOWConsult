@@ -50,8 +50,6 @@ class CreateSubjectViewController: UITableViewController {
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
         let datePicker = ActionSheetDatePicker(title: "Start Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
-            
-            
             self.startingDate.text = dateFormatter.stringFromDate(value as! NSDate)
             return
             }, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
