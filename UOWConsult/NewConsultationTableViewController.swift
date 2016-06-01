@@ -154,7 +154,18 @@ class NewConsultationTableViewController: UITableViewController, UITextFieldDele
 	}
 	
 	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+		if (textField.tag == 1){
+			return false
+		}else{
+			return true
+		}
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
 		return true
 	}
+	
+
+	
 }
