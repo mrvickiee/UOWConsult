@@ -201,13 +201,13 @@ extension ConsulationTimeViewController {
 			dateFormatter.dateFormat = "YYYY-MM-dd"
 			
 			if let bookingDict = snapshot.value as? [String:AnyObject]{
-			let subjectFiltered = bookingDict.filter{ ($0.1["subject"] as! String) == subject }
-			let dateFiltered = subjectFiltered.filter{ ($0.1["date"] as! String) == dateFormatter.stringFromDate(date) }
-			
-			for booking in dateFiltered{
-				self.booked.append(booking.1["time"] as! String)
-			}
-			print(self.booked)
+				let subjectFiltered = bookingDict.filter{ ($0.1["subject"] as! String) == subject }
+				let dateFiltered = subjectFiltered.filter{ ($0.1["date"] as! String) == dateFormatter.stringFromDate(date) }
+				
+				for booking in dateFiltered{
+					self.booked.append(booking.1["time"] as! String)
+				}
+				print(self.booked)
 			}
 		})
 	}

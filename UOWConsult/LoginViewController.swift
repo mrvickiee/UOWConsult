@@ -68,9 +68,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             HUD.flash(.Success, delay:1)
                             self.obtainUserDetails((user?.uid)!)
 							self.defaults.setObject(self.loginTF.text!, forKey: "email")
-							let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainView") as! UITabBarController
-							self.presentViewController(vc, animated: true, completion:nil)
-//							self.dismissViewControllerAnimated(true, completion: nil)
+//							let vc = self.storyboard?.instantiateViewControllerWithIdentifier("mainView") as! UITabBarController
+//							self.presentViewController(vc, animated: true, completion:nil)
+							self.dismissViewControllerAnimated(true, completion: nil)
 
                         }
         })

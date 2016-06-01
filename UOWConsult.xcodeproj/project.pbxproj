@@ -173,10 +173,10 @@
 				E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */,
 				E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */,
 				E91A34701CF0507E00A35DB1 /* ConsultationTimetableTableViewCell.swift */,
-				3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */,
 				E91A34831CF164B900A35DB1 /* LocationViewController.swift */,
 				E9CCE3D81CF2813700BC2A4B /* NewConsultationTableViewController.swift */,
 				395515731CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift */,
+				3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */,
 			);
 			name = Timetable;
 			sourceTree = "<group>";

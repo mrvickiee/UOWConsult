@@ -8,268 +8,186 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class bookingViewControllerTableViewController: UITableViewController {
-	let user = NSUserDefaults.standardUserDefaults()
-	var bookingArr = Dictionary<NSDate,Array<Booking>>()
-	var lecBookingArr = Dictionary<String,Array<Booking>>()
-	var dateArr = [NSDate]()
-	var subjectArr = [String]()
 	let bookingRef = FIRDatabase.database().referenceWithPath("Booking")
 	let subjectRef = FIRDatabase.database().referenceWithPath("Subject")
-	var role : String = ""
-	var email: String = ""
-	var test = [Int]()
-	let dateFormatter = NSDateFormatter()
 	
-
+	var reservations = Dictionary<String,Array<Booking>>()
+	var timeSection = [String]()
 	
-	func populateBooking(){
-		self.bookingArr.removeAll()
-		self.dateArr.removeAll()
-		subjectArr.removeAll()
-		
-		if(role == "Student"){
-			bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
-				if let bookingDict = snapshot.value as? [String:AnyObject]{
-				
-				for data in bookingDict{
-					let bookSlot = data.1
-					if (bookSlot["student"] as! String == self.email){
-						let dateStr = bookSlot["date"] as! String
-						let date = self.dateFormatter.dateFromString(dateStr)
-						let sub = bookSlot["subject"] as! String
-						let time = bookSlot["time"] as! String
-						let booked = Booking(date: date!,student: self.email,subject: sub,time: time, key: data.0)
-						
-						if !self.dateArr.contains(date!){
-							self.dateArr.append(date!)
-							self.bookingArr[date!] = [booked]
-						}else{
-							self.bookingArr[date!]?.append(booked)
-						}
-						self.dateArr.sortInPlace({$0.compare($1) == NSComparisonResult.OrderedAscending})
-						self.tableView.reloadData()
-						}
-					}
-				}
-			})
-		}else{					//if lecturer
-			
-			
-			subjectRef.observeEventType(.Value, withBlock: { (snapshot) in	//obtain lecturer subject
-				let subjectDict = snapshot.value as! [String:AnyObject]
-				
-				for data in subjectDict{
-					let sub = data.1
-					if(sub["lecturer"] as! String == self.email){
-						self.subjectArr.append(data.0)
-					}
-				}
-			})
-			
-			bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
-				let bookingDict = snapshot.value as! [String:AnyObject]
-				
-				for data in bookingDict{
-					let bookSlot = data.1
-					
-					let dateStr = bookSlot["date"] as! String
-					let date = self.dateFormatter.dateFromString(dateStr)
-					let sub = bookSlot["subject"] as! String
-					let time = bookSlot["time"] as! String
-					let booked = Booking(date: date!,student: self.email,subject: sub,time: time, key: data.0)
-					
-					
-					for i in 0..<self.subjectArr.count {
-						print("BOOKED: \(booked.subject), Subject: \(self.subjectArr[i])")
-						if (booked.subject == self.subjectArr[i]){
-							if(self.lecBookingArr[self.subjectArr[i]] != nil){
-								print(booked)
-								self.lecBookingArr[self.subjectArr[i]]?.append(booked)
-							}else{
-								print(booked)
-								self.lecBookingArr[self.subjectArr[i]]? = [booked]
-								
-							}
-						}
-					}
-					
-				}
-				print("TEST: \(self.lecBookingArr)")
-				self.tableView.reloadData()
-			
-			})
-		}
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		role = user.stringForKey("role")!
-		email = user.stringForKey("email")!
-		populateBooking()
-	}
-	
+	let user = NSUserDefaults.standardUserDefaults()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		dateFormatter.dateFormat = "yyyy-MM-dd"
 		bookingRef.keepSynced(true)
 		subjectRef.keepSynced(true)
-		
-		
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		populateBooking()
+	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		bookingRef.removeAllObservers()
+		subjectRef.removeAllObservers()
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-		if(role == "Student"){
-			return dateArr.count
-		}else{
-			return subjectArr.count
-		}
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-		if(role == "Student"){
-			return bookingArr[dateArr[section]]?.count ?? 0
-		}else{
-			return lecBookingArr[subjectArr[section]]?.count ?? 0
-		}
-			
 	
+	func populateBooking(){
+		guard let email = user.stringForKey("email"), role = user.stringForKey("role") else {
+			showDialog("User not logged in, please login.")
+			performLogin()
+			return
+		}
+		
+		if role == "Student" {
+			getStudentBooking(email)
+		} else if role == "Lecturer" {
+			getLecturerBooking(email)
+		}
+	}
+	
+	
+	func performLogin(){
+		let vc = storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
+		self.presentViewController(vc, animated: true, completion: nil)
+	}
+	
+	func showDialog(message:String){
+		HUD.flash(.Label(message), delay: 1)
+	}
+}
+
+//MARK:- TableView Related
+extension bookingViewControllerTableViewController {
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return timeSection.count
+	}
+	
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return reservations[timeSection[section]]!.count
 	}
 	
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		if(role == "Student"){
-			return dateFormatter.stringFromDate(dateArr[section])
-		}else{
-			return subjectArr[section]
-		}
-	
-	
+		return timeSection[section]
 	}
-	
-	
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("bookingCell", forIndexPath: indexPath) as! BookingTableViewCell
+
 		let section = indexPath.section
 		let row = indexPath.row
-		let bookings : [Booking]
-		let booking : Booking
 
-		if(role == "Student"){
-			 bookings = bookingArr[dateArr[section]]!
-			 booking  = bookings[row]
-		}else{
-			bookings = lecBookingArr[subjectArr[section]]!
-			 booking = bookings[row]
-		}
+		let booking = reservations[timeSection[section]]!
+		let slot = booking[row]
 		
-		cell.accessibilityIdentifier = booking.key
-		cell.subjectLabel?.text = booking.subject
-		cell.dateLabel?.text = dateFormatter.stringFromDate(booking.date)
-		cell.timeLabel?.text  = booking.time
-        return cell
-    }
+		cell.accessibilityIdentifier = slot.key
+		cell.subjectLabel?.text = slot.subject
+		cell.dateLabel?.text = slot.date
+		cell.timeLabel?.text  = slot.time
+		
+		return cell
+	}
 	
 	override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?  {
-		let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action , indexPath) -> Void in
+		let action = UITableViewRowAction(style: .Destructive, title: "Delete", handler: { (action , indexPath) -> Void in
 			
 			let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as! BookingTableViewCell
 			let key = currentCell.accessibilityIdentifier!
 			let ref = self.bookingRef.child(key)
 			ref.removeValue()
-			
-			let row = indexPath.row
-			let section = indexPath.section
-			
-			var booking = self.bookingArr[self.dateArr[section]]!
-			
-//			for (var i = 0; i < booking.count ; i++){
-//				
-//				if(booking[i].key == key){
-//					booking.removeAtIndex(i)
-//				}
-//			}
-
-			booking.removeAtIndex(row)
-			
-			self.bookingArr[self.dateArr[section]]! = booking
-			
-			
-			if(self.bookingArr[self.dateArr[section]]!.count == 0){
-				self.dateArr.removeAtIndex(section)
-			}
-			
-			self.tableView.reloadData()
-			
-			
 		})
-		deleteAction.backgroundColor = UIColor.redColor()
-		return [deleteAction]
+		
+		return [action]
+	}
+}
+
+//MARK:- Database Observer
+extension bookingViewControllerTableViewController {
+	func getStudentBooking(email:String) {
+		bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
+			self.reservations.removeAll()
+			
+			if let bookingDict = snapshot.value as? [String:AnyObject] {
+				let emailFilteredBooking = bookingDict.filter{ ($0.1["student"] as! String) == email }
+				
+				for booking in emailFilteredBooking {
+					let slot = booking.1
+					let date = slot["date"] as! String
+					let booked = Booking(date: date,
+						student: slot["student"] as! String,
+						subject: slot["subject"] as! String,
+						time: slot["time"] as! String,
+						key: booking.0)
+					
+					if self.reservations.indexForKey(date) == nil {
+						self.reservations[date] = [booked]
+					} else {
+						self.reservations[date]!.append(booked)
+					}
+					self.reservations[date]?.sortInPlace({ $0.time.compare($1.time) == NSComparisonResult.OrderedAscending})
+				}
+				self.timeSection = Array(self.reservations.keys).sort(<)
+				
+				self.tableView.reloadData()
+				
+			}
+		})
 	}
 	
+	func getLecturerSubjects(email:String, completion:(subjects:[String]) -> ()){
+		var array = [String]()
+		subjectRef.observeEventType(.Value, withBlock: { (snapshot) in
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+			if let subjectDict = snapshot.value as? [String:AnyObject]{
+				let subjectFiltered = subjectDict.filter{ ($0.1["lecturer"] as! String) == email }
+				print(subjectFiltered)
+				
+				for booking in subjectFiltered{
+					array.append(booking.0)
+				}
+				completion(subjects: array)
+			}
+		})
+		
+	}
+	
+	func getLecturerBooking(email:String){
+		getLecturerSubjects(email){ subjects in
+			self.bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
+				self.reservations.removeAll()
+				
+				if let bookingDict = snapshot.value as? [String:AnyObject] {
+					for booking in bookingDict{
+						let slot = booking.1
+						
+						for subject in subjects{
+							if (slot["subject"] as! String) == subject {
+								let date = slot["date"] as! String
+								let booked = Booking(date: date,
+									student: slot["student"] as! String,
+									subject: subject,
+									time: slot["time"] as! String,
+									key: booking.0)
+								
+								if self.reservations.indexForKey(date) == nil {
+									self.reservations[date] = [booked]
+								} else {
+									self.reservations[date]!.append(booked)
+								}
+								self.reservations[date]?.sortInPlace({ $0.time.compare($1.time) == NSComparisonResult.OrderedAscending})
+							}
+						}
+						self.timeSection = Array(self.reservations.keys).sort(<)
+					}
+					self.tableView.reloadData()
+				}
+			})
+		}
+		
+		
+	}
 }

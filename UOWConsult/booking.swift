@@ -9,7 +9,7 @@
 import Foundation
 
 struct Booking{
-	var date : NSDate
+	var date : String
 	var student : String
 	var subject : String
 	var time : String
