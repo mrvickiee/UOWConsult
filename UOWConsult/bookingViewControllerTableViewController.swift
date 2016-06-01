@@ -27,6 +27,7 @@ class bookingViewControllerTableViewController: UITableViewController {
 	func populateBooking(){
 		self.bookingArr.removeAll()
 		self.dateArr.removeAll()
+		subjectArr.removeAll()
 		
 		if(role == "Student"){
 			bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
@@ -78,11 +79,15 @@ class bookingViewControllerTableViewController: UITableViewController {
 					let time = bookSlot["time"] as! String
 					let booked = Booking(date: date!,student: self.email,subject: sub,time: time, key: data.0)
 					
-					for(var i = 0; i < self.subjectArr.count ; i++){
+					
+					for i in 0..<self.subjectArr.count {
+						print("BOOKED: \(booked.subject), Subject: \(self.subjectArr[i])")
 						if (booked.subject == self.subjectArr[i]){
 							if(self.lecBookingArr[self.subjectArr[i]] != nil){
+								print(booked)
 								self.lecBookingArr[self.subjectArr[i]]?.append(booked)
 							}else{
+								print(booked)
 								self.lecBookingArr[self.subjectArr[i]]? = [booked]
 								
 							}
@@ -90,7 +95,7 @@ class bookingViewControllerTableViewController: UITableViewController {
 					}
 					
 				}
-				print(self.lecBookingArr)
+				print("TEST: \(self.lecBookingArr)")
 				self.tableView.reloadData()
 			
 			})
@@ -109,6 +114,7 @@ class bookingViewControllerTableViewController: UITableViewController {
         super.viewDidLoad()
 		dateFormatter.dateFormat = "yyyy-MM-dd"
 		bookingRef.keepSynced(true)
+		subjectRef.keepSynced(true)
 		
 		
         // Uncomment the following line to preserve selection between presentations
@@ -141,9 +147,9 @@ class bookingViewControllerTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 		if(role == "Student"){
-			return bookingArr[dateArr[section]]!.count
+			return bookingArr[dateArr[section]]?.count ?? 0
 		}else{
-			return lecBookingArr[subjectArr[section]]!.count
+			return lecBookingArr[subjectArr[section]]?.count ?? 0
 		}
 			
 	
