@@ -27,10 +27,9 @@ class SettingViewController: UITableViewController {
         
         HUD.flash(.Label("Logging out.."), delay: 2) { (finished) in
 			try! FIRAuth.auth()!.signOut()
-            let userDefault = NSUserDefaults.standardUserDefaults()
-            userDefault.removeObjectForKey("email")
-            userDefault.removeObjectForKey("role")
-            userDefault.removeObjectForKey("name")
+            self.defaults.removeObjectForKey("email")
+            self.defaults.removeObjectForKey("role")
+            self.defaults.removeObjectForKey("name")
             
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
             self.presentViewController(vc, animated: true, completion:nil)

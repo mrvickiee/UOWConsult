@@ -200,7 +200,7 @@ extension ConsulationTimeViewController {
 			let dateFormatter = NSDateFormatter()
 			dateFormatter.dateFormat = "YYYY-MM-dd"
 			
-			let bookingDict = snapshot.value as! [String:AnyObject]
+			if let bookingDict = snapshot.value as? [String:AnyObject]{
 			let subjectFiltered = bookingDict.filter{ ($0.1["subject"] as! String) == subject }
 			let dateFiltered = subjectFiltered.filter{ ($0.1["date"] as! String) == dateFormatter.stringFromDate(date) }
 			
@@ -208,6 +208,7 @@ extension ConsulationTimeViewController {
 				self.booked.append(booking.1["time"] as! String)
 			}
 			print(self.booked)
+			}
 		})
 	}
 }

@@ -11,9 +11,8 @@ import Firebase
 import PKHUD
 import ActionSheetPicker_3_0
 
-class EnrollViewController: UITableViewController {
+class EnrollViewController: UITableViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var subjectCode: UITextField!
     
     
@@ -27,10 +26,11 @@ class EnrollViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+		subjectCode.delegate = self
+		email = user.stringForKey("email")!
         SubjectRef.keepSynced(true)
         getSubjects()
+		
         
         
     }
@@ -46,9 +46,7 @@ class EnrollViewController: UITableViewController {
     }
 
     func getSubjects() {
-        
         SubjectRef.observeEventType(FIRDataEventType.Value, withBlock: {(snaphot) in
-            
             let subjectDict = snaphot.value as! [String:AnyObject]
             for subject in subjectDict {
                 self.subject.append(subject.0)
@@ -57,24 +55,17 @@ class EnrollViewController: UITableViewController {
         })
         
     }
+	
+	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+		return false
+	}
 
 
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        
-        if userEmail.text == "" {
-            popUp("Invalid input!", msg: "Fields must not be empty", buttonText: "Retry")
-        }else{
-            
-            email = userEmail.text!
             let ref = FIRDatabase.database().reference()
             ref.child("Enrolled").childByAutoId().setValue(getDictionary())
             popUp("Enrolled!", msg: "Your information has been added", buttonText: "Okay")
-            
-            
-        }
-        
-        
     }
 
     @IBAction func selectSubjectCode(sender: AnyObject) {
@@ -85,9 +76,7 @@ class EnrollViewController: UITableViewController {
             self.selectedSubject = self.subjectCode.text!
             return
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender)
-        
-    
-        
+
     }
     
     func popUp(okay: String, msg: String, buttonText: String) {

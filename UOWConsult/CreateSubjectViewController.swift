@@ -11,7 +11,7 @@ import Firebase
 import PKHUD
 import ActionSheetPicker_3_0
 
-class CreateSubjectViewController: UITableViewController {
+class CreateSubjectViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var subjectName: UITextField!
     @IBOutlet weak var subjectCode: UITextField!
@@ -24,17 +24,18 @@ class CreateSubjectViewController: UITableViewController {
     var email : String = ""
     var subject = [String]()
     var selectedSubject : String = ""
+	let dateFormatter = NSDateFormatter()
+	
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		dateFormatter.dateFormat = "yyyy-MM-dd"
         email = user.stringForKey("email")!
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+		subjectCode.delegate = self
+		subjectName.delegate = self
+		startingDate.delegate = self
+		endingDate.delegate = self
+		
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,15 +45,9 @@ class CreateSubjectViewController: UITableViewController {
     
     
     @IBAction func startDateSelect(sender: AnyObject) {
-        
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        
-        let datePicker = ActionSheetDatePicker(title: "Start Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
-            
-            
-            self.startingDate.text = dateFormatter.stringFromDate(value as! NSDate)
+		
+		let datePicker = ActionSheetDatePicker(title: "Start Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
+            self.startingDate.text = self.dateFormatter.stringFromDate(value as! NSDate)
             return
             }, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
         
@@ -65,17 +60,30 @@ class CreateSubjectViewController: UITableViewController {
         
         
         }
-    
-    
+	
+	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+		if (textField.tag == 1){
+			return false
+		}else{
+			return true
+		}
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
+	
+
+	
     @IBAction func endDateSelect(sender: AnyObject) {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+		
         
         let datePicker = ActionSheetDatePicker(title: "End Date", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: { picker, value, index in
             
             
-            self.endingDate.text = dateFormatter.stringFromDate(value as! NSDate)
+            self.endingDate.text = self.dateFormatter.stringFromDate(value as! NSDate)
             return
             }, cancelBlock: { ActionDateCancelBlock in return }, origin: self.tableView)
         

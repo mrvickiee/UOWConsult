@@ -258,12 +258,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRO-uG-G1b">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRO-uG-G1b">
                                                     <rect key="frame" x="119" y="11" width="472.5" height="21"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="selectSubjectCode:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="Nmv-zc-pah"/>
+                                                        <action selector="selectSubjectCode:" destination="g5T-NI-WKi" eventType="touchDown" id="yJS-9q-L2D"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -293,12 +295,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="day" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E3a-iC-tN1">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="day" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E3a-iC-tN1">
                                                     <rect key="frame" x="46" y="11" width="546" height="21"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="selectDayOfWeek:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="6ai-WZ-q40"/>
+                                                        <action selector="selectDayOfWeek:" destination="g5T-NI-WKi" eventType="touchDown" id="AGa-Gp-cl2"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -324,11 +328,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="start time" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="brP-nP-ZQI">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="start time" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="brP-nP-ZQI">
                                                     <rect key="frame" x="96" y="11.5" width="496" height="21"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="selectStartTime:" destination="g5T-NI-WKi" eventType="touchDown" id="sWe-ea-2hH"/>
                                                         <action selector="selectStartTime:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="zfo-hI-tDX"/>
                                                     </connections>
                                                 </textField>
@@ -355,11 +361,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="end time" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Su5-FD-zKo">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="end time" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Su5-FD-zKo">
                                                     <rect key="frame" x="88" y="11" width="504" height="21"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="selectEndTime:" destination="g5T-NI-WKi" eventType="touchDown" id="Twa-Gu-RHw"/>
                                                         <action selector="selectEndTime:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="enx-oe-Fsk"/>
                                                     </connections>
                                                 </textField>
@@ -382,6 +390,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="location" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TIJ-5o-0fi">
                                                     <rect key="frame" x="82" y="11" width="510" height="21"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1151,22 +1160,30 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3x-lq-30l">
-                                                    <rect key="frame" x="119" y="11" width="472.5" height="21"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="subject code" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3x-lq-30l">
+                                                    <rect key="frame" x="119" y="11" width="472.5" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="C77-QI-jgd"/>
+                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="primaryActionTriggered" id="NXy-mk-ISj"/>
+                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="touchDown" id="aHd-kx-c6A"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="H3x-lq-30l" firstAttribute="leading" secondItem="n4I-ko-KGi" secondAttribute="trailing" constant="8" id="4RP-TU-c1A"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="H3x-lq-30l" secondAttribute="bottom" id="5TI-K5-hON"/>
+                                                <constraint firstItem="H3x-lq-30l" firstAttribute="top" secondItem="UPF-SZ-x7b" secondAttribute="topMargin" constant="3" id="9hu-XH-VQz"/>
                                                 <constraint firstItem="H3x-lq-30l" firstAttribute="trailing" secondItem="UPF-SZ-x7b" secondAttribute="trailingMargin" id="cks-AC-B6m"/>
                                                 <constraint firstItem="n4I-ko-KGi" firstAttribute="centerY" secondItem="UPF-SZ-x7b" secondAttribute="centerY" id="iL9-mm-Gqc"/>
                                                 <constraint firstItem="H3x-lq-30l" firstAttribute="centerY" secondItem="UPF-SZ-x7b" secondAttribute="centerY" id="oZR-7I-iss"/>
                                                 <constraint firstItem="n4I-ko-KGi" firstAttribute="leading" secondItem="UPF-SZ-x7b" secondAttribute="leadingMargin" id="u6o-rc-0Nh"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="9hu-XH-VQz"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1187,7 +1204,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="subjectCode" destination="H3x-lq-30l" id="rOn-9K-njc"/>
+                        <outlet property="subjectCode" destination="H3x-lq-30l" id="cJL-dt-zX9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zq-ij-Ulr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1222,9 +1239,6 @@
                                                     <rect key="frame" x="123.5" y="11" width="468" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="selectSubjectCode:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="Dr4-eT-nCC"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1253,10 +1267,6 @@
                                                     <rect key="frame" x="119" y="11" width="472.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="lSq-QD-iMy"/>
-                                                        <action selector="subjectCodeSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="s9b-wL-RoR"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1271,7 +1281,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="HHk-qa-4Wt">
                                         <rect key="frame" x="0.0" y="201.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HHk-qa-4Wt" id="abG-XH-TvS">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="HHk-qa-4Wt" id="abG-XH-TvS">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1281,13 +1291,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="starting date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-QO-Ymk">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="starting date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-QO-Ymk">
                                                     <rect key="frame" x="93.5" y="11" width="498" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="XrC-z7-3b8"/>
-                                                        <action selector="startDateSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="Cqf-5E-ZqL"/>
+                                                        <action selector="startDateSelect:" destination="kmx-ch-uzG" eventType="touchDown" id="75r-Fh-JMh"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1313,13 +1322,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ending date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOf-K7-PTH">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ending date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOf-K7-PTH">
                                                     <rect key="frame" x="85.5" y="11" width="506" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="endDateSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="h4j-K7-8US"/>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="Yeb-MN-x2Q"/>
+                                                        <action selector="endDateSelect:" destination="kmx-ch-uzG" eventType="touchDown" id="Qmc-Dj-guq"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
