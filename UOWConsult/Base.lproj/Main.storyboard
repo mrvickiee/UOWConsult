@@ -1230,9 +1230,6 @@
                                                     <rect key="frame" x="123.5" y="11" width="468" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="selectSubjectCode:" destination="g5T-NI-WKi" eventType="editingDidBegin" id="Dr4-eT-nCC"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1261,10 +1258,6 @@
                                                     <rect key="frame" x="119" y="11" width="472.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="lSq-QD-iMy"/>
-                                                        <action selector="subjectCodeSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="s9b-wL-RoR"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1279,7 +1272,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="HHk-qa-4Wt">
                                         <rect key="frame" x="0.0" y="201.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HHk-qa-4Wt" id="abG-XH-TvS">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="HHk-qa-4Wt" id="abG-XH-TvS">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1289,13 +1282,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="starting date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-QO-Ymk">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="starting date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-QO-Ymk">
                                                     <rect key="frame" x="93.5" y="11" width="498" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="XrC-z7-3b8"/>
-                                                        <action selector="startDateSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="Cqf-5E-ZqL"/>
+                                                        <action selector="startDateSelect:" destination="kmx-ch-uzG" eventType="touchDown" id="75r-Fh-JMh"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1321,13 +1313,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ending date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOf-K7-PTH">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ending date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOf-K7-PTH">
                                                     <rect key="frame" x="85.5" y="11" width="506" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="endDateSelect:" destination="kmx-ch-uzG" eventType="editingDidBegin" id="h4j-K7-8US"/>
-                                                        <action selector="selectSubjectCode:" destination="14G-2J-fqe" eventType="editingDidBegin" id="Yeb-MN-x2Q"/>
+                                                        <action selector="endDateSelect:" destination="kmx-ch-uzG" eventType="touchDown" id="Qmc-Dj-guq"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
