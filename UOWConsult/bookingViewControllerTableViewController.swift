@@ -31,7 +31,7 @@ class bookingViewControllerTableViewController: UITableViewController {
 		
 		if(role == "Student"){
 			bookingRef.observeEventType(.Value, withBlock: { (snapshot) in
-				let bookingDict = snapshot.value as! [String:AnyObject]
+				if let bookingDict = snapshot.value as? [String:AnyObject]{
 				
 				for data in bookingDict{
 					let bookSlot = data.1
@@ -50,6 +50,7 @@ class bookingViewControllerTableViewController: UITableViewController {
 						}
 						self.dateArr.sortInPlace({$0.compare($1) == NSComparisonResult.OrderedAscending})
 						self.tableView.reloadData()
+						}
 					}
 				}
 			})
