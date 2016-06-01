@@ -17,7 +17,6 @@
 		E9024FF91CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */; };
 		E9024FFB1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */; };
 		E91A345A1CF04FF800A35DB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A34591CF04FF800A35DB1 /* AppDelegate.swift */; };
-		E91A345C1CF04FF800A35DB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A345B1CF04FF800A35DB1 /* ViewController.swift */; };
 		E91A345F1CF04FF800A35DB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91A345D1CF04FF800A35DB1 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		E91A34621CF04FF800A35DB1 /* UOWConsult.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E91A34601CF04FF800A35DB1 /* UOWConsult.xcdatamodeld */; };
 		E91A34641CF04FF800A35DB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91A34631CF04FF800A35DB1 /* Assets.xcassets */; };
@@ -52,7 +51,6 @@
 		E9024FFA1CFA818000DFD3AD /* ConsultationTimeViewController-TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConsultationTimeViewController-TableView.swift"; sourceTree = "<group>"; };
 		E91A34561CF04FF800A35DB1 /* UOWConsult.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOWConsult.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91A34591CF04FF800A35DB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E91A345B1CF04FF800A35DB1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E91A345E1CF04FF800A35DB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E91A34611CF04FF800A35DB1 /* UOWConsult.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UOWConsult.xcdatamodel; sourceTree = "<group>"; };
 		E91A34631CF04FF800A35DB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				E91A347F1CF050AC00A35DB1 /* User Management */,
 				E91A347E1CF0509E00A35DB1 /* Model */,
 				E91A34591CF04FF800A35DB1 /* AppDelegate.swift */,
-				E91A345B1CF04FF800A35DB1 /* ViewController.swift */,
 				39ADAD4F1CFB357A007A91D8 /* MainTabViewController.swift */,
 				E91A345D1CF04FF800A35DB1 /* Main.storyboard */,
 				E91A34631CF04FF800A35DB1 /* Assets.xcassets */,
@@ -322,7 +319,6 @@
 				E91A34861CF16A5600A35DB1 /* Location.swift in Sources */,
 				E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */,
 				E91A348C1CF16B4600A35DB1 /* Subject.swift in Sources */,
-				E91A345C1CF04FF800A35DB1 /* ViewController.swift in Sources */,
 				E91A34731CF0508B00A35DB1 /* ConsulationTimeViewController.swift in Sources */,
 				39ADAD501CFB357A007A91D8 /* MainTabViewController.swift in Sources */,
 				E91A348A1CF16AE700A35DB1 /* Class.swift in Sources */,
