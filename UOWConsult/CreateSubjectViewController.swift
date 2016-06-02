@@ -22,7 +22,7 @@ class CreateSubjectViewController: UITableViewController, UITextFieldDelegate {
     let user = NSUserDefaults.standardUserDefaults()
     
     var email : String = ""
-    var subject = [String]()
+    var subjectsExisted = [String]()
     var selectedSubject : String = ""
 	let dateFormatter = NSDateFormatter()
 	let SubjectRef = FIRDatabase.database().referenceWithPath("Subject")
@@ -32,13 +32,18 @@ class CreateSubjectViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
 		SubjectRef.keepSynced(true)
 		dateFormatter.dateFormat = "yyyy-MM-dd"
-        email = user.stringForKey("email")!
+		
 		subjectCode.delegate = self
 		subjectName.delegate = self
 		startingDate.delegate = self
 		endingDate.delegate = self
 		
     }
+	
+	override func viewDidAppear(animated: Bool) {
+		email = user.stringForKey("email")!
+		getSubjects()
+	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		SubjectRef.removeAllObservers()
@@ -67,6 +72,17 @@ class CreateSubjectViewController: UITableViewController, UITextFieldDelegate {
         
 	}
 	
+	func getSubjects(){
+		
+		self.SubjectRef.observeEventType(FIRDataEventType.Value, withBlock: {(snaphot) in
+			let subjectDict = snaphot.value as! [String:AnyObject]
+			for subject in subjectDict {
+					self.subjectsExisted.append(subject.0)
+			}
+		})
+	}
+	
+	
 	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
 		if (textField.tag == 1){
 			return false
@@ -93,16 +109,17 @@ class CreateSubjectViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
         
-        print( " lectuerer = \(email) , \(subjectName.text) , \(subjectCode.text) , \(startingDate.text), \(endingDate.text)")
-        
-        if subjectName.text == "" || subjectCode.text == "" || startingDate.text == "" || endingDate.text == "" {
+		if subjectName.text == "" || subjectCode.text == "" || startingDate.text == "" || endingDate.text == "" {
             popUp("Invalid input!", msg: "Fields must not be empty", buttonText: "Retry")
         }else{
-            
-            let ref = FIRDatabase.database().reference()
-            ref.child("Subject").child(subjectCode.text!).setValue(getDictionary())
-            popUp("Subject Added!", msg: "Subject has been created in the database", buttonText: "Okay")
-            
+			
+			if !subjectsExisted.contains(subjectCode.text!){
+				let ref = FIRDatabase.database().reference()
+				ref.child("Subject").child(subjectCode.text!).setValue(getDictionary())
+				popUp("Subject Added!", msg: "Subject has been created in the database", buttonText: "Okay")
+			}else{
+				HUD.flash(.Label("Subject already exists!"),delay:1)
+			}
         }
     }
     
