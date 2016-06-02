@@ -63,19 +63,23 @@ class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        obtainUserInfo()
+
 		
+    }
+	
+	override func viewDidAppear(animated: Bool) {
+		 obtainUserInfo()
+		
+		if currentRole == "Student" {
+			self.actionButton.setTitle("Enroll" , forState: UIControlState.Normal)
+		}else{
+			self.actionButton.setTitle("Create Subject" , forState: UIControlState.Normal)
+		}
 		self.usernameLabel.text = self.currentUser
 		self.emailLabel.text = self.currentEmail
 		self.roleLabel.text = self.currentRole
-	
-        if currentRole == "Student" {
-            self.actionButton.setTitle("Enroll" , forState: UIControlState.Normal)
-        }else{
-            self.actionButton.setTitle("Create Subject" , forState: UIControlState.Normal)
-		}
 		
-    }
+	}
 
     func obtainUserInfo(){
 		currentUser = defaults.stringForKey("name")
