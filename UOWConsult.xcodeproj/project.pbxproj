@@ -11,7 +11,6 @@
 		395515741CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395515731CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift */; };
 		395515761CF9D3EC005C7BC6 /* booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395515751CF9D3EB005C7BC6 /* booking.swift */; };
 		3995BAC01CF9E84A0087A4B9 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */; };
-		39ADAD501CFB357A007A91D8 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADAD4F1CFB357A007A91D8 /* MainTabViewController.swift */; };
 		5D0CCBAE1CF9AEA4001096F1 /* EnrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */; };
 		5D0CCBB01CF9CD0C001096F1 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CCBAF1CF9CD0C001096F1 /* CreateSubjectViewController.swift */; };
 		E9024FF91CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9024FF81CFA805600DFD3AD /* ConsultationTimetableViewController-JTCalendar.swift */; };
@@ -42,7 +41,6 @@
 		395515731CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bookingViewControllerTableViewController.swift; sourceTree = "<group>"; };
 		395515751CF9D3EB005C7BC6 /* booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = booking.swift; sourceTree = "<group>"; };
 		3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
-		39ADAD4F1CFB357A007A91D8 /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		3CABE4FFC0E695ADBF52B2DD /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 		5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollViewController.swift; sourceTree = "<group>"; };
 		5D0CCBAF1CF9CD0C001096F1 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				E91A347F1CF050AC00A35DB1 /* User Management */,
 				E91A347E1CF0509E00A35DB1 /* Model */,
 				E91A34591CF04FF800A35DB1 /* AppDelegate.swift */,
-				39ADAD4F1CFB357A007A91D8 /* MainTabViewController.swift */,
 				E91A345D1CF04FF800A35DB1 /* Main.storyboard */,
 				E91A34631CF04FF800A35DB1 /* Assets.xcassets */,
 				E91A34651CF04FF800A35DB1 /* LaunchScreen.storyboard */,
@@ -320,7 +317,6 @@
 				E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */,
 				E91A348C1CF16B4600A35DB1 /* Subject.swift in Sources */,
 				E91A34731CF0508B00A35DB1 /* ConsulationTimeViewController.swift in Sources */,
-				39ADAD501CFB357A007A91D8 /* MainTabViewController.swift in Sources */,
 				E91A348A1CF16AE700A35DB1 /* Class.swift in Sources */,
 				E91A34791CF0509500A35DB1 /* SettingViewController.swift in Sources */,
 				E91A34811CF050C200A35DB1 /* EditViewController.swift in Sources */,

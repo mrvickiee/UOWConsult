@@ -47,8 +47,11 @@ class ConsulationTimeViewController: UIViewController {
 		setCalendar()
 	}
 	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		getEnrolledSubjects()
+		updateViewWithDate(dateSelected)
 		
 		if let role = user.stringForKey("role"){
 			if role == "Student" {
@@ -57,8 +60,6 @@ class ConsulationTimeViewController: UIViewController {
 				navigationItem.rightBarButtonItem = addConsultationButton
 			}
 		}
-		getEnrolledSubjects()
-		updateViewWithDate(dateSelected)
 	}
 	
 	override func viewWillDisappear(animated: Bool) {

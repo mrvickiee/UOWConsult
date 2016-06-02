@@ -232,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bC6-g0-Lu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1473" y="246"/>
+            <point key="canvasLocation" x="-1655" y="258"/>
         </scene>
         <!--New Consultation-->
         <scene sceneID="XSI-ok-jHV">
@@ -791,10 +791,10 @@
             </objects>
             <point key="canvasLocation" x="-456" y="985"/>
         </scene>
-        <!--Main Tab View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="cf0-0s-z7h">
             <objects>
-                <tabBarController storyboardIdentifier="mainView" automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" customClass="MainTabViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainView" automaticallyAdjustsScrollViewInsets="NO" id="aZg-oV-lCC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JYx-9T-f5G">
                         <autoresizingMask key="autoresizingMask"/>
@@ -804,7 +804,6 @@
                         <segue destination="7yZ-GZ-YC6" kind="relationship" relationship="viewControllers" id="kfe-dZ-Jag"/>
                         <segue destination="JdN-Jh-gWX" kind="relationship" relationship="viewControllers" id="0Ai-75-Huf"/>
                         <segue destination="MMA-Kt-Vi1" kind="relationship" relationship="viewControllers" id="c16-7O-lck"/>
-                        <segue destination="6hl-fq-c4v" kind="presentation" identifier="goToLogin" id="XaY-Cy-XDf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29n-J9-Asp" userLabel="First Responder" sceneMemberID="firstResponder"/>

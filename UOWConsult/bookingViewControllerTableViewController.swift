@@ -50,6 +50,12 @@ class bookingViewControllerTableViewController: UITableViewController {
 		}
 	}
 	
+	func getStringFromDate(date:NSDate) -> String{
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		
+		return dateFormatter.stringFromDate(date)
+	}
 	
 	func performLogin(){
 		let vc = storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
@@ -118,17 +124,20 @@ extension bookingViewControllerTableViewController {
 					let slot = booking.1
 					let date = slot["date"] as! String
 					let booked = Booking(date: date,
-						student: slot["student"] as! String,
-						subject: slot["subject"] as! String,
-						time: slot["time"] as! String,
-						key: booking.0)
+										student: slot["student"] as! String,
+										subject: slot["subject"] as! String,
+										time: slot["time"] as! String,
+										key: booking.0)
 					
-					if self.reservations.indexForKey(date) == nil {
-						self.reservations[date] = [booked]
-					} else {
-						self.reservations[date]!.append(booked)
+					if date >= self.getStringFromDate(NSDate()){
+						if self.reservations.indexForKey(date) == nil {
+							self.reservations[date] = [booked]
+						} else {
+							self.reservations[date]!.append(booked)
+						}
+						self.reservations[date]?.sortInPlace({ $0.time.compare($1.time) == NSComparisonResult.OrderedAscending})
 					}
-					self.reservations[date]?.sortInPlace({ $0.time.compare($1.time) == NSComparisonResult.OrderedAscending})
+					
 				}
 				self.timeSection = Array(self.reservations.keys).sort(<)
 				
@@ -168,17 +177,20 @@ extension bookingViewControllerTableViewController {
 							if (slot["subject"] as! String) == subject {
 								let date = slot["date"] as! String
 								let booked = Booking(date: date,
-									student: slot["student"] as! String,
-									subject: subject,
-									time: slot["time"] as! String,
-									key: booking.0)
+													student: slot["student"] as! String,
+													subject: subject,
+													time: slot["time"] as! String,
+													key: booking.0)
 								
-								if self.reservations.indexForKey(date) == nil {
-									self.reservations[date] = [booked]
-								} else {
-									self.reservations[date]!.append(booked)
+								
+								if date >= self.getStringFromDate(NSDate()){
+									if self.reservations.indexForKey(date) == nil {
+										self.reservations[date] = [booked]
+									} else {
+										self.reservations[date]!.append(booked)
+									}
+									self.reservations[date]?.sortInPlace({ $0.time.compare($1.time) == NSComparisonResult.OrderedAscending})
 								}
-								self.reservations[date]?.sortInPlace({ $0.time.compare($1.time) == NSComparisonResult.OrderedAscending})
 							}
 						}
 						self.timeSection = Array(self.reservations.keys).sort(<)
