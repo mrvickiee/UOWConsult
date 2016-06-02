@@ -17,6 +17,7 @@ class EnrollViewController: UITableViewController, UITextFieldDelegate {
     
     
     let SubjectRef = FIRDatabase.database().referenceWithPath("Subject")
+	let enrolledRef = FIRDatabase.database().referenceWithPath("Enrolled")
 
     let user = NSUserDefaults.standardUserDefaults()
     var subject = [String]()
@@ -29,14 +30,12 @@ class EnrollViewController: UITableViewController, UITextFieldDelegate {
 		subjectCode.delegate = self
 		email = user.stringForKey("email")!
         SubjectRef.keepSynced(true)
+		enrolledRef.keepSynced(true)
         getSubjects()
-		
-        
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
-        
+        enrolledRef.removeAllObservers()
         SubjectRef.removeAllObservers()
     }
 
@@ -46,15 +45,38 @@ class EnrollViewController: UITableViewController, UITextFieldDelegate {
     }
 
     func getSubjects() {
-        SubjectRef.observeEventType(FIRDataEventType.Value, withBlock: {(snaphot) in
-            let subjectDict = snaphot.value as! [String:AnyObject]
-            for subject in subjectDict {
-                self.subject.append(subject.0)
-            }
-            
-        })
-        
+		getEnrolledSubject(){ enrolledSub in
+			
+			self.SubjectRef.observeEventType(FIRDataEventType.Value, withBlock: {(snaphot) in
+				let subjectDict = snaphot.value as! [String:AnyObject]
+
+				for subject in subjectDict {
+					if !enrolledSub.contains(subject.0) {
+						self.subject.append(subject.0)
+					}
+				}
+				
+				print(self.subject)
+			})
+		}
     }
+	
+	
+	func getEnrolledSubject(completion:(enrolledSub:[String])->()){
+		var array = [String]()
+		
+		enrolledRef.observeEventType(.Value, withBlock:{(snapshot) in
+			
+			if let enrollDict = snapshot.value as? [String:AnyObject]{
+				let enrollFiltered = enrollDict.filter{ ($0.1["student"] as! String) == self.email }
+				for filtered in enrollFiltered{
+					array.append(filtered.1["subject"] as! String)
+				}
+			}
+			completion(enrolledSub:array)
+		})
+		
+	}
 	
 	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
 		return false
@@ -63,9 +85,14 @@ class EnrollViewController: UITableViewController, UITextFieldDelegate {
 
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
-            let ref = FIRDatabase.database().reference()
+		if subjectCode.text! != ""{
+		    let ref = FIRDatabase.database().reference()
             ref.child("Enrolled").childByAutoId().setValue(getDictionary())
-            popUp("Enrolled!", msg: "Your information has been added", buttonText: "Okay")
+			HUD.flash(.Label("Enrolled successfully!"),delay:1)
+		}else{
+			HUD.flash(.Label("Subject code must not be left empty!"),delay:1)
+			
+		}
     }
 
     @IBAction func selectSubjectCode(sender: AnyObject) {
@@ -79,29 +106,6 @@ class EnrollViewController: UITableViewController, UITextFieldDelegate {
 
     }
     
-    func popUp(okay: String, msg: String, buttonText: String) {
-        // Create the alert controller
-        let alertController = UIAlertController(title: okay, message: msg , preferredStyle: .Alert)
-        
-        // Create the actions
-        let okAction = UIAlertAction(title: buttonText, style: UIAlertActionStyle.Default) {
-            UIAlertAction in
-            
-            if okay == "Enrolled!"{
-                self.navigationController?.popViewControllerAnimated(true)
-            }else{
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-        }
-        
-        // Add the actions
-        alertController.addAction(okAction)
-        
-        // Present the controller
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    
     func getDictionary()->Dictionary<String,String>{
         let userDictionary = [
             "student" : email,
@@ -110,6 +114,7 @@ class EnrollViewController: UITableViewController, UITextFieldDelegate {
         
         return userDictionary
     }
+
     
     /*
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
