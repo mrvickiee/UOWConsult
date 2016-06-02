@@ -23,19 +23,29 @@ class SettingViewController: UITableViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBAction func logOutPressed(sender: AnyObject) {
+	
+ @IBAction func logOutPressed(sender: AnyObject) {
         
-        HUD.flash(.Label("Logging out.."), delay: 2) { (finished) in
+	let alert = UIAlertController(title: "Are you sure you want to log out?", message: nil, preferredStyle: .ActionSheet)
+
+	alert.addAction(UIAlertAction(title: "Log Out", style: .Destructive){ UIAlertAction in
+		HUD.flash(.Label("Logging out.."), delay: 2) { (finished) in
 			try! FIRAuth.auth()!.signOut()
-            self.defaults.removeObjectForKey("email")
-            self.defaults.removeObjectForKey("role")
-            self.defaults.removeObjectForKey("name")
-            
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
-            self.presentViewController(vc, animated: true, completion:nil)
-        }
+			self.defaults.removeObjectForKey("email")
+			self.defaults.removeObjectForKey("role")
+			self.defaults.removeObjectForKey("name")
+			
+			let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginController") as! LoginViewController
+			self.presentViewController(vc, animated: true, completion:nil)
+		}
+
+	})
+
+	alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+	
+	self.presentViewController(alert, animated: true, completion: nil)
     }
-    
+	
     /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.

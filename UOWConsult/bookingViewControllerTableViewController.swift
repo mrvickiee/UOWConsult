@@ -93,7 +93,7 @@ extension bookingViewControllerTableViewController {
 	}
 	
 	override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?  {
-		let action = UITableViewRowAction(style: .Destructive, title: "Delete", handler: { (action , indexPath) -> Void in
+		let action = UITableViewRowAction(style: .Destructive, title: "Cancel", handler: { (action , indexPath) -> Void in
 			
 			let currentCell = tableView.cellForRowAtIndexPath(indexPath)! as! BookingTableViewCell
 			let key = currentCell.accessibilityIdentifier!
