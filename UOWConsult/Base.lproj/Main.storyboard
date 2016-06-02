@@ -51,6 +51,9 @@
                                 <state key="normal" title="Forget Password?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="bCC-zQ-IMb" kind="presentation" modalTransitionStyle="flipHorizontal" id="onx-59-zQf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bJ-y7-6Bs">
                                 <rect key="frame" x="269" y="280" width="61" height="39"/>
@@ -98,6 +101,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aK1-EE-eSe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2337" y="258"/>
+        </scene>
+        <!--Forget Password View Controller-->
+        <scene sceneID="9km-tx-fit">
+            <objects>
+                <viewController id="bCC-zQ-IMb" customClass="ForgetPasswordViewController" customModule="UOWConsult" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dhc-hB-rT4"/>
+                        <viewControllerLayoutGuide type="bottom" id="YEo-2l-8ig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Co-cf-n4a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jUK-h4-qjG">
+                                <rect key="frame" x="175" y="282.5" width="250" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="9TL-vK-K7y"/>
+                                    <constraint firstAttribute="width" constant="250" id="JgD-9n-Tpb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3G1-Dg-4K2">
+                                <rect key="frame" x="276" y="349" width="48" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="p3c-SC-4wn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendPressed:" destination="bCC-zQ-IMb" eventType="touchUpInside" id="tfx-JP-aQn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIT-oB-M0x">
+                                <rect key="frame" x="253" y="562" width="94" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="m0q-nW-vkf"/>
+                                </constraints>
+                                <state key="normal" title="Back to login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backPressed:" destination="bCC-zQ-IMb" eventType="touchUpInside" id="JB2-mz-0Dz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3G1-Dg-4K2" firstAttribute="centerX" secondItem="7Co-cf-n4a" secondAttribute="centerX" id="3j9-Kx-V8p"/>
+                            <constraint firstItem="jUK-h4-qjG" firstAttribute="centerY" secondItem="7Co-cf-n4a" secondAttribute="centerY" id="5e8-Dw-yy1"/>
+                            <constraint firstItem="3G1-Dg-4K2" firstAttribute="top" secondItem="jUK-h4-qjG" secondAttribute="bottom" constant="34" id="IXZ-tp-vmY"/>
+                            <constraint firstItem="jUK-h4-qjG" firstAttribute="centerX" secondItem="7Co-cf-n4a" secondAttribute="centerX" id="gtU-4p-ajt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jUK-h4-qjG" secondAttribute="trailing" constant="5" id="l1V-Pz-L7W"/>
+                            <constraint firstItem="3G1-Dg-4K2" firstAttribute="top" secondItem="jUK-h4-qjG" secondAttribute="bottom" constant="34" id="lCe-Ir-EQi"/>
+                            <constraint firstItem="YEo-2l-8ig" firstAttribute="top" secondItem="BIT-oB-M0x" secondAttribute="bottom" constant="8" id="r8E-IY-0bb"/>
+                            <constraint firstItem="jUK-h4-qjG" firstAttribute="leading" secondItem="7Co-cf-n4a" secondAttribute="leadingMargin" constant="115" id="u6a-NB-QC5"/>
+                            <constraint firstItem="BIT-oB-M0x" firstAttribute="centerX" secondItem="7Co-cf-n4a" secondAttribute="centerX" id="uhE-Tv-xy5"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="l1V-Pz-L7W"/>
+                                <exclude reference="u6a-NB-QC5"/>
+                                <exclude reference="lCe-Ir-EQi"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="emailTF" destination="jUK-h4-qjG" id="NCw-Ep-B8e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fbe-Or-FND" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2337" y="991"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="aFp-yg-Yeq">

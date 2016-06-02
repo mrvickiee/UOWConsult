@@ -110,7 +110,6 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             self.roleTxt.text = self.roleName
             return
             }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender)
-        
     }
     
     /*

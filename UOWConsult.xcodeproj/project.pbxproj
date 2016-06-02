@@ -10,6 +10,7 @@
 		2C4FE7A3D501D779674C345F /* Pods_UOWConsult.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293DDA9E2C4408D2A22E4AB2 /* Pods_UOWConsult.framework */; };
 		395515741CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395515731CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift */; };
 		395515761CF9D3EC005C7BC6 /* booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395515751CF9D3EB005C7BC6 /* booking.swift */; };
+		397A54261D005A5300F1D875 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397A54251D005A5300F1D875 /* ForgetPasswordViewController.swift */; };
 		3995BAC01CF9E84A0087A4B9 /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */; };
 		5D0CCBAE1CF9AEA4001096F1 /* EnrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */; };
 		5D0CCBB01CF9CD0C001096F1 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CCBAF1CF9CD0C001096F1 /* CreateSubjectViewController.swift */; };
@@ -40,6 +41,7 @@
 		293DDA9E2C4408D2A22E4AB2 /* Pods_UOWConsult.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UOWConsult.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		395515731CF9CB96005C7BC6 /* bookingViewControllerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bookingViewControllerTableViewController.swift; sourceTree = "<group>"; };
 		395515751CF9D3EB005C7BC6 /* booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = booking.swift; sourceTree = "<group>"; };
+		397A54251D005A5300F1D875 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		3995BABF1CF9E84A0087A4B9 /* BookingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		3CABE4FFC0E695ADBF52B2DD /* Pods-UOWConsult.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UOWConsult.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UOWConsult/Pods-UOWConsult.debug.xcconfig"; sourceTree = "<group>"; };
 		5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				E91A34761CF0509500A35DB1 /* SignUpViewController.swift */,
 				5D0CCBAD1CF9AEA4001096F1 /* EnrollViewController.swift */,
 				5D0CCBAF1CF9CD0C001096F1 /* CreateSubjectViewController.swift */,
+				397A54251D005A5300F1D875 /* ForgetPasswordViewController.swift */,
 			);
 			name = "User Management";
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				E91A34861CF16A5600A35DB1 /* Location.swift in Sources */,
 				E91A34881CF16AD800A35DB1 /* Coordinate.swift in Sources */,
 				E91A348C1CF16B4600A35DB1 /* Subject.swift in Sources */,
+				397A54261D005A5300F1D875 /* ForgetPasswordViewController.swift in Sources */,
 				E91A34731CF0508B00A35DB1 /* ConsulationTimeViewController.swift in Sources */,
 				E91A348A1CF16AE700A35DB1 /* Class.swift in Sources */,
 				E91A34791CF0509500A35DB1 /* SettingViewController.swift in Sources */,
