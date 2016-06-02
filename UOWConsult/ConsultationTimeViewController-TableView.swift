@@ -122,6 +122,7 @@ extension ConsulationTimeViewController: UITableViewDelegate, UITableViewDataSou
 					"time" : time
 				]
 				self.ConsultRef.childByAutoId().setValue(parameter)
+				HUD.flash(.Label("Reserve successfully!"),delay:1)
 				
 				return
 			}
